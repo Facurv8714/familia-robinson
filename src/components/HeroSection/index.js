@@ -8,59 +8,99 @@ import {
   Typography,
   IconButton,
   Paper,
+  Button,
 } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import {
+  ArrowBackIos,
+  ArrowForwardIos,
+  ShoppingCart,
+  Warehouse,
+} from "@mui/icons-material";
 import { PALETTE } from "../../constants";
 import PromotionalSection from "./sections/PromotionalSection";
 import PromotionalChips from "./sections/PromotionalChips";
 import NavButtons from "./sections/NavButtons";
 
+import { carouselImages } from "../../constants";
+
 const HeroSection = ({ variant }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Imágenes genéricas de pesca y camping
-  const carouselImages = [
-    {
-      url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop&crop=center",
-      title: "Pesca en Lagos",
-      description: "Equipos profesionales para la pesca perfecta",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=600&h=400&fit=crop&crop=center",
-      title: "Camping Aventura",
-      description: "Todo lo necesario para tu próxima aventura",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&crop=center",
-      title: "Pesca Deportiva",
-      description: "Cañas y accesorios de alta calidad",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=600&h=400&fit=crop&crop=center",
-      title: "Camping Familiar",
-      description: "Carpas y equipos para toda la familia",
-    },
-  ];
+  const [isManualControl, setIsManualControl] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    if (isTransitioning) return;
+
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+      setIsManualControl(true);
+      setTimeout(() => setIsTransitioning(false), 200);
+    }, 300);
   };
 
   const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
-    );
+    if (isTransitioning) return;
+
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(
+        (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
+      );
+      setIsManualControl(true);
+      setTimeout(() => setIsTransitioning(false), 200);
+    }, 300);
   };
 
-  // Auto-advance carousel every 4 seconds
+  // Helper function to get the appropriate button for each slide
+  const getSlideButton = (slideIndex) => {
+    const buttons = [
+      {
+        text: "Ver tienda",
+        href: "#minorista",
+        icon: <ShoppingCart />,
+        color: "secondary",
+      },
+      {
+        text: "Ser distribuidor",
+        href: "#mayorista",
+        icon: <Warehouse />,
+        color: "primary",
+      },
+      {
+        text: "Ver cursos",
+        href: "#fishing-school",
+        icon: "🎓",
+        color: "custom",
+      },
+      {
+        text: "Próximamente",
+        href: "#expediciones",
+        icon: "🏔️",
+        color: "custom",
+      },
+    ];
+    return buttons[slideIndex] || buttons[0];
+  };
+
+  // Auto-advance carousel every 4 seconds, but pause if user is manually controlling
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
+    if (isManualControl) {
+      // Reset manual control after 8 seconds of inactivity
+      const resetTimeout = setTimeout(() => {
+        setIsManualControl(false);
+      }, 4000);
+
+      return () => clearTimeout(resetTimeout);
+    }
+
     const interval = setInterval(() => {
       nextSlide();
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [carouselImages.length]);
+  }, [carouselImages.length, isManualControl]);
 
   return (
     <Container
@@ -123,13 +163,17 @@ const HeroSection = ({ variant }) => {
                 >
                   <Box
                     component="img"
-                    src={carouselImages[currentSlide].url}
+                    src={carouselImages[currentSlide].src}
                     alt={carouselImages[currentSlide].title}
                     sx={{
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
-                      transition: "all 0.5s ease-in-out",
+                      transition:
+                        "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                      transform: isTransitioning ? "scale(1.03)" : "scale(1)",
+                      opacity: isTransitioning ? 0.8 : 1,
+                      filter: isTransitioning ? "blur(0.5px)" : "blur(0px)",
                     }}
                   />
 
@@ -143,19 +187,97 @@ const HeroSection = ({ variant }) => {
                       background: `linear-gradient(transparent, ${PALETTE.primario}90)`,
                       p: 3,
                       color: "white",
+                      transition:
+                        "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                      transform: isTransitioning
+                        ? "translateY(8px)"
+                        : "translateY(0)",
+                      opacity: isTransitioning ? 0.85 : 1,
                     }}
                   >
-                    <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5 }}>
-                      {carouselImages[currentSlide].title}
-                    </Typography>
-                    <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                      {carouselImages[currentSlide].description}
-                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "flex-end",
+                      }}
+                    >
+                      <Box sx={{ flex: 1 }}>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontWeight: 600,
+                            mb: 0.5,
+                            transition: "all 0.5s ease-out",
+                            transform: isTransitioning
+                              ? "translateX(-8px)"
+                              : "translateX(0)",
+                          }}
+                        >
+                          {carouselImages[currentSlide].title}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            opacity: isTransitioning ? 0.7 : 0.9,
+                            transition: "all 0.5s ease-out",
+                            transform: isTransitioning
+                              ? "translateX(-8px)"
+                              : "translateX(0)",
+                            mb: 2,
+                          }}
+                        >
+                          {carouselImages[currentSlide].description}
+                        </Typography>
+                      </Box>
+
+                      <Button
+                        variant="contained"
+                        size="small"
+                        href={getSlideButton(currentSlide).href}
+                        startIcon={
+                          typeof getSlideButton(currentSlide).icon === "string"
+                            ? null
+                            : getSlideButton(currentSlide).icon
+                        }
+                        sx={{
+                          ml: 2,
+                          minWidth: "120px",
+                          background:
+                            getSlideButton(currentSlide).color === "primary"
+                              ? `linear-gradient(135deg, ${PALETTE.primario}, ${PALETTE.destacado})`
+                              : getSlideButton(currentSlide).color ===
+                                "secondary"
+                              ? `linear-gradient(135deg, ${PALETTE.secundario}, ${PALETTE.destacado})`
+                              : `linear-gradient(135deg, ${PALETTE.acento}, ${PALETTE.destacado})`,
+                          "&:hover": {
+                            background:
+                              getSlideButton(currentSlide).color === "primary"
+                                ? `linear-gradient(135deg, ${PALETTE.primario}dd, ${PALETTE.destacado}dd)`
+                                : getSlideButton(currentSlide).color ===
+                                  "secondary"
+                                ? `linear-gradient(135deg, ${PALETTE.secundario}dd, ${PALETTE.destacado}dd)`
+                                : `linear-gradient(135deg, ${PALETTE.acento}dd, ${PALETTE.destacado}dd)`,
+                            transform: "scale(1.05)",
+                          },
+                          transition: "all 0.3s ease",
+                        }}
+                      >
+                        {typeof getSlideButton(currentSlide).icon ===
+                          "string" && (
+                          <span style={{ marginRight: "4px" }}>
+                            {getSlideButton(currentSlide).icon}
+                          </span>
+                        )}
+                        {getSlideButton(currentSlide).text}
+                      </Button>
+                    </Box>
                   </Box>
 
                   {/* Navigation Arrows */}
                   <IconButton
                     onClick={prevSlide}
+                    disabled={isTransitioning}
                     sx={{
                       position: "absolute",
                       left: 16,
@@ -163,11 +285,18 @@ const HeroSection = ({ variant }) => {
                       transform: "translateY(-50%)",
                       backgroundColor: `${PALETTE.primario}80`,
                       color: "white",
+                      transition:
+                        "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                      opacity: isTransitioning ? 0.5 : 1,
                       "&:hover": {
                         backgroundColor: PALETTE.primario,
-                        transform: "translateY(-50%) scale(1.1)",
+                        transform: "translateY(-50%) scale(1.08)",
+                        boxShadow: `0 8px 25px -8px ${PALETTE.primario}60`,
                       },
-                      transition: "all 0.3s ease",
+                      "&:disabled": {
+                        backgroundColor: `${PALETTE.primario}40`,
+                        color: "rgba(255,255,255,0.6)",
+                      },
                     }}
                   >
                     <ArrowBackIos />
@@ -175,6 +304,7 @@ const HeroSection = ({ variant }) => {
 
                   <IconButton
                     onClick={nextSlide}
+                    disabled={isTransitioning}
                     sx={{
                       position: "absolute",
                       right: 16,
@@ -182,11 +312,18 @@ const HeroSection = ({ variant }) => {
                       transform: "translateY(-50%)",
                       backgroundColor: `${PALETTE.primario}80`,
                       color: "white",
+                      transition:
+                        "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                      opacity: isTransitioning ? 0.5 : 1,
                       "&:hover": {
                         backgroundColor: PALETTE.primario,
-                        transform: "translateY(-50%) scale(1.1)",
+                        transform: "translateY(-50%) scale(1.08)",
+                        boxShadow: `0 8px 25px -8px ${PALETTE.primario}60`,
                       },
-                      transition: "all 0.3s ease",
+                      "&:disabled": {
+                        backgroundColor: `${PALETTE.primario}40`,
+                        color: "rgba(255,255,255,0.6)",
+                      },
                     }}
                   >
                     <ArrowForwardIos />
@@ -206,20 +343,39 @@ const HeroSection = ({ variant }) => {
                     {carouselImages.map((_, index) => (
                       <Box
                         key={index}
-                        onClick={() => setCurrentSlide(index)}
+                        onClick={() => {
+                          if (isTransitioning || currentSlide === index) return;
+
+                          setIsTransitioning(true);
+                          setTimeout(() => {
+                            setCurrentSlide(index);
+                            setIsManualControl(true);
+                            setTimeout(() => setIsTransitioning(false), 200);
+                          }, 300);
+                        }}
                         sx={{
-                          width: 10,
-                          height: 10,
+                          width: currentSlide === index ? 12 : 10,
+                          height: currentSlide === index ? 12 : 10,
                           borderRadius: "50%",
                           backgroundColor:
                             currentSlide === index
                               ? "white"
                               : "rgba(255,255,255,0.5)",
-                          cursor: "pointer",
-                          transition: "all 0.3s ease",
+                          cursor: isTransitioning ? "default" : "pointer",
+                          transition:
+                            "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                          boxShadow:
+                            currentSlide === index
+                              ? "0 4px 12px rgba(255,255,255,0.3)"
+                              : "none",
                           "&:hover": {
-                            backgroundColor: "white",
-                            transform: "scale(1.2)",
+                            backgroundColor: isTransitioning
+                              ? undefined
+                              : "white",
+                            transform: isTransitioning ? "none" : "scale(1.15)",
+                            boxShadow: isTransitioning
+                              ? "none"
+                              : "0 4px 12px rgba(255,255,255,0.4)",
                           },
                         }}
                       />

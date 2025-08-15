@@ -68,12 +68,26 @@ export default function App() {
         {/* Hero Section */}
         <HeroSection variant={variant} />
 
-        {/* Sección Mayorista/Minorista */}
+        {/* Sección Mayorista/Minorista/Fishing School/Expediciones */}
         <Container maxWidth="lg" sx={{ py: 6 }}>
-          <Grid container spacing={4}>
+          <Grid container spacing={4} sx={{ minHeight: "600px" }}>
             <Grid item xs={12} md={6}>
-              <Card id="mayorista" sx={{ height: "100%" }}>
-                <CardContent sx={{ p: 4 }}>
+              <Card
+                id="mayorista"
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardContent
+                  sx={{
+                    p: 4,
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   <Box
                     sx={{
                       display: "flex",
@@ -90,11 +104,18 @@ export default function App() {
                       <Warehouse />
                     </Avatar>
                     <Typography variant="h4" sx={{ fontWeight: 800 }}>
-                      Venta mayorista
+                      Robinson mayorista
                     </Typography>
                   </Box>
-
-                  <List sx={{ mb: 3 }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ mb: 3, fontSize: "1.1rem" }}
+                  >
+                    Distribución mayorista a comercios
+                    <br />
+                    del rubro.
+                  </Typography>
+                  <List sx={{ mb: 3, flex: 1 }}>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: "primary.main" }} />
@@ -121,6 +142,7 @@ export default function App() {
                     endIcon={<ChevronRight />}
                     href="#contacto"
                     fullWidth
+                    sx={{ mt: "auto" }}
                   >
                     Quiero ser distribuidor
                   </Button>
@@ -129,8 +151,22 @@ export default function App() {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Card id="minorista" sx={{ height: "100%" }}>
-                <CardContent sx={{ p: 4 }}>
+              <Card
+                id="minorista"
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardContent
+                  sx={{
+                    p: 4,
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   <Box
                     sx={{
                       display: "flex",
@@ -147,7 +183,7 @@ export default function App() {
                       <ShoppingCart />
                     </Avatar>
                     <Typography variant="h4" sx={{ fontWeight: 800 }}>
-                      Venta minorista
+                      Robinson minorista
                     </Typography>
                   </Box>
 
@@ -155,11 +191,19 @@ export default function App() {
                     variant="body1"
                     sx={{ mb: 3, fontSize: "1.1rem" }}
                   >
-                    Comprá fácil y recibí en 24/72 hs en todo el país.
+                    Venta al público de artículos de pesca,
+                    <br />
+                    camping, outdoor e indumentaria.
                   </Typography>
 
                   <Box
-                    sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 3 }}
+                    sx={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: 1,
+                      mb: 3,
+                      flex: 1,
+                    }}
                   >
                     <Chip label="📦 Envío a todo el país" size="small" />
                     <Chip label="💳 Todos los medios de pago" size="small" />
@@ -172,8 +216,187 @@ export default function App() {
                     startIcon={<ShoppingCart />}
                     href="#catalogo"
                     fullWidth
+                    sx={{ mt: "auto" }}
                   >
                     Ver catálogo completo
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Card
+                id="fishing-school"
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardContent
+                  sx={{
+                    p: 4,
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 2,
+                      mb: 3,
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background: `linear-gradient(135deg, ${PALETTE.acento}, ${PALETTE.destacado})`,
+                      }}
+                    >
+                      🎓
+                    </Avatar>
+                    <Typography variant="h4" sx={{ fontWeight: 800 }}>
+                      Robinson Fishing School
+                    </Typography>
+                  </Box>
+
+                  <Typography
+                    variant="body1"
+                    sx={{ mb: 3, fontSize: "1.1rem" }}
+                  >
+                    Formación técnica y comunitaria para
+                    <br />
+                    pescadores de todos los niveles.
+                  </Typography>
+
+                  <List sx={{ mb: 3, flex: 1 }}>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.acento }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Cursos presenciales y salidas grupales" />
+                    </ListItem>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.acento }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Técnicas de pesca especializada" />
+                    </ListItem>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.acento }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Equipo y material incluido" />
+                    </ListItem>
+                  </List>
+
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: `linear-gradient(135deg, ${PALETTE.acento}, ${PALETTE.destacado})`,
+                      "&:hover": {
+                        background: `linear-gradient(135deg, ${PALETTE.acento}dd, ${PALETTE.destacado}dd)`,
+                      },
+                      mt: "auto",
+                    }}
+                    endIcon={<ChevronRight />}
+                    href="#contacto"
+                    fullWidth
+                  >
+                    Conocer cursos
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Card
+                id="expediciones"
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <CardContent
+                  sx={{
+                    p: 4,
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 2,
+                      mb: 3,
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background: `linear-gradient(135deg, ${PALETTE.destacado}, ${PALETTE.primario})`,
+                      }}
+                    >
+                      🏔️
+                    </Avatar>
+                    <Typography variant="h4" sx={{ fontWeight: 800 }}>
+                      Robinson Expediciones
+                      <br />
+                      (futuro)
+                    </Typography>
+                  </Box>
+
+                  <Typography
+                    variant="body1"
+                    sx={{ mb: 3, fontSize: "1.1rem" }}
+                  >
+                    Organizamos viajes y expediciones guiadas
+                    <br />
+                    para vivir la naturaleza en su máxima
+                    <br />
+                    expresión. Clínicas, experiencias y aventuras
+                    <br />
+                    diseñadas para explorar de manera segura.
+                  </Typography>
+
+                  <List sx={{ mb: 3, flex: 1 }}>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.destacado }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Expediciones guiadas por expertos" />
+                    </ListItem>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.destacado }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Clínicas especializadas en naturaleza" />
+                    </ListItem>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.destacado }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Experiencias seguras y memorables" />
+                    </ListItem>
+                  </List>
+
+                  <Button
+                    variant="contained"
+                    sx={{
+                      background: `linear-gradient(135deg, ${PALETTE.destacado}, ${PALETTE.primario})`,
+                      "&:hover": {
+                        background: `linear-gradient(135deg, ${PALETTE.destacado}dd, ${PALETTE.primario}dd)`,
+                      },
+                      mt: "auto",
+                    }}
+                    endIcon={<ChevronRight />}
+                    href="#contacto"
+                    fullWidth
+                  >
+                    Próximamente
                   </Button>
                 </CardContent>
               </Card>

@@ -26,6 +26,15 @@ const NavButtons = () => (
       variant="outlined"
       color="primary"
       size="large"
+      startIcon="🎓"
+      href="#fishing-school"
+    >
+      Fishing School
+    </Button>
+    <Button
+      variant="outlined"
+      color="primary"
+      size="large"
       startIcon={<Info />}
       href="#quienes"
       // Quienes somos
