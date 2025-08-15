@@ -53,6 +53,7 @@ const HeroSection = ({ variant }) => {
   };
 
   // Auto-advance carousel every 4 seconds
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
