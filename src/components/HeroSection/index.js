@@ -83,6 +83,18 @@ const HeroSection = ({ variant }) => {
     return buttons[slideIndex] || buttons[0];
   };
 
+  // Smooth scroll handler
+  const handleSmoothScroll = (targetId) => {
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const targetPosition = targetElement.offsetTop - 10; // 10px offset to avoid topbar overlap
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   // Auto-advance carousel every 4 seconds, but pause if user is manually controlling
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
@@ -234,7 +246,10 @@ const HeroSection = ({ variant }) => {
                       <Button
                         variant="contained"
                         size="small"
-                        href={getSlideButton(currentSlide).href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleSmoothScroll(getSlideButton(currentSlide).href);
+                        }}
                         startIcon={
                           typeof getSlideButton(currentSlide).icon === "string"
                             ? null
@@ -243,6 +258,7 @@ const HeroSection = ({ variant }) => {
                         sx={{
                           ml: 2,
                           minWidth: "120px",
+                          cursor: "pointer",
                           background:
                             getSlideButton(currentSlide).color === "primary"
                               ? `linear-gradient(135deg, ${PALETTE.primario}, ${PALETTE.destacado})`
@@ -259,8 +275,13 @@ const HeroSection = ({ variant }) => {
                                 ? `linear-gradient(135deg, ${PALETTE.secundario}dd, ${PALETTE.destacado}dd)`
                                 : `linear-gradient(135deg, ${PALETTE.acento}dd, ${PALETTE.destacado}dd)`,
                             transform: "scale(1.05)",
+                            boxShadow: `0 8px 25px -8px rgba(0,0,0,0.3)`,
                           },
-                          transition: "all 0.3s ease",
+                          "&:active": {
+                            transform: "scale(0.98)",
+                          },
+                          transition:
+                            "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                         }}
                       >
                         {typeof getSlideButton(currentSlide).icon ===

@@ -2,47 +2,135 @@ import React from "react";
 import { Box, Button } from "@mui/material";
 import { Info, ShoppingCart, Warehouse } from "@mui/icons-material";
 
-const NavButtons = () => (
-  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 4 }}>
-    <Button
-      variant="contained"
-      color="primary"
-      size="large"
-      startIcon={<Warehouse />}
-      href="#mayorista"
-    >
-      Venta mayorista
-    </Button>
-    <Button
-      variant="contained"
-      color="secondary"
-      size="large"
-      startIcon={<ShoppingCart />}
-      href="#minorista"
-    >
-      Venta minorista
-    </Button>
-    <Button
-      variant="outlined"
-      color="primary"
-      size="large"
-      startIcon="🎓"
-      href="#fishing-school"
-    >
-      Fishing School
-    </Button>
-    <Button
-      variant="outlined"
-      color="primary"
-      size="large"
-      startIcon={<Info />}
-      href="#quienes"
-      // Quienes somos
-      // o conocenos
-    >
-      Conocenos
-    </Button>
-  </Box>
-);
+const NavButtons = () => {
+  // Smooth scroll handler
+  const handleSmoothScroll = (targetId) => {
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const targetPosition = targetElement.offsetTop - 90; // 10px offset to avoid topbar overlap
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  return (
+    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 4 }}>
+      <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        startIcon={<Warehouse />}
+        onClick={(e) => {
+          e.preventDefault();
+          handleSmoothScroll("#mayorista");
+        }}
+        sx={{
+          transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+          },
+          "&:active": {
+            transform: "translateY(0px)",
+          },
+        }}
+      >
+        Venta mayorista
+      </Button>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="large"
+        startIcon={<ShoppingCart />}
+        onClick={(e) => {
+          e.preventDefault();
+          handleSmoothScroll("#minorista");
+        }}
+        sx={{
+          transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+          },
+          "&:active": {
+            transform: "translateY(0px)",
+          },
+        }}
+      >
+        Venta minorista
+      </Button>
+      <Button
+        variant="contained"
+        color="info"
+        size="large"
+        startIcon="🎓"
+        onClick={(e) => {
+          e.preventDefault();
+          handleSmoothScroll("#fishing-school");
+        }}
+        sx={{
+          transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+          },
+          "&:active": {
+            transform: "translateY(0px)",
+          },
+        }}
+      >
+        Fishing School
+      </Button>
+      <Button
+        variant="contained"
+        color="success"
+        size="large"
+        startIcon="🏔️"
+        onClick={(e) => {
+          e.preventDefault();
+          handleSmoothScroll("#expediciones");
+        }}
+        sx={{
+          transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+          },
+          "&:active": {
+            transform: "translateY(0px)",
+          },
+        }}
+      >
+        Expediciones
+      </Button>
+      <Button
+        variant="outlined"
+        color="secondary"
+        size="large"
+        startIcon={<Info />}
+        onClick={(e) => {
+          e.preventDefault();
+          handleSmoothScroll("#quienes");
+        }}
+        sx={{
+          transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+          },
+          "&:active": {
+            transform: "translateY(0px)",
+          },
+        }}
+        // Quienes somos
+        // o conocenos
+      >
+        Conocenos
+      </Button>
+    </Box>
+  );
+};
 
 export default NavButtons;
