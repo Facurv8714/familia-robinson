@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  Button,
-  Card,
-  CardContent,
   Chip,
   Container,
   Fade,
   Grid,
   Typography,
-  Avatar,
   IconButton,
   Paper,
 } from "@mui/material";
-import {
-  Info,
-  ShoppingCart,
-  Warehouse,
-  ArrowBackIos,
-  ArrowForwardIos,
-} from "@mui/icons-material";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { PALETTE } from "../../constants";
 import PromotionalSection from "./sections/PromotionalSection";
 import PromotionalChips from "./sections/PromotionalChips";

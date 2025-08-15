@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { LightMode, DarkMode } from "@mui/icons-material";
 import { PALETTE } from "../../constants";
-import { HideOnScroll } from "../../utils"; // Assuming you have this utility function
+// import { HideOnScroll } from "../../utils"; // Assuming you have this utility function
 const Topbar = ({ variant, setVariant, darkMode, setDarkMode }) => (
   // <HideOnScroll>
   <AppBar

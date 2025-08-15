@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  AppBar,
-  Toolbar,
   Typography,
   Container,
   Grid,
@@ -10,40 +8,28 @@ import {
   Button,
   Chip,
   Box,
-  IconButton,
   Fab,
   TextField,
   Paper,
   Avatar,
-  Divider,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   ThemeProvider,
-  createTheme,
   CssBaseline,
-  useScrollTrigger,
-  Slide,
-  Fade,
-  Backdrop,
 } from "@mui/material";
 import {
   Phone,
   ShoppingCart,
   Warehouse,
   Info,
-  LightMode,
-  DarkMode,
   ChevronRight,
   LocationOn,
-  LocalShipping,
-  Security,
-  WhatsApp,
   CheckCircle,
 } from "@mui/icons-material";
 import { PALETTE } from "./constants";
-import { createCustomTheme, HideOnScroll } from "./utils";
+import { createCustomTheme } from "./utils";
 import Topbar from "./components/Topbar";
 import HeroSection from "./components/HeroSection";
 
