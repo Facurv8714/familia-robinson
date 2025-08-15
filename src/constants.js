@@ -30,7 +30,7 @@ export const carouselImages = [
     description: "Aprendé, viví y pescá con nosotros.",
   },
   {
-    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop&crop=center",
+    src: robinsonExpedition,
     title: "Robinson Expediciones (futuro)",
     description:
       "Organizamos viajes y expediciones guiadas para vivir la naturaleza en su máxima expresión. Clínicas, experiencias y aventuras diseñadas para quienes buscan explorar, aprender y conectar con el entorno natural de manera segura y apasionante.",
