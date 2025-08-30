@@ -21,7 +21,7 @@ const NavButtons = () => {
         variant="contained"
         color="primary"
         size="large"
-        startIcon={<Warehouse />}
+        startIcon="🏪"
         onClick={(e) => {
           e.preventDefault();
           handleSmoothScroll("#mayorista");
@@ -43,7 +43,7 @@ const NavButtons = () => {
         variant="contained"
         color="secondary"
         size="large"
-        startIcon={<ShoppingCart />}
+        startIcon="🛒"
         onClick={(e) => {
           e.preventDefault();
           handleSmoothScroll("#minorista");
@@ -65,7 +65,7 @@ const NavButtons = () => {
         variant="contained"
         color="info"
         size="large"
-        startIcon="🎓"
+        startIcon="🎣"
         onClick={(e) => {
           e.preventDefault();
           handleSmoothScroll("#fishing-school");
@@ -87,7 +87,7 @@ const NavButtons = () => {
         variant="contained"
         color="success"
         size="large"
-        startIcon="🏔️"
+        startIcon="️️️️🏕️"
         onClick={(e) => {
           e.preventDefault();
           handleSmoothScroll("#expediciones");

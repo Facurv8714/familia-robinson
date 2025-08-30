@@ -8,12 +8,25 @@ import {
   Button,
   IconButton,
   Tooltip,
+  Chip,
 } from "@mui/material";
-import { LightMode, DarkMode } from "@mui/icons-material";
+import {
+  LightMode,
+  DarkMode,
+  Settings,
+  SettingsBackupRestore,
+} from "@mui/icons-material";
 import { PALETTE, VARIANTS, getVariantStyles } from "../../constants";
 import logoRobinson from "../../images/logo-robinson.svg";
 // import { HideOnScroll } from "../../utils"; // Assuming you have this utility function
-const Topbar = ({ variant, setVariant, darkMode, setDarkMode }) => {
+const Topbar = ({
+  variant,
+  setVariant,
+  darkMode,
+  setDarkMode,
+  configMode,
+  setConfigMode,
+}) => {
   const currentVariant = getVariantStyles(variant);
 
   return (
@@ -69,6 +82,25 @@ const Topbar = ({ variant, setVariant, darkMode, setDarkMode }) => {
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          {/* Modo configuración */}
+          {configMode && (
+            <Chip
+              label="Modo Configuración Activo"
+              color="warning"
+              size="small"
+              sx={{
+                fontWeight: 600,
+                animation: "pulse 2s infinite",
+                "@keyframes pulse": {
+                  "0%": { opacity: 1 },
+                  "50%": { opacity: 0.7 },
+                  "100%": { opacity: 1 },
+                },
+                mr: 1,
+              }}
+            />
+          )}
+
           {/* Selector de variante mejorado */}
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5 }}>
             {["A", "B", "C", "D", "E"].map((v) => {
@@ -113,7 +145,50 @@ const Topbar = ({ variant, setVariant, darkMode, setDarkMode }) => {
                 </Tooltip>
               );
             })}
-          </Box>{" "}
+          </Box>
+
+          {/* Toggle modo configuración */}
+          <Tooltip
+            title={
+              configMode
+                ? "Salir del modo configuración"
+                : "Activar modo configuración"
+            }
+            arrow
+          >
+            <IconButton
+              onClick={() => setConfigMode(!configMode)}
+              sx={{
+                color: configMode ? PALETTE.warning : currentVariant.primary,
+                background: configMode
+                  ? `${PALETTE.warning}20`
+                  : `${currentVariant.primary}10`,
+                "&:hover": {
+                  background: configMode
+                    ? `${PALETTE.warning}30`
+                    : `${currentVariant.primary}20`,
+                  transform: "scale(1.1)",
+                },
+                transition: "all 0.3s ease",
+                border: configMode ? `2px solid ${PALETTE.warning}` : "none",
+                animation: configMode ? "configPulse 2s infinite" : "none",
+                "@keyframes configPulse": {
+                  "0%": {
+                    boxShadow: `0 0 0 0 ${PALETTE.warning}40`,
+                  },
+                  "70%": {
+                    boxShadow: `0 0 0 10px transparent`,
+                  },
+                  "100%": {
+                    boxShadow: `0 0 0 0 transparent`,
+                  },
+                },
+              }}
+            >
+              {configMode ? <SettingsBackupRestore /> : <Settings />}
+            </IconButton>
+          </Tooltip>
+
           {/* Toggle modo oscuro */}
           <IconButton
             onClick={() => setDarkMode(!darkMode)}
