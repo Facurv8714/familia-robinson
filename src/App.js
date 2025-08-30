@@ -65,11 +65,6 @@ export default function App() {
     return !hiddenComponents.has(componentId);
   };
 
-  // Función helper para verificar si al menos una sección del grupo está visible
-  const isAnyGroupSectionVisible = (groupIds) => {
-    return groupIds.some((id) => isComponentVisible(id));
-  };
-
   // Función helper para obtener el número de secciones visibles en un grupo
   const getVisibleSectionsCount = (groupIds) => {
     return groupIds.filter((id) => isComponentVisible(id)).length;
