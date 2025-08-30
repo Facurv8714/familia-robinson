@@ -10,17 +10,8 @@ import {
   Paper,
   Button,
 } from "@mui/material";
-import {
-  ArrowBackIos,
-  ArrowForwardIos,
-  ShoppingCart,
-  Warehouse,
-} from "@mui/icons-material";
-import {
-  PALETTE,
-  getVariantStyles,
-  HIDEABLE_COMPONENTS,
-} from "../../constants";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { getVariantStyles, HIDEABLE_COMPONENTS } from "../../constants";
 import PromotionalSection from "./sections/PromotionalSection";
 import PromotionalChips from "./sections/PromotionalChips";
 import NavButtons from "./sections/NavButtons";

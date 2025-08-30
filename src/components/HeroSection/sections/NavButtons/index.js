@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
-import { Info, ShoppingCart, Warehouse } from "@mui/icons-material";
+import { Info } from "@mui/icons-material";
 
 const NavButtons = () => {
   // Smooth scroll handler

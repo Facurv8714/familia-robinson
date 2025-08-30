@@ -22,7 +22,6 @@ import {
 import {
   Phone,
   ShoppingCart,
-  Warehouse,
   Info,
   ChevronRight,
   LocationOn,
@@ -68,12 +67,12 @@ export default function App() {
 
   // Función helper para verificar si al menos una sección del grupo está visible
   const isAnyGroupSectionVisible = (groupIds) => {
-    return groupIds.some(id => isComponentVisible(id));
+    return groupIds.some((id) => isComponentVisible(id));
   };
 
   // Función helper para obtener el número de secciones visibles en un grupo
   const getVisibleSectionsCount = (groupIds) => {
-    return groupIds.filter(id => isComponentVisible(id)).length;
+    return groupIds.filter((id) => isComponentVisible(id)).length;
   };
 
   return (
@@ -120,14 +119,17 @@ export default function App() {
               isConfigMode={configMode}
               isVisible={isComponentVisible(HIDEABLE_COMPONENTS.MAYORISTA_CARD)}
               onToggleVisibility={toggleComponentVisibility}
-              gridProps={{ 
-                xs: 12, 
-                md: getVisibleSectionsCount([
-                  HIDEABLE_COMPONENTS.MAYORISTA_CARD,
-                  HIDEABLE_COMPONENTS.MINORISTA_CARD,
-                  HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
-                  HIDEABLE_COMPONENTS.EXPEDICIONES_CARD
-                ]) === 1 ? 12 : 6 
+              gridProps={{
+                xs: 12,
+                md:
+                  getVisibleSectionsCount([
+                    HIDEABLE_COMPONENTS.MAYORISTA_CARD,
+                    HIDEABLE_COMPONENTS.MINORISTA_CARD,
+                    HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
+                    HIDEABLE_COMPONENTS.EXPEDICIONES_CARD,
+                  ]) === 1
+                    ? 12
+                    : 6,
               }}
             >
               <Card
@@ -224,14 +226,17 @@ export default function App() {
               isConfigMode={configMode}
               isVisible={isComponentVisible(HIDEABLE_COMPONENTS.MINORISTA_CARD)}
               onToggleVisibility={toggleComponentVisibility}
-              gridProps={{ 
-                xs: 12, 
-                md: getVisibleSectionsCount([
-                  HIDEABLE_COMPONENTS.MAYORISTA_CARD,
-                  HIDEABLE_COMPONENTS.MINORISTA_CARD,
-                  HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
-                  HIDEABLE_COMPONENTS.EXPEDICIONES_CARD
-                ]) === 1 ? 12 : 6 
+              gridProps={{
+                xs: 12,
+                md:
+                  getVisibleSectionsCount([
+                    HIDEABLE_COMPONENTS.MAYORISTA_CARD,
+                    HIDEABLE_COMPONENTS.MINORISTA_CARD,
+                    HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
+                    HIDEABLE_COMPONENTS.EXPEDICIONES_CARD,
+                  ]) === 1
+                    ? 12
+                    : 6,
               }}
             >
               <Card
@@ -321,16 +326,21 @@ export default function App() {
             <ConfigurableGridItem
               sectionId={HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD}
               isConfigMode={configMode}
-              isVisible={isComponentVisible(HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD)}
+              isVisible={isComponentVisible(
+                HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD
+              )}
               onToggleVisibility={toggleComponentVisibility}
-              gridProps={{ 
-                xs: 12, 
-                md: getVisibleSectionsCount([
-                  HIDEABLE_COMPONENTS.MAYORISTA_CARD,
-                  HIDEABLE_COMPONENTS.MINORISTA_CARD,
-                  HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
-                  HIDEABLE_COMPONENTS.EXPEDICIONES_CARD
-                ]) === 1 ? 12 : 6 
+              gridProps={{
+                xs: 12,
+                md:
+                  getVisibleSectionsCount([
+                    HIDEABLE_COMPONENTS.MAYORISTA_CARD,
+                    HIDEABLE_COMPONENTS.MINORISTA_CARD,
+                    HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
+                    HIDEABLE_COMPONENTS.EXPEDICIONES_CARD,
+                  ]) === 1
+                    ? 12
+                    : 6,
               }}
             >
               <Card

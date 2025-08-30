@@ -93,11 +93,11 @@ const [hiddenComponents, setHiddenComponents] = useState(new Set());
 
 // Nuevas funciones helper para reacomodo automático
 const getVisibleSectionsCount = (groupIds) => {
-  return groupIds.filter(id => isComponentVisible(id)).length;
+  return groupIds.filter((id) => isComponentVisible(id)).length;
 };
 
 const isAnyGroupSectionVisible = (groupIds) => {
-  return groupIds.some(id => isComponentVisible(id));
+  return groupIds.some((id) => isComponentVisible(id));
 };
 ```
 
@@ -123,9 +123,9 @@ const isAnyGroupSectionVisible = (groupIds) => {
   isConfigMode={configMode}
   isVisible={isComponentVisible(sectionId)}
   onToggleVisibility={toggleComponentVisibility}
-  gridProps={{ 
-    xs: 12, 
-    md: getVisibleSectionsCount(groupIds) === 1 ? 12 : 6 // Auto-expansión
+  gridProps={{
+    xs: 12,
+    md: getVisibleSectionsCount(groupIds) === 1 ? 12 : 6, // Auto-expansión
   }}
 >
   {/* Contenido de la tarjeta */}
@@ -164,18 +164,21 @@ El sistema está diseñado para ser fácilmente extensible:
 ## ✨ Beneficios del Reacomodo Automático
 
 ### 🎯 **Experiencia de Usuario**:
+
 - **Sin espacios vacíos**: Interfaz siempre optimizada visualmente
 - **Responsive dinámico**: Las tarjetas se adaptan automáticamente al espacio disponible
 - **Transiciones fluidas**: Cambios suaves que no desorientan al usuario
 - **Consistencia visual**: Mantiene la armonía del diseño sin importar qué se oculte
 
 ### 🔧 **Beneficios Técnicos**:
+
 - **Optimización de memoria**: Los componentes ocultos se desmontan completamente
 - **Performance mejorado**: Menos elementos en DOM cuando no están en modo configuración
 - **Grid inteligente**: Auto-expansión de 6 a 12 columnas cuando solo queda una tarjeta
 - **Código reutilizable**: `ConfigurableGridItem` simplifica el manejo de layouts
 
 ### 📊 **Casos de Uso Prácticos**:
+
 - **Demos personalizadas**: Mostrar solo servicios relevantes para cada cliente
 - **A/B Testing**: Probar diferentes combinaciones de contenido
 - **Eventos especiales**: Ocultar temporalmente secciones no relacionadas

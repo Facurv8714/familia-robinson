@@ -4,7 +4,6 @@ import {
   Toolbar,
   Typography,
   Box,
-  Avatar,
   Button,
   IconButton,
   Tooltip,
