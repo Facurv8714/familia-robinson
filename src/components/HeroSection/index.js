@@ -16,14 +16,16 @@ import {
   ShoppingCart,
   Warehouse,
 } from "@mui/icons-material";
-import { PALETTE } from "../../constants";
+import { PALETTE, getVariantStyles } from "../../constants";
 import PromotionalSection from "./sections/PromotionalSection";
 import PromotionalChips from "./sections/PromotionalChips";
 import NavButtons from "./sections/NavButtons";
 
 import { carouselImages } from "../../constants";
+import logoRobinson from "../../images/logo-robinson.svg";
 
 const HeroSection = ({ variant }) => {
+  const variantStyles = getVariantStyles(variant);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -58,25 +60,25 @@ const HeroSection = ({ variant }) => {
       {
         text: "Ver tienda",
         href: "#minorista",
-        icon: <ShoppingCart />,
+        icon: "🛒",
         color: "secondary",
       },
       {
         text: "Ser distribuidor",
         href: "#mayorista",
-        icon: <Warehouse />,
+        icon: "🏪",
         color: "primary",
       },
       {
         text: "Ver cursos",
         href: "#fishing-school",
-        icon: "🎓",
+        icon: "🎣",
         color: "custom",
       },
       {
         text: "Próximamente",
         href: "#expediciones",
-        icon: "🏔️",
+        icon: "🏕️",
         color: "custom",
       },
     ];
@@ -117,41 +119,123 @@ const HeroSection = ({ variant }) => {
   return (
     <Container
       maxWidth="lg"
-      sx={{ pt: { xs: 4, md: 8 }, pb: { xs: 6, md: 10 } }}
+      sx={{
+        pt: { xs: 4, md: 8 },
+        pb: { xs: 6, md: 10 },
+        background: variantStyles.gradient.hero,
+        borderRadius: 4,
+        margin: "auto",
+        mt: 2,
+        boxShadow: variantStyles.shadow.secondary,
+      }}
     >
       <Grid container spacing={6} alignItems="center">
         <Grid item xs={12} md={6}>
           <Fade in timeout={1100}>
             <Box>
+              {/* Logo Robinson */}
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mb: 3,
+                  gap: 2,
+                  p: 3,
+                  borderRadius: 3,
+                  background: variantStyles.gradient.card,
+                  boxShadow: variantStyles.shadow.primary,
+                  border: `2px solid ${variantStyles.primary}20`,
+                }}
+              >
+                <Box
+                  component="img"
+                  src={logoRobinson}
+                  alt="Logo Robinson"
+                  sx={{
+                    width: { xs: 100, md: 140 },
+                    height: { xs: 100, md: 140 },
+                    objectFit: "contain",
+                    filter: `drop-shadow(0 8px 16px ${variantStyles.primary}30)`,
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      transform: "scale(1.05) rotate(2deg)",
+                      filter: `drop-shadow(0 12px 24px ${variantStyles.primary}40)`,
+                    },
+                  }}
+                />
+                <Box>
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: 800,
+                      color: variantStyles.textColor,
+                      lineHeight: 1,
+                      fontSize: { xs: "2rem", md: "2.5rem" },
+                      textShadow: `2px 2px 4px ${variantStyles.primary}20`,
+                    }}
+                  >
+                    Familia Robinson
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: variantStyles.textSecondary,
+                      fontWeight: 500,
+                      fontSize: { xs: "1.1rem", md: "1.3rem" },
+                    }}
+                  >
+                    Casa de Pesca
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      display: "block",
+                      mt: 0.5,
+                      color: variantStyles.primary,
+                      fontWeight: 600,
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    {variantStyles.description}
+                  </Typography>
+                </Box>
+              </Box>
+
               <Chip
-                label="✨ Bienvenido a Familia Robinson ✨"
+                label={`🏪 🛒 🎣 🏕️ ${variantStyles.name} - Conocé todas nuestras submarcas`}
                 sx={{
                   mb: 3,
-                  background:
-                    variant === "A"
-                      ? `linear-gradient(135deg, ${PALETTE.primario}, #386e45)`
-                      : variant === "B"
-                      ? `linear-gradient(135deg, ${PALETTE.secundario}, #2b536b)`
-                      : `linear-gradient(135deg, ${PALETTE.destacado}, #5e7f62)`,
+                  background: variantStyles.gradient.accent,
                   color: "white",
                   fontWeight: 600,
                   fontSize: "0.9rem",
                   py: 1.5,
                   px: 2,
+                  boxShadow: variantStyles.shadow.accent,
+                  border: `2px solid ${variantStyles.accent}40`,
+                  "&:hover": {
+                    transform: "scale(1.02)",
+                    boxShadow: variantStyles.shadow.primary,
+                  },
+                  transition: "all 0.3s ease",
                 }}
               />
               <Typography
                 variant="h1"
                 sx={{
                   mb: 3,
-                  background: `linear-gradient(135deg, ${PALETTE.primario}, ${PALETTE.secundario})`,
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
+                  color: variantStyles.textColor,
                   fontSize: { xs: "2.5rem", md: "4rem" },
+                  fontWeight: 900,
+                  textShadow: `3px 3px 6px ${variantStyles.primary}25`,
+                  "&:hover": {
+                    transform: "scale(1.02)",
+                    textShadow: `4px 4px 8px ${variantStyles.primary}35`,
+                  },
+                  transition: "all 0.3s ease",
                 }}
               >
-                Equipá tus aventuras de pesca y camping
+                Todo tu equipamiento outdoor
               </Typography>
 
               {/* Carousel Component */}
@@ -168,9 +252,11 @@ const HeroSection = ({ variant }) => {
                   sx={{
                     position: "relative",
                     height: { xs: 250, md: 300 },
-                    background: `linear-gradient(135deg, ${PALETTE.primario}15, ${PALETTE.secundario}15)`,
+                    background: variantStyles.gradient.card,
                     borderRadius: 2,
                     overflow: "hidden",
+                    border: `3px solid ${variantStyles.primary}30`,
+                    boxShadow: variantStyles.shadow.primary,
                   }}
                 >
                   <Box
@@ -196,7 +282,7 @@ const HeroSection = ({ variant }) => {
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      background: `linear-gradient(transparent, ${PALETTE.primario}90)`,
+                      background: `linear-gradient(transparent, ${variantStyles.primary}90)`,
                       p: 3,
                       color: "white",
                       transition:
@@ -259,23 +345,14 @@ const HeroSection = ({ variant }) => {
                           ml: 2,
                           minWidth: "120px",
                           cursor: "pointer",
-                          background:
-                            getSlideButton(currentSlide).color === "primary"
-                              ? `linear-gradient(135deg, ${PALETTE.primario}, ${PALETTE.destacado})`
-                              : getSlideButton(currentSlide).color ===
-                                "secondary"
-                              ? `linear-gradient(135deg, ${PALETTE.secundario}, ${PALETTE.destacado})`
-                              : `linear-gradient(135deg, ${PALETTE.acento}, ${PALETTE.destacado})`,
+                          background: variantStyles.gradient.accent,
+                          color: "white",
+                          fontWeight: 700,
+                          boxShadow: variantStyles.shadow.accent,
                           "&:hover": {
-                            background:
-                              getSlideButton(currentSlide).color === "primary"
-                                ? `linear-gradient(135deg, ${PALETTE.primario}dd, ${PALETTE.destacado}dd)`
-                                : getSlideButton(currentSlide).color ===
-                                  "secondary"
-                                ? `linear-gradient(135deg, ${PALETTE.secundario}dd, ${PALETTE.destacado}dd)`
-                                : `linear-gradient(135deg, ${PALETTE.acento}dd, ${PALETTE.destacado}dd)`,
+                            background: variantStyles.gradient.secondary,
                             transform: "scale(1.05)",
-                            boxShadow: `0 8px 25px -8px rgba(0,0,0,0.3)`,
+                            boxShadow: variantStyles.shadow.primary,
                           },
                           "&:active": {
                             transform: "scale(0.98)",
@@ -304,18 +381,19 @@ const HeroSection = ({ variant }) => {
                       left: 16,
                       top: "50%",
                       transform: "translateY(-50%)",
-                      backgroundColor: `${PALETTE.primario}80`,
+                      backgroundColor: `${variantStyles.primary}80`,
                       color: "white",
                       transition:
                         "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                       opacity: isTransitioning ? 0.5 : 1,
+                      boxShadow: variantStyles.shadow.accent,
                       "&:hover": {
-                        backgroundColor: PALETTE.primario,
+                        backgroundColor: variantStyles.primary,
                         transform: "translateY(-50%) scale(1.08)",
-                        boxShadow: `0 8px 25px -8px ${PALETTE.primario}60`,
+                        boxShadow: variantStyles.shadow.primary,
                       },
                       "&:disabled": {
-                        backgroundColor: `${PALETTE.primario}40`,
+                        backgroundColor: `${variantStyles.primary}40`,
                         color: "rgba(255,255,255,0.6)",
                       },
                     }}
@@ -331,18 +409,19 @@ const HeroSection = ({ variant }) => {
                       right: 16,
                       top: "50%",
                       transform: "translateY(-50%)",
-                      backgroundColor: `${PALETTE.primario}80`,
+                      backgroundColor: `${variantStyles.primary}80`,
                       color: "white",
                       transition:
                         "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                       opacity: isTransitioning ? 0.5 : 1,
+                      boxShadow: variantStyles.shadow.accent,
                       "&:hover": {
-                        backgroundColor: PALETTE.primario,
+                        backgroundColor: variantStyles.primary,
                         transform: "translateY(-50%) scale(1.08)",
-                        boxShadow: `0 8px 25px -8px ${PALETTE.primario}60`,
+                        boxShadow: variantStyles.shadow.primary,
                       },
                       "&:disabled": {
-                        backgroundColor: `${PALETTE.primario}40`,
+                        backgroundColor: `${variantStyles.primary}40`,
                         color: "rgba(255,255,255,0.6)",
                       },
                     }}
@@ -409,27 +488,57 @@ const HeroSection = ({ variant }) => {
                 variant="h5"
                 sx={{
                   mb: 4,
-                  opacity: 0.9,
                   lineHeight: 1.6,
                   fontWeight: 400,
-                  color: "text.secondary",
+                  color: variantStyles.textColor,
+                  p: 3,
+                  borderRadius: 2,
+                  backgroundColor: variantStyles.background,
+                  border: `2px solid ${variantStyles.primary}20`,
+                  boxShadow: variantStyles.shadow.secondary,
                 }}
               >
                 Marcas confiables, stock real y envíos rápidos. Comprá{" "}
                 <Box
                   component="span"
-                  sx={{ color: "primary.main", fontWeight: 600 }}
+                  sx={{
+                    color: variantStyles.primary,
+                    fontWeight: 700,
+                  }}
                 >
                   mayorista
                 </Box>{" "}
                 o{" "}
                 <Box
                   component="span"
-                  sx={{ color: "secondary.main", fontWeight: 600 }}
+                  sx={{
+                    color: variantStyles.secondary,
+                    fontWeight: 700,
+                  }}
                 >
                   minorista
+                </Box>
+                , aprendé en nuestra{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    color: variantStyles.accent,
+                    fontWeight: 700,
+                  }}
+                >
+                  Fishing School
                 </Box>{" "}
-                con asesoría técnica especializada.
+                y viví{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    color: variantStyles.primary,
+                    fontWeight: 700,
+                  }}
+                >
+                  expediciones
+                </Box>{" "}
+                únicas con {variantStyles.name}.
               </Typography>
               <NavButtons />
               <PromotionalChips />

@@ -6,27 +6,50 @@ export const createCustomTheme = (darkMode) =>
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        main: PALETTE.primario,
-        light: "#4a7552",
-        dark: "#1e3421",
+        main: PALETTE.primario, // Púrpura del logo
+        light: PALETTE.primarioClaro,
+        dark: PALETTE.primarioOscuro,
       },
       secondary: {
-        main: PALETTE.secundario,
-        light: "#4a7a9c",
-        dark: "#2a4f63",
+        main: PALETTE.secundario, // Celeste del logo
+        light: PALETTE.secundarioClaro,
+        dark: "#87b4d9", // Versión más oscura del celeste
       },
       accent: {
-        main: PALETTE.acento,
-        light: "#d4723a",
-        dark: "#a04d1f",
+        main: PALETTE.acento, // Naranja cálido del logo
+        light: PALETTE.acentoClaro,
+        dark: "#d4722a", // Versión más oscura del naranja
       },
       background: {
         default: darkMode ? "#1a1a1a" : PALETTE.fondo,
         paper: darkMode ? "#2d2d2d" : "#ffffff",
+        alternative: darkMode ? "#252525" : PALETTE.fondoAlternativo,
       },
       text: {
         primary: darkMode ? "#e9e9e9" : PALETTE.texto,
-        secondary: darkMode ? "#b0b0b0" : "#666666",
+        secondary: darkMode ? "#b0b0b0" : PALETTE.textoSecundario,
+        tertiary: darkMode ? "#888888" : PALETTE.neutro,
+      },
+      // Colores personalizados adicionales
+      warning: {
+        main: PALETTE.destacado, // Amarillo brillante del logo
+        light: "#fff95c",
+        dark: "#e6d411",
+      },
+      info: {
+        main: PALETTE.secundario, // Celeste del logo para info
+        light: PALETTE.secundarioClaro,
+        dark: "#87b4d9",
+      },
+      success: {
+        main: PALETTE.success,
+        light: "#66bb6a",
+        dark: "#388e3c",
+      },
+      error: {
+        main: PALETTE.error,
+        light: "#f66",
+        dark: "#d32f2f",
       },
     },
     typography: {

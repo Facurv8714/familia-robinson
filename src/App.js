@@ -101,21 +101,32 @@ export default function App() {
                         background: `linear-gradient(135deg, ${PALETTE.primario}, ${PALETTE.destacado})`,
                       }}
                     >
-                      <Warehouse />
+                      🏪
                     </Avatar>
                     <Typography variant="h4" sx={{ fontWeight: 800 }}>
-                      Robinson mayorista
+                      Robinson Mayorista
                     </Typography>
                   </Box>
                   <Typography
                     variant="body1"
                     sx={{ mb: 3, fontSize: "1.1rem" }}
                   >
-                    Distribución mayorista a comercios
+                    Distribución mayorista a comercios del rubro.
                     <br />
-                    del rubro.
+                    <Box
+                      component="span"
+                      sx={{ color: "primary.main", fontWeight: 600 }}
+                    >
+                      Abastecemos negocios con ADN outdoor.
+                    </Box>
                   </Typography>
                   <List sx={{ mb: 3, flex: 1 }}>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: "primary.main" }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Abastecimiento eficiente y confiable" />
+                    </ListItem>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: "primary.main" }} />
@@ -180,10 +191,10 @@ export default function App() {
                         background: `linear-gradient(135deg, ${PALETTE.secundario}, ${PALETTE.destacado})`,
                       }}
                     >
-                      <ShoppingCart />
+                      🛒
                     </Avatar>
                     <Typography variant="h4" sx={{ fontWeight: 800 }}>
-                      Robinson minorista
+                      Robinson Minorista
                     </Typography>
                   </Box>
 
@@ -194,6 +205,13 @@ export default function App() {
                     Venta al público de artículos de pesca,
                     <br />
                     camping, outdoor e indumentaria.
+                    <br />
+                    <Box
+                      component="span"
+                      sx={{ color: "secondary.main", fontWeight: 600 }}
+                    >
+                      Todo lo que necesitas para tu próxima aventura.
+                    </Box>
                   </Typography>
 
                   <Box
@@ -205,6 +223,10 @@ export default function App() {
                       flex: 1,
                     }}
                   >
+                    <Chip
+                      label="📦 Variedad y atención personalizada"
+                      size="small"
+                    />
                     <Chip label="📦 Envío a todo el país" size="small" />
                     <Chip label="💳 Todos los medios de pago" size="small" />
                     <Chip label="📱 WhatsApp directo" size="small" />
@@ -254,7 +276,7 @@ export default function App() {
                         background: `linear-gradient(135deg, ${PALETTE.acento}, ${PALETTE.destacado})`,
                       }}
                     >
-                      🎓
+                      🎣
                     </Avatar>
                     <Typography variant="h4" sx={{ fontWeight: 800 }}>
                       Robinson Fishing School
@@ -268,9 +290,22 @@ export default function App() {
                     Formación técnica y comunitaria para
                     <br />
                     pescadores de todos los niveles.
+                    <br />
+                    <Box
+                      component="span"
+                      sx={{ color: PALETTE.acento, fontWeight: 600 }}
+                    >
+                      Aprendé, viví y pescá con nosotros.
+                    </Box>
                   </Typography>
 
                   <List sx={{ mb: 3, flex: 1 }}>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.acento }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Formación técnica y comunidad" />
+                    </ListItem>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.acento }} />
@@ -340,7 +375,7 @@ export default function App() {
                         background: `linear-gradient(135deg, ${PALETTE.destacado}, ${PALETTE.primario})`,
                       }}
                     >
-                      🏔️
+                      🏕️
                     </Avatar>
                     <Typography variant="h4" sx={{ fontWeight: 800 }}>
                       Robinson Expediciones
@@ -353,16 +388,23 @@ export default function App() {
                     variant="body1"
                     sx={{ mb: 3, fontSize: "1.1rem" }}
                   >
-                    Organizamos viajes y expediciones guiadas
+                    Viajes, clínicas, experiencias guiadas.
                     <br />
-                    para vivir la naturaleza en su máxima
-                    <br />
-                    expresión. Clínicas, experiencias y aventuras
-                    <br />
-                    diseñadas para explorar de manera segura.
+                    <Box
+                      component="span"
+                      sx={{ color: PALETTE.destacado, fontWeight: 600 }}
+                    >
+                      Viví la aventura Robinson en la naturaleza.
+                    </Box>
                   </Typography>
 
                   <List sx={{ mb: 3, flex: 1 }}>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: PALETTE.destacado }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Experiencias guiadas y seguras en la naturaleza" />
+                    </ListItem>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.destacado }} />
@@ -379,7 +421,7 @@ export default function App() {
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.destacado }} />
                       </ListItemIcon>
-                      <ListItemText primary="Experiencias seguras y memorables" />
+                      <ListItemText primary="Para aventureros y turistas outdoor" />
                     </ListItem>
                   </List>
 
@@ -441,7 +483,49 @@ export default function App() {
                     >
                       2008
                     </Box>{" "}
-                    equipamos a quienes aman el aire libre con{" "}
+                    la{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: PALETTE.primario, fontWeight: 700 }}
+                    >
+                      Familia Robinson
+                    </Box>{" "}
+                    crece con{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: "primary.main", fontWeight: 600 }}
+                    >
+                      4 submarcas especializadas
+                    </Box>
+                    : venta{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: "secondary.main", fontWeight: 600 }}
+                    >
+                      minorista
+                    </Box>{" "}
+                    y{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: "primary.main", fontWeight: 600 }}
+                    >
+                      mayorista
+                    </Box>
+                    , nuestra{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: PALETTE.acento, fontWeight: 600 }}
+                    >
+                      Fishing School
+                    </Box>{" "}
+                    y futuras{" "}
+                    <Box
+                      component="span"
+                      sx={{ color: PALETTE.destacado, fontWeight: 600 }}
+                    >
+                      expediciones
+                    </Box>
+                    . Todo con{" "}
                     <Box
                       component="span"
                       sx={{ color: PALETTE.acento, fontWeight: 600 }}
@@ -589,9 +673,9 @@ export default function App() {
           <Container maxWidth="lg" sx={{ py: 4 }}>
             <Typography variant="body1" sx={{ mb: 1 }}>
               <Box component="span" sx={{ fontWeight: 600 }}>
-                Pesca & Camping
+                Familia Robinson
               </Box>{" "}
-              · Quilmes, Buenos Aires · L–V 9 a 18 hs
+              · Pesca & Camping · Quilmes, Buenos Aires · L–V 9 a 18 hs
             </Typography>
             <Box sx={{ display: "flex", gap: 3 }}>
               <Typography
