@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   Button,
-  Chip,
   Box,
   Fab,
   TextField,
@@ -63,11 +62,6 @@ export default function App() {
 
   const isComponentVisible = (componentId) => {
     return !hiddenComponents.has(componentId);
-  };
-
-  // Función helper para obtener el número de secciones visibles en un grupo
-  const getVisibleSectionsCount = (groupIds) => {
-    return groupIds.filter((id) => isComponentVisible(id)).length;
   };
 
   // Obtener los estilos de la variante actual

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  Chip,
   Container,
   Fade,
   Grid,
