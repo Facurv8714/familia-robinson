@@ -102,7 +102,7 @@ const Topbar = ({
 
           {/* Selector de variante mejorado */}
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5 }}>
-            {["A", "B", "C", "D", "E"].map((v) => {
+            {["A", "B", "C", "D", "E", "NATURAL"].map((v) => {
               const variantData = VARIANTS[v];
               const isActive = variant === v;
 
@@ -118,10 +118,10 @@ const Topbar = ({
                     variant={isActive ? "contained" : "outlined"}
                     onClick={() => setVariant(v)}
                     sx={{
-                      minWidth: 44,
+                      minWidth: v === "NATURAL" ? 70 : 44,
                       height: 36,
                       fontWeight: 700,
-                      fontSize: "0.9rem",
+                      fontSize: "0.8rem",
                       background: isActive
                         ? variantData.gradient.primary
                         : "transparent",
@@ -139,7 +139,7 @@ const Topbar = ({
                       transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
                   >
-                    {v}
+                    {v === "NATURAL" ? "NAT" : v}
                   </Button>
                 </Tooltip>
               );

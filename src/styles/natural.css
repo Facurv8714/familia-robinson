@@ -1,0 +1,741 @@
+/* Paleta Natural - Variante Naranja Robinson */
+[data-theme="natural"] {
+  /* Colores principales inspirados en el logo - VERSION SUPER LUMINOSA */
+  --color-primario: #FF922B;           /* Naranja brillante y alegre */
+  --color-secundario: #339AF0;         /* Celeste vibrante */
+  --color-acento: #FCC419;             /* Amarillo dorado luminoso */
+  --color-fondo: #FFF9F3;              /* Fondo blanco cálido */
+  --color-texto: #495057;              /* Texto suave */
+  --color-destacado: #20C997;          /* Verde turquesa brillante */
+  
+  /* Detalles amarillos y violetas más claros */
+  --color-detalle-amarillo: #FAB005;   /* Amarillo cálido */
+  --color-detalle-violeta: #BE4BDB;    /* Violeta vibrante */
+  --color-celeste-logo: #4DABF7;       /* Celeste brillante */
+  
+  /* Variantes más luminosas */
+  --primario-light: #FFA94D;           /* Naranja brillante */
+  --primario-dark: #E8590C;            /* Naranja vibrante */
+  --secundario-light: #74C0FC;         /* Celeste brillante */
+  --secundario-dark: #1C7ED6;          /* Azul vibrante */
+  --acento-light: #FFE066;             /* Amarillo brillante */
+  --acento-dark: #F59F00;              /* Naranja dorado vibrante */
+  
+  /* Colores de papel y superficies más claros */
+  --color-papel: #FFFFFF;
+  --color-papel-secundario: #FFF8E1;   /* Papel con tinte muy claro */
+  --color-superficie: rgba(255, 255, 255, 0.95);
+  --color-superficie-hover: rgba(255, 255, 255, 1);
+  
+  /* Bordes muy sutiles */
+  --color-borde: rgba(255, 140, 66, 0.15);  /* Bordes muy claros */
+  --color-borde-hover: rgba(255, 140, 66, 0.25);
+  
+  /* Estados de texto más claros */
+  --color-texto-secundario: #757575;   /* Gris claro */
+  --color-texto-muted: #BDBDBD;
+  --color-texto-success: #4CAF50;
+  --color-texto-warning: #FFC107;
+  --color-texto-error: #F44336;
+  
+  /* Gradientes más claros y vibrantes */
+  --gradient-naranja: linear-gradient(135deg, #FF8C42, #FFB74D);
+  --gradient-celeste: linear-gradient(135deg, #81D4FA, #4FC3F7);
+  --gradient-sunset: linear-gradient(135deg, #FF8C42, #BA68C8);
+  --gradient-tropical: linear-gradient(135deg, #81D4FA, #4DD0E1);
+  --gradient-warm: linear-gradient(135deg, #FFEB3B, #FF8C42);
+  
+  /* Aplicar fondo muy claro */
+  background: var(--color-fondo) !important;
+  color: var(--color-texto) !important;
+  min-height: 100vh;
+}
+
+/* Botones con la nueva paleta natural MAS CLARA */
+[data-theme="natural"] .btn-primary {
+  background: var(--gradient-naranja);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+}
+
+[data-theme="natural"] .btn-primary:hover {
+  background: linear-gradient(135deg, var(--primario-dark), var(--acento-dark));
+  box-shadow: 0 6px 20px rgba(255, 140, 66, 0.6);
+  transform: translateY(-2px);
+}
+
+[data-theme="natural"] .btn-secondary {
+  background: var(--gradient-celeste);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(129, 212, 250, 0.4);
+}
+
+[data-theme="natural"] .btn-secondary:hover {
+  background: linear-gradient(135deg, var(--secundario-dark), var(--color-celeste-logo));
+  box-shadow: 0 6px 20px rgba(129, 212, 250, 0.6);
+}
+
+/* Botón especial con detalles amarillos */
+[data-theme="natural"] .btn-accent {
+  background: var(--gradient-warm);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+}
+
+[data-theme="natural"] .btn-accent:hover {
+  background: linear-gradient(135deg, var(--color-detalle-amarillo), var(--primario-dark));
+  box-shadow: 0 6px 20px rgba(241, 196, 15, 0.4);
+}
+
+/* Botón con detalles violetas */
+[data-theme="natural"] .btn-violet {
+  background: var(--gradient-sunset);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+[data-theme="natural"] .btn-violet:hover {
+  background: linear-gradient(135deg, var(--color-detalle-violeta), var(--primario-dark));
+  box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+}
+
+/* Botón outlined con la nueva paleta */
+[data-theme="natural"] .btn-outlined {
+  border: 2px solid var(--color-primario);
+  color: var(--color-primario);
+  background: transparent;
+}
+
+[data-theme="natural"] .btn-outlined:hover {
+  background: var(--color-primario);
+  color: white;
+}
+
+/* Cards con la paleta natural */
+[data-theme="natural"] .card {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="natural"] .card:hover {
+  border-color: var(--color-borde-hover);
+  box-shadow: 0 8px 32px rgba(230, 126, 34, 0.15);
+}
+
+/* Hero section con gradientes naturales */
+[data-theme="natural"] .hero-title {
+  background: var(--gradient-naranja);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="natural"] .hero-chip {
+  background: var(--gradient-celeste);
+  color: white;
+}
+
+/* Chips con detalles de colores */
+[data-theme="natural"] .chip-primary {
+  background: var(--color-primario);
+  color: white;
+}
+
+[data-theme="natural"] .chip-secondary {
+  background: var(--color-celeste-logo);
+  color: white;
+}
+
+[data-theme="natural"] .chip-yellow {
+  background: var(--color-detalle-amarillo);
+  color: white;
+}
+
+[data-theme="natural"] .chip-violet {
+  background: var(--color-detalle-violeta);
+  color: white;
+}
+
+[data-theme="natural"] .chip-outlined {
+  background: transparent;
+  border: 1px solid var(--color-primario);
+  color: var(--color-primario);
+}
+
+/* Avatares con los nuevos gradientes */
+[data-theme="natural"] .avatar-primary {
+  background: var(--gradient-naranja);
+}
+
+[data-theme="natural"] .avatar-secondary {
+  background: var(--gradient-celeste);
+}
+
+[data-theme="natural"] .avatar-accent {
+  background: var(--gradient-tropical);
+}
+
+[data-theme="natural"] .avatar-sunset {
+  background: var(--gradient-sunset);
+}
+
+/* Links y elementos interactivos */
+[data-theme="natural"] .footer-link {
+  color: var(--color-texto-secundario);
+}
+
+[data-theme="natural"] .footer-link:hover {
+  color: var(--color-primario);
+}
+
+/* FAB con gradiente natural */
+[data-theme="natural"] .fab {
+  background: var(--gradient-naranja);
+  box-shadow: 0 8px 25px rgba(230, 126, 34, 0.3);
+}
+
+[data-theme="natural"] .fab:hover {
+  background: var(--gradient-sunset);
+  box-shadow: 0 12px 35px rgba(230, 126, 34, 0.4);
+}
+
+/* Formularios */
+[data-theme="natural"] .form-input {
+  border: 2px solid var(--color-borde);
+  background: var(--color-papel);
+}
+
+[data-theme="natural"] .form-input:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+}
+
+/* Estados de hover especiales */
+[data-theme="natural"] .hover-orange:hover {
+  color: var(--color-primario);
+  transition: var(--transition-smooth);
+}
+
+[data-theme="natural"] .hover-yellow:hover {
+  color: var(--color-detalle-amarillo);
+  transition: var(--transition-smooth);
+}
+
+[data-theme="natural"] .hover-violet:hover {
+  color: var(--color-detalle-violeta);
+  transition: var(--transition-smooth);
+}
+
+[data-theme="natural"] .hover-cyan:hover {
+  color: var(--color-celeste-logo);
+  transition: var(--transition-smooth);
+}
+
+/* Gradientes utilitarios */
+[data-theme="natural"] .gradient-orange {
+  background: var(--gradient-naranja);
+}
+
+[data-theme="natural"] .gradient-cyan {
+  background: var(--gradient-celeste);
+}
+
+[data-theme="natural"] .gradient-sunset {
+  background: var(--gradient-sunset);
+}
+
+[data-theme="natural"] .gradient-tropical {
+  background: var(--gradient-tropical);
+}
+
+[data-theme="natural"] .gradient-warm {
+  background: var(--gradient-warm);
+}
+
+/* Texto con gradientes */
+[data-theme="natural"] .gradient-text-orange {
+  background: var(--gradient-naranja);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="natural"] .gradient-text-sunset {
+  background: var(--gradient-sunset);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Elementos de navegación */
+[data-theme="natural"] .nav-item.active {
+  color: var(--color-primario);
+  border-bottom: 2px solid var(--color-primario);
+}
+
+[data-theme="natural"] .nav-item:hover {
+  color: var(--color-celeste-logo);
+}
+
+/* Progress bars y elementos de carga */
+[data-theme="natural"] .progress-bar {
+  background: var(--gradient-naranja);
+}
+
+[data-theme="natural"] .progress-bar-secondary {
+  background: var(--gradient-celeste);
+}
+
+/* Badges y notificaciones */
+[data-theme="natural"] .badge-orange {
+  background: var(--color-primario);
+  color: white;
+}
+
+[data-theme="natural"] .badge-yellow {
+  background: var(--color-detalle-amarillo);
+  color: white;
+}
+
+[data-theme="natural"] .badge-violet {
+  background: var(--color-detalle-violeta);
+  color: white;
+}
+
+[data-theme="natural"] .badge-cyan {
+  background: var(--color-celeste-logo);
+  color: white;
+}
+
+/* Separadores y divisores */
+[data-theme="natural"] .divider {
+  border-color: var(--color-borde);
+}
+
+[data-theme="natural"] .divider-gradient {
+  background: linear-gradient(90deg, transparent, var(--color-primario), transparent);
+  height: 2px;
+  border: none;
+}
+
+/* Efectos de selección */
+[data-theme="natural"] ::selection {
+  background: rgba(230, 126, 34, 0.3);
+  color: var(--color-texto);
+}
+
+/* Scrollbar personalizada */
+[data-theme="natural"] ::-webkit-scrollbar-thumb {
+  background: var(--gradient-naranja);
+  border-radius: 10px;
+}
+
+[data-theme="natural"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-sunset);
+}
+
+/* Animaciones específicas para la paleta natural */
+@keyframes naturalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes naturalPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(230, 126, 34, 0);
+  }
+}
+
+[data-theme="natural"] .animate-natural-fade {
+  animation: naturalFadeIn 1s ease-out;
+}
+
+[data-theme="natural"] .animate-natural-pulse {
+  animation: naturalPulse 2s infinite;
+}
+
+/* Material-UI integration overrides for Natural theme */
+/* Grid Components */
+[data-theme="natural"] .MuiGrid-root {
+  color: var(--color-texto) !important;
+  background: transparent !important;
+}
+
+[data-theme="natural"] .MuiGrid-container {
+  background: transparent !important;
+}
+
+[data-theme="natural"] .MuiGrid-item {
+  background: transparent !important;
+}
+
+/* Button Components */
+[data-theme="natural"] .MuiButton-contained {
+  background: var(--gradient-naranja) !important;
+  color: white !important;
+  box-shadow: var(--shadow-primary) !important;
+}
+
+[data-theme="natural"] .MuiButton-contained:hover {
+  background: linear-gradient(135deg, var(--primario-dark), var(--acento-dark)) !important;
+  box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4) !important;
+}
+
+[data-theme="natural"] .MuiButton-contained.MuiButton-colorSecondary {
+  background: var(--gradient-celeste) !important;
+}
+
+[data-theme="natural"] .MuiButton-outlined {
+  border-color: var(--color-primario) !important;
+  color: var(--color-primario) !important;
+  background: transparent !important;
+}
+
+[data-theme="natural"] .MuiButton-outlined:hover {
+  background: var(--color-primario) !important;
+  color: white !important;
+}
+
+[data-theme="natural"] .MuiButton-text {
+  color: var(--color-primario) !important;
+  background: transparent !important;
+}
+
+[data-theme="natural"] .MuiButton-text:hover {
+  background: rgba(230, 126, 34, 0.1) !important;
+}
+
+/* Card Components */
+[data-theme="natural"] .MuiCard-root {
+  background: var(--color-superficie) !important;
+  border: 1px solid var(--color-borde) !important;
+  color: var(--color-texto) !important;
+}
+
+[data-theme="natural"] .MuiCard-root:hover {
+  border-color: var(--color-borde-hover) !important;
+  box-shadow: 0 8px 32px rgba(230, 126, 34, 0.15) !important;
+}
+
+[data-theme="natural"] .MuiCardContent-root {
+  background: transparent !important;
+  color: var(--color-texto) !important;
+}
+
+/* Typography Components */
+[data-theme="natural"] .MuiTypography-root {
+  color: inherit !important;
+}
+
+[data-theme="natural"] .MuiTypography-h1,
+[data-theme="natural"] .MuiTypography-h2,
+[data-theme="natural"] .MuiTypography-h3,
+[data-theme="natural"] .MuiTypography-h4,
+[data-theme="natural"] .MuiTypography-h5,
+[data-theme="natural"] .MuiTypography-h6 {
+  color: var(--color-texto) !important;
+}
+
+[data-theme="natural"] .MuiTypography-body1,
+[data-theme="natural"] .MuiTypography-body2 {
+  color: var(--color-texto) !important;
+}
+
+[data-theme="natural"] .MuiTypography-caption {
+  color: var(--color-texto-secundario) !important;
+}
+
+/* Chip Components */
+[data-theme="natural"] .MuiChip-root {
+  background: var(--color-primario) !important;
+  color: white !important;
+}
+
+[data-theme="natural"] .MuiChip-filled {
+  background: var(--color-primario) !important;
+  color: white !important;
+}
+
+[data-theme="natural"] .MuiChip-outlined {
+  border-color: var(--color-primario) !important;
+  color: var(--color-primario) !important;
+  background: transparent !important;
+}
+
+/* Avatar Components */
+[data-theme="natural"] .MuiAvatar-root {
+  background: var(--gradient-naranja) !important;
+  color: white !important;
+}
+
+/* Container and Box Components */
+[data-theme="natural"] .MuiContainer-root {
+  background: transparent !important;
+}
+
+[data-theme="natural"] .MuiBox-root {
+  background: transparent !important;
+}
+
+/* AppBar Components */
+[data-theme="natural"] .MuiAppBar-root {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--color-texto) !important;
+  border-bottom: 1px solid var(--color-borde) !important;
+}
+
+[data-theme="natural"] .MuiToolbar-root {
+  background: transparent !important;
+}
+
+/* Paper Components */
+[data-theme="natural"] .MuiPaper-root {
+  background: var(--color-superficie) !important;
+  color: var(--color-texto) !important;
+}
+
+/* TextField Components */
+[data-theme="natural"] .MuiTextField-root .MuiOutlinedInput-root {
+  border-color: var(--color-borde) !important;
+  background: var(--color-papel) !important;
+  color: var(--color-texto) !important;
+}
+
+[data-theme="natural"] .MuiTextField-root .MuiOutlinedInput-root:hover {
+  border-color: var(--color-borde-hover) !important;
+}
+
+[data-theme="natural"] .MuiTextField-root .MuiOutlinedInput-root.Mui-focused {
+  border-color: var(--color-primario) !important;
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1) !important;
+}
+
+[data-theme="natural"] .MuiInputLabel-root {
+  color: var(--color-texto-secundario) !important;
+}
+
+[data-theme="natural"] .MuiInputLabel-root.Mui-focused {
+  color: var(--color-primario) !important;
+}
+
+/* List Components */
+[data-theme="natural"] .MuiList-root {
+  background: transparent !important;
+}
+
+[data-theme="natural"] .MuiListItem-root {
+  background: transparent !important;
+  color: var(--color-texto) !important;
+}
+
+[data-theme="natural"] .MuiListItemText-root {
+  color: var(--color-texto) !important;
+}
+
+[data-theme="natural"] .MuiListItemIcon-root {
+  color: var(--color-primario) !important;
+}
+
+/* Icon Components */
+[data-theme="natural"] .MuiSvgIcon-root {
+  color: inherit !important;
+}
+
+/* Fab Components */
+[data-theme="natural"] .MuiFab-root {
+  background: var(--gradient-naranja) !important;
+  color: white !important;
+  box-shadow: var(--shadow-primary) !important;
+}
+
+[data-theme="natural"] .MuiFab-root:hover {
+  background: var(--gradient-sunset) !important;
+  box-shadow: 0 12px 35px rgba(230, 126, 34, 0.4) !important;
+}
+
+/* IconButton Components */
+[data-theme="natural"] .MuiIconButton-root {
+  color: var(--color-primario) !important;
+  background: rgba(230, 126, 34, 0.1) !important;
+}
+
+[data-theme="natural"] .MuiIconButton-root:hover {
+  background: rgba(230, 126, 34, 0.2) !important;
+}
+
+/* Specific CSS class overrides for dynamic Material-UI classes */
+[data-theme="natural"] .css-17fpwt7-MuiGrid-root,
+[data-theme="natural"] [class*="MuiGrid-root"],
+[data-theme="natural"] [class*="css-"][class*="MuiGrid"] {
+  background: transparent !important;
+  color: var(--color-texto) !important;
+}
+
+[data-theme="natural"] [class*="MuiBox-root"],
+[data-theme="natural"] [class*="css-"][class*="MuiBox"] {
+  background: transparent !important;
+}
+
+[data-theme="natural"] [class*="MuiContainer-root"],
+[data-theme="natural"] [class*="css-"][class*="MuiContainer"] {
+  background: transparent !important;
+}
+
+[data-theme="natural"] [class*="MuiStack-root"],
+[data-theme="natural"] [class*="css-"][class*="MuiStack"] {
+  background: transparent !important;
+}
+
+/* Force override for any Material-UI component that might inherit wrong colors */
+[data-theme="natural"] [class*="Mui"] {
+  color: inherit !important;
+}
+
+[data-theme="natural"] [class*="Mui"]:not(.MuiButton-contained):not(.MuiChip-filled):not(.MuiFab-root):not(.MuiAvatar-root) {
+  background: transparent !important;
+}
+
+/* Background and text color inheritance fixes */
+[data-theme="natural"] * {
+  box-sizing: border-box;
+}
+
+[data-theme="natural"] div:not([class*="gradient"]):not([style*="background"]) {
+  background: transparent !important;
+}
+
+[data-theme="natural"] span:not([class*="gradient"]):not([style*="background"]) {
+  background: transparent !important;
+}
+
+[data-theme="natural"] .textos-carrousel {
+  color: #FFF9F3 !important;
+}
+
+  /* Modo oscuro para la paleta natural */
+  [data-theme="natural"][data-dark="true"] {
+    /* Colores principales en modo oscuro */
+    --color-fondo: #1A1C23;
+    --color-papel: #242832;
+    --color-papel-secundario: #2D313D;
+    --color-superficie: rgba(36, 40, 50, 0.95);
+    --color-superficie-hover: rgba(45, 49, 61, 1);
+    
+    /* Textos en modo oscuro */
+    --color-texto: #F5F6F7;              /* Texto principal más claro */
+    --color-texto-secundario: #CED4DA;    /* Texto secundario más claro */
+    --color-texto-muted: #ADB5BD;         /* Texto muted más claro */
+    
+    /* Colores vibrantes adaptados para oscuro */
+    --color-primario: #FFA94D;           /* Naranja brillante y cálido */
+    --color-secundario: #74C0FC;         /* Celeste brillante */
+    --color-acento: #FFD43B;             /* Amarillo brillante */
+    --color-destacado: #69DB7C;          /* Verde vibrante */
+    --color-detalle-amarillo: #FFE066;   /* Amarillo suave */
+    --color-detalle-violeta: #DA77F2;    /* Violeta brillante */
+    --color-celeste-logo: #A5D8FF;       /* Celeste claro */
+    
+    /* Variantes más brillantes */
+    --primario-light: #FFD43B;          /* Naranja claro brillante */
+    --primario-dark: #E8590C;           /* Naranja oscuro vibrante */
+    --secundario-light: #A5D8FF;        /* Celeste muy claro */
+    --secundario-dark: #1971C2;         /* Azul oscuro vibrante */
+    --acento-light: #FFE066;            /* Amarillo claro brillante */
+    --acento-dark: #FFA94D;             /* Naranja medio brillante */
+    
+    /* Superficies con más contraste */
+    --color-papel: #242832;
+    --color-papel-secundario: #2D313D;
+    --color-superficie: rgba(36, 40, 50, 0.98);
+    --color-superficie-hover: rgba(45, 49, 61, 1);
+    
+    /* Bordes más visibles */
+    --color-borde: rgba(255, 169, 77, 0.25);
+    --color-borde-hover: rgba(255, 169, 77, 0.4);
+    
+    /* Estados de texto más brillantes */
+    --color-texto-success: #69DB7C;      /* Verde éxito */
+    --color-texto-warning: #FFD43B;      /* Amarillo advertencia */
+    --color-texto-error: #FF6B6B;        /* Rojo error */
+    
+    /* Gradientes más vibrantes para oscuro */
+    --gradient-naranja: linear-gradient(135deg, #FFA94D, #FFD43B);
+    --gradient-celeste: linear-gradient(135deg, #A5D8FF, #74C0FC);
+    --gradient-sunset: linear-gradient(135deg, #FFA94D, #DA77F2);
+    --gradient-tropical: linear-gradient(135deg, #A5D8FF, #69DB7C);
+    --gradient-warm: linear-gradient(135deg, #FFE066, #FFA94D);
+    
+    /* Sombras adaptadas para modo oscuro */
+    --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Catch-all for any remaining problematic elements */
+  [data-theme="natural"] {
+    background-attachment: local !important;
+  }
+
+  [data-theme="natural"] body {
+    background: var(--color-fondo) !important;
+    color: var(--color-texto) !important;
+  }[data-theme="natural"] #root {
+  background: transparent !important;
+}
+
+/* Ensure Material-UI CSS-in-JS styles don't override */
+[data-theme="natural"] .makeStyles-root,
+[data-theme="natural"] [class*="makeStyles"],
+[data-theme="natural"] [class*="jss"],
+[data-theme="natural"] [data-jss] {
+  background: transparent !important;
+}
+
+/* Additional safety overrides for generated class names */
+[data-theme="natural"] [class*="css-"]:not([class*="MuiButton-contained"]):not([class*="MuiChip-filled"]):not([class*="MuiFab"]):not([class*="MuiAvatar"]) {
+  background: transparent !important;
+}
+
+/* Specific override for the mentioned problematic class */
+[data-theme="natural"] .css-17fpwt7-MuiGrid-root,
+[data-theme="natural"] .MuiGrid-direction-xs-row {
+  background: transparent !important;
+  color: var(--color-texto) !important;
+}
+
+/* Variaciones responsive para la paleta natural */
+@media (max-width: 768px) {
+  [data-theme="natural"] .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  [data-theme="natural"] .card {
+    margin: var(--spacing-sm);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="natural"] {
+    /* --color-fondo: #1A1A1A;
+    --color-papel: #2D2D2D;
+    --color-texto: #F8F9FA;
+    --color-texto-secundario: #CED4DA;
+    --color-superficie: rgba(45, 45, 45, 0.9);
+    --color-borde: rgba(230, 126, 34, 0.3); */
+  }
+}

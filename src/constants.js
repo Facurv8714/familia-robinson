@@ -187,6 +187,37 @@ export const VARIANTS = {
     },
     style: "minimal",
   },
+  NATURAL: {
+    name: "Robinson Natural",
+    description: "Paleta naranja natural inspirada en el logo",
+    primary: "#E67E22", // Naranja principal del logo
+    secondary: "#3498DB", // Celeste/azul del logo
+    accent: "#F39C12", // Naranja más claro para acentos
+    background: "#FEF7E6", // Fondo cálido crema
+    textColor: "#2C3E50", // Texto principal
+    textSecondary: "#7B7D7D", // Texto secundario
+    highlight: "#52C4B0", // Verde azulado complementario
+    detailYellow: "#F1C40F", // Amarillo vibrante para detalles
+    detailViolet: "#9B59B6", // Violeta para detalles contrastantes
+    cyanLogo: "#5DADE2", // Celeste más presente del logo
+    gradient: {
+      primary: "linear-gradient(135deg, #E67E22, #F39C12)",
+      secondary: "linear-gradient(135deg, #5DADE2, #3498DB)",
+      accent: "linear-gradient(135deg, #F1C40F, #E67E22)",
+      sunset: "linear-gradient(135deg, #E67E22, #9B59B6)",
+      tropical: "linear-gradient(135deg, #5DADE2, #52C4B0)",
+      warm: "linear-gradient(135deg, #F1C40F, #E67E22)",
+      hero: "linear-gradient(135deg, #FEF7E6, #FDF2E9)",
+      card: "linear-gradient(145deg, #FFFFFF, #FDF2E9)",
+    },
+    shadow: {
+      primary: "0 4px 15px rgba(230, 126, 34, 0.3)",
+      secondary: "0 4px 15px rgba(93, 173, 226, 0.3)",
+      accent: "0 4px 15px rgba(241, 196, 15, 0.3)",
+      violet: "0 4px 15px rgba(155, 89, 182, 0.3)",
+    },
+    style: "natural",
+  },
 };
 
 // Función helper para obtener los estilos de variante

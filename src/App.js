@@ -27,7 +27,7 @@ import {
   LocationOn,
   CheckCircle,
 } from "@mui/icons-material";
-import { PALETTE, HIDEABLE_COMPONENTS } from "./constants";
+import { PALETTE, HIDEABLE_COMPONENTS, getVariantStyles } from "./constants";
 import { createCustomTheme } from "./utils";
 import Topbar from "./components/Topbar";
 import HeroSection from "./components/HeroSection";
@@ -44,7 +44,7 @@ import ConfigurableGridItem from "./components/ConfigurableGridItem";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [variant, setVariant] = useState("A");
+  const [variant, setVariant] = useState("NATURAL");
   const [configMode, setConfigMode] = useState(false);
   const [hiddenComponents, setHiddenComponents] = useState(new Set());
   const theme = createCustomTheme(darkMode);
@@ -75,15 +75,25 @@ export default function App() {
     return groupIds.filter((id) => isComponentVisible(id)).length;
   };
 
+  // Obtener los estilos de la variante actual
+  const currentVariant = getVariantStyles(variant);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />{" "}
       <Box
+        data-theme={variant === "NATURAL" ? "natural" : "default"}
+        data-dark={darkMode ? "true" : "false"}
         sx={{
           minHeight: "100vh",
-          background: darkMode
-            ? "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)"
-            : `linear-gradient(135deg, ${PALETTE.fondo} 0%, #f8f6f0 100%)`,
+          background:
+            variant === "NATURAL"
+              ? darkMode
+                ? "linear-gradient(135deg, #1A1C23 0%, #242832 100%)"
+                : "linear-gradient(135deg, #FEF7E6 0%, #FDF2E9 100%)"
+              : darkMode
+              ? "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)"
+              : `linear-gradient(135deg, ${currentVariant.background} 0%, #f8f6f0 100%)`,
         }}
       >
         {/* Header con AppBar */}
@@ -121,15 +131,7 @@ export default function App() {
               onToggleVisibility={toggleComponentVisibility}
               gridProps={{
                 xs: 12,
-                md:
-                  getVisibleSectionsCount([
-                    HIDEABLE_COMPONENTS.MAYORISTA_CARD,
-                    HIDEABLE_COMPONENTS.MINORISTA_CARD,
-                    HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
-                    HIDEABLE_COMPONENTS.EXPEDICIONES_CARD,
-                  ]) === 1
-                    ? 12
-                    : 6,
+                md: 6,
               }}
             >
               <Card
@@ -171,39 +173,38 @@ export default function App() {
                     variant="body1"
                     sx={{ mb: 3, fontSize: "1.1rem" }}
                   >
-                    Distribución mayorista a comercios del rubro.
-                    <br />
+                    Distribuimos productos de pesca, camping y outdoor
+                    <br />a comercios que buscan
                     <Box
                       component="span"
                       sx={{ color: "primary.main", fontWeight: 600 }}
                     >
-                      Abastecemos negocios con ADN outdoor.
-                    </Box>
+                      &nbsp;calidad y confianza
+                    </Box>{" "}
+                    <br />
+                    para sus clientes.
                   </Typography>
                   <List sx={{ mb: 3, flex: 1 }}>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: "primary.main" }} />
                       </ListItemIcon>
+                      {/* <ListItemText primary="Abastecimiento eficiente y confiable" /> */}
+                      <ListItemText primary="Potenciamos tu negocio con ADN outdoor." />
+                    </ListItem>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: "primary.main" }} />
+                      </ListItemIcon>
                       <ListItemText primary="Abastecimiento eficiente y confiable" />
+                      {/* <ListItemText primary="El mayorista que entiende tu pasión." /> */}
                     </ListItem>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: "primary.main" }} />
                       </ListItemIcon>
-                      <ListItemText primary="Descuentos progresivos 10/25/50 uds" />
-                    </ListItem>
-                    <ListItem sx={{ px: 0 }}>
-                      <ListItemIcon>
-                        <CheckCircle sx={{ color: "primary.main" }} />
-                      </ListItemIcon>
-                      <ListItemText primary="CSV semanal (SKU · stock · PVP)" />
-                    </ListItem>
-                    <ListItem sx={{ px: 0 }}>
-                      <ListItemIcon>
-                        <CheckCircle sx={{ color: "primary.main" }} />
-                      </ListItemIcon>
-                      <ListItemText primary="Garantía y postventa especializada" />
+                      {/*<ListItemText primary="Garantía y postventa especializada" /> */}
+                      <ListItemText primary="Abasteciendo comercios, impulsando aventuras." />
                     </ListItem>
                   </List>
 
@@ -228,15 +229,7 @@ export default function App() {
               onToggleVisibility={toggleComponentVisibility}
               gridProps={{
                 xs: 12,
-                md:
-                  getVisibleSectionsCount([
-                    HIDEABLE_COMPONENTS.MAYORISTA_CARD,
-                    HIDEABLE_COMPONENTS.MINORISTA_CARD,
-                    HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
-                    HIDEABLE_COMPONENTS.EXPEDICIONES_CARD,
-                  ]) === 1
-                    ? 12
-                    : 6,
+                md: 6,
               }}
             >
               <Card
@@ -279,36 +272,38 @@ export default function App() {
                     variant="body1"
                     sx={{ mb: 3, fontSize: "1.1rem" }}
                   >
-                    Venta al público de artículos de pesca,
+                    Tu tienda especializada para amantes de la pesca,
                     <br />
-                    camping, outdoor e indumentaria.
+                    el camping y la vida al aire libre. Encontrá lo necesario
                     <br />
+                    para que cada aventura sea
                     <Box
                       component="span"
                       sx={{ color: "secondary.main", fontWeight: 600 }}
                     >
-                      Todo lo que necesitas para tu próxima aventura.
+                      &nbsp;inolvidable.
                     </Box>
                   </Typography>
-
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: 1,
-                      mb: 3,
-                      flex: 1,
-                    }}
-                  >
-                    <Chip
-                      label="📦 Variedad y atención personalizada"
-                      size="small"
-                    />
-                    <Chip label="📦 Envío a todo el país" size="small" />
-                    <Chip label="💳 Todos los medios de pago" size="small" />
-                    <Chip label="📱 WhatsApp directo" size="small" />
-                  </Box>
-
+                  <List sx={{ mb: 3, flex: 1 }}>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: "primary.main" }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Equipate para cada aventura." />
+                    </ListItem>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: "primary.main" }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Tu aliado en la naturaleza." />
+                    </ListItem>
+                    <ListItem sx={{ px: 0 }}>
+                      <ListItemIcon>
+                        <CheckCircle sx={{ color: "primary.main" }} />
+                      </ListItemIcon>
+                      <ListItemText primary="Calidad y confianza para tus días al aire libre." />
+                    </ListItem>
+                  </List>
                   <Button
                     variant="contained"
                     color="secondary"
@@ -332,15 +327,7 @@ export default function App() {
               onToggleVisibility={toggleComponentVisibility}
               gridProps={{
                 xs: 12,
-                md:
-                  getVisibleSectionsCount([
-                    HIDEABLE_COMPONENTS.MAYORISTA_CARD,
-                    HIDEABLE_COMPONENTS.MINORISTA_CARD,
-                    HIDEABLE_COMPONENTS.FISHING_SCHOOL_CARD,
-                    HIDEABLE_COMPONENTS.EXPEDICIONES_CARD,
-                  ]) === 1
-                    ? 12
-                    : 6,
+                md: 6,
               }}
             >
               <Card
@@ -383,15 +370,19 @@ export default function App() {
                     variant="body1"
                     sx={{ mb: 3, fontSize: "1.1rem" }}
                   >
-                    Formación técnica y comunitaria para
+                    Espacio de aprendizaje para pescadores de todos
                     <br />
-                    pescadores de todos los niveles.
+                    los niveles. Ofrecemos cursos, talleres y actividades
+                    <br />
+                    comunitarias para perfeccionar técnicas,
+                    <br />
+                    compartir experiencias, conectar con la naturaleza y la
                     <br />
                     <Box
                       component="span"
                       sx={{ color: PALETTE.acento, fontWeight: 600 }}
                     >
-                      Aprendé, viví y pescá con nosotros.
+                      pasión por la pesca.
                     </Box>
                   </Typography>
 
@@ -400,7 +391,8 @@ export default function App() {
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.acento }} />
                       </ListItemIcon>
-                      <ListItemText primary="Formación técnica y comunidad" />
+                      {/* <ListItemText primary="Formación técnica y comunidad" /> */}
+                      <ListItemText primary="De pescador a pescador: aprendé y disfrutá." />
                     </ListItem>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
@@ -413,12 +405,6 @@ export default function App() {
                         <CheckCircle sx={{ color: PALETTE.acento }} />
                       </ListItemIcon>
                       <ListItemText primary="Técnicas de pesca especializada" />
-                    </ListItem>
-                    <ListItem sx={{ px: 0 }}>
-                      <ListItemIcon>
-                        <CheckCircle sx={{ color: PALETTE.acento }} />
-                      </ListItemIcon>
-                      <ListItemText primary="Equipo y material incluido" />
                     </ListItem>
                   </List>
 
@@ -492,13 +478,19 @@ export default function App() {
                     variant="body1"
                     sx={{ mb: 3, fontSize: "1.1rem" }}
                   >
-                    Viajes, clínicas, experiencias guiadas.
+                    Organizamos viajes y expediciones guiadas para vivir
                     <br />
+                    la naturaleza en su máxima expresión.
+                    <br />
+                    Clínicas, experiencias y aventuras diseñadas para <br />
+                    quienes buscan explorar, aprender y conectar con el
+                    <br />
+                    entorno natural de manera
                     <Box
                       component="span"
                       sx={{ color: PALETTE.destacado, fontWeight: 600 }}
                     >
-                      Viví la aventura Robinson en la naturaleza.
+                      &nbsp;segura y apasionante.
                     </Box>
                   </Typography>
 
@@ -507,26 +499,29 @@ export default function App() {
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.destacado }} />
                       </ListItemIcon>
-                      <ListItemText primary="Experiencias guiadas y seguras en la naturaleza" />
+                      {/* <ListItemText primary="Experiencias guiadas y seguras en la naturaleza" /> */}
+                      <ListItemText primary="Aventuras que transforman." />
                     </ListItem>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.destacado }} />
                       </ListItemIcon>
-                      <ListItemText primary="Expediciones guiadas por expertos" />
+                      <ListItemText primary="Explorá con expertos, viví Robinson." />
+                      {/* <ListItemText primary="Expediciones guiadas por expertos" /> */}
                     </ListItem>
                     <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.destacado }} />
                       </ListItemIcon>
-                      <ListItemText primary="Clínicas especializadas en naturaleza" />
+                      <ListItemText primary="Tu puerta a la naturaleza salvaje." />
+                      {/* <ListItemText primary="Clínicas especializadas en naturaleza" /> */}
                     </ListItem>
-                    <ListItem sx={{ px: 0 }}>
+                    {/* <ListItem sx={{ px: 0 }}>
                       <ListItemIcon>
                         <CheckCircle sx={{ color: PALETTE.destacado }} />
                       </ListItemIcon>
                       <ListItemText primary="Para aventureros y turistas outdoor" />
-                    </ListItem>
+                    </ListItem> */}
                   </List>
 
                   <Button

@@ -195,49 +195,8 @@ const HeroSection = ({
                     >
                       Casa de Pesca
                     </Typography>
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        display: "block",
-                        mt: 0.5,
-                        color: variantStyles.primary,
-                        fontWeight: 600,
-                        fontSize: "0.9rem",
-                      }}
-                    >
-                      {variantStyles.description}
-                    </Typography>
                   </Box>
                 </Box>
-              </ConfigurableSection>
-
-              <ConfigurableSection
-                sectionId={HIDEABLE_COMPONENTS.HERO_BRAND_CHIP}
-                isConfigMode={configMode}
-                isVisible={isComponentVisible(
-                  HIDEABLE_COMPONENTS.HERO_BRAND_CHIP
-                )}
-                onToggleVisibility={onToggleVisibility}
-                sx={{ mb: 3 }}
-              >
-                <Chip
-                  label={`🏪 🛒 🎣 🏕️ ${variantStyles.name} - Conocé todas nuestras submarcas`}
-                  sx={{
-                    background: variantStyles.gradient.accent,
-                    color: "white",
-                    fontWeight: 600,
-                    fontSize: "0.9rem",
-                    py: 1.5,
-                    px: 2,
-                    boxShadow: variantStyles.shadow.accent,
-                    border: `2px solid ${variantStyles.accent}40`,
-                    "&:hover": {
-                      transform: "scale(1.02)",
-                      boxShadow: variantStyles.shadow.primary,
-                    },
-                    transition: "all 0.3s ease",
-                  }}
-                />
               </ConfigurableSection>
 
               <ConfigurableSection
@@ -340,6 +299,7 @@ const HeroSection = ({
                         <Box sx={{ flex: 1 }}>
                           <Typography
                             variant="h6"
+                            className="textos-carrousel"
                             sx={{
                               fontWeight: 600,
                               mb: 0.5,
@@ -353,6 +313,7 @@ const HeroSection = ({
                           </Typography>
                           <Typography
                             variant="body2"
+                            className="textos-carrousel"
                             sx={{
                               opacity: isTransitioning ? 0.7 : 0.9,
                               transition: "all 0.5s ease-out",
