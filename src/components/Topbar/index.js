@@ -112,16 +112,19 @@ const Topbar = ({
                 variant={location.pathname === item.path ? "contained" : "text"}
                 size="small"
                 sx={{
-                  color: location.pathname === item.path 
-                    ? "white" 
-                    : currentVariant.textColor,
-                  backgroundColor: location.pathname === item.path 
-                    ? currentVariant.primary 
-                    : "transparent",
+                  color:
+                    location.pathname === item.path
+                      ? "white"
+                      : currentVariant.textColor,
+                  backgroundColor:
+                    location.pathname === item.path
+                      ? currentVariant.primary
+                      : "transparent",
                   "&:hover": {
-                    backgroundColor: location.pathname === item.path 
-                      ? currentVariant.primary 
-                      : `${currentVariant.primary}10`,
+                    backgroundColor:
+                      location.pathname === item.path
+                        ? currentVariant.primary
+                        : `${currentVariant.primary}10`,
                   },
                   fontWeight: 600,
                   borderRadius: 2,
@@ -132,7 +135,8 @@ const Topbar = ({
               </Button>
             ))}
           </Box>
-        </Box>        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        </Box>{" "}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           {/* Modo configuración */}
           {configMode && (
             <Chip

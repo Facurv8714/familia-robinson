@@ -264,7 +264,9 @@ export default function AcercaDe() {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <Card sx={{ p: 4, borderRadius: 3, height: "100%" }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+              >
                 <Avatar sx={{ bgcolor: PALETTE.primario }}>
                   <Business />
                 </Avatar>
@@ -273,9 +275,10 @@ export default function AcercaDe() {
                 </Typography>
               </Box>
               <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
-                Distribuimos productos de alta calidad a comercios especializados
-                en pesca, camping y outdoor. Nuestro enfoque está en brindar un
-                servicio confiable con stock real y asesoramiento técnico.
+                Distribuimos productos de alta calidad a comercios
+                especializados en pesca, camping y outdoor. Nuestro enfoque está
+                en brindar un servicio confiable con stock real y asesoramiento
+                técnico.
               </Typography>
               <List>
                 <ListItem sx={{ px: 0 }}>
@@ -296,7 +299,9 @@ export default function AcercaDe() {
 
           <Grid item xs={12} md={6}>
             <Card sx={{ p: 4, borderRadius: 3, height: "100%" }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+              >
                 <Avatar sx={{ bgcolor: PALETTE.secundario }}>
                   <Store />
                 </Avatar>
@@ -305,8 +310,8 @@ export default function AcercaDe() {
                 </Typography>
               </Box>
               <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
-                Nuestra tienda especializada para pescadores y amantes del camping.
-                Ofrecemos productos cuidadosamente seleccionados con el
+                Nuestra tienda especializada para pescadores y amantes del
+                camping. Ofrecemos productos cuidadosamente seleccionados con el
                 asesoramiento que necesitás para cada aventura.
               </Typography>
               <List>
@@ -328,7 +333,9 @@ export default function AcercaDe() {
 
           <Grid item xs={12} md={6}>
             <Card sx={{ p: 4, borderRadius: 3, height: "100%" }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+              >
                 <Avatar sx={{ bgcolor: PALETTE.acento }}>
                   <School />
                 </Avatar>
@@ -337,9 +344,9 @@ export default function AcercaDe() {
                 </Typography>
               </Box>
               <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
-                Nuestro espacio de formación y comunidad donde pescadores de todos
-                los niveles pueden aprender, compartir experiencias y perfeccionar
-                sus técnicas.
+                Nuestro espacio de formación y comunidad donde pescadores de
+                todos los niveles pueden aprender, compartir experiencias y
+                perfeccionar sus técnicas.
               </Typography>
               <List>
                 <ListItem sx={{ px: 0 }}>
@@ -360,7 +367,9 @@ export default function AcercaDe() {
 
           <Grid item xs={12} md={6}>
             <Card sx={{ p: 4, borderRadius: 3, height: "100%" }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}
+              >
                 <Avatar sx={{ bgcolor: PALETTE.destacado }}>
                   <Explore />
                 </Avatar>
@@ -383,9 +392,9 @@ export default function AcercaDe() {
                 </Box>
               </Box>
               <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
-                Nuestro proyecto más ambicioso: expediciones guiadas y experiencias
-                outdoor diseñadas para conectar con la naturaleza de manera segura
-                y transformadora.
+                Nuestro proyecto más ambicioso: expediciones guiadas y
+                experiencias outdoor diseñadas para conectar con la naturaleza
+                de manera segura y transformadora.
               </Typography>
               <List>
                 <ListItem sx={{ px: 0 }}>
@@ -434,7 +443,14 @@ export default function AcercaDe() {
             Ya seas comerciante, pescador aficionado o amante del outdoor,
             tenemos un lugar para vos en nuestra familia.
           </Typography>
-          <Box sx={{ display: "flex", gap: 2, justifyContent: "center", flexWrap: "wrap" }}>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
             <Button
               variant="contained"
               component={Link}

@@ -188,7 +188,9 @@ export default function Catalogo() {
                     <Chip
                       label={producto.stock}
                       size="small"
-                      color={producto.stock === "En stock" ? "success" : "warning"}
+                      color={
+                        producto.stock === "En stock" ? "success" : "warning"
+                      }
                       variant="filled"
                       icon={<Inventory />}
                     />
@@ -212,7 +214,14 @@ export default function Catalogo() {
                   </Typography>
 
                   {/* Rating */}
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1,
+                      mb: 2,
+                    }}
+                  >
                     <Star sx={{ color: "#ffd700", fontSize: "1.2rem" }} />
                     <Typography variant="body2" sx={{ fontWeight: 600 }}>
                       {producto.rating}

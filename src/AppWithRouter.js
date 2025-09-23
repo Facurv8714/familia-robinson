@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {
-  Box,
-  ThemeProvider,
-  CssBaseline,
-} from "@mui/material";
+import { Box, ThemeProvider, CssBaseline } from "@mui/material";
 import { PALETTE, getVariantStyles } from "./constants";
 import { createCustomTheme } from "./utils";
 import Topbar from "./components/Topbar";
@@ -71,16 +67,16 @@ export default function App() {
 
           {/* Rutas */}
           <Routes>
-            <Route 
-              path="/" 
+            <Route
+              path="/"
               element={
-                <HomePage 
+                <HomePage
                   variant={variant}
                   configMode={configMode}
                   isComponentVisible={isComponentVisible}
                   onToggleVisibility={toggleComponentVisibility}
                 />
-              } 
+              }
             />
             <Route path="/catalogo" element={<Catalogo />} />
             <Route path="/acerca-de" element={<AcercaDe />} />

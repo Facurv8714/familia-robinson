@@ -29,11 +29,11 @@ import HeroSection from "../components/HeroSection";
 import ConfigurableSection from "../components/ConfigurableSection";
 import ConfigurableGridItem from "../components/ConfigurableGridItem";
 
-export default function HomePage({ 
-  variant, 
-  configMode, 
-  isComponentVisible, 
-  onToggleVisibility 
+export default function HomePage({
+  variant,
+  configMode,
+  isComponentVisible,
+  onToggleVisibility,
 }) {
   return (
     <>
@@ -93,10 +93,7 @@ export default function HomePage({
                     Robinson Mayorista
                   </Typography>
                 </Box>
-                <Typography
-                  variant="body1"
-                  sx={{ mb: 3, fontSize: "1.1rem" }}
-                >
+                <Typography variant="body1" sx={{ mb: 3, fontSize: "1.1rem" }}>
                   Distribuimos productos de pesca, camping y outdoor
                   <br />a comercios que buscan
                   <Box
@@ -189,10 +186,7 @@ export default function HomePage({
                   </Typography>
                 </Box>
 
-                <Typography
-                  variant="body1"
-                  sx={{ mb: 3, fontSize: "1.1rem" }}
-                >
+                <Typography variant="body1" sx={{ mb: 3, fontSize: "1.1rem" }}>
                   Tu tienda especializada para amantes de la pesca,
                   <br />
                   el camping y la vida al aire libre. Encontrá lo necesario
@@ -287,10 +281,7 @@ export default function HomePage({
                   </Typography>
                 </Box>
 
-                <Typography
-                  variant="body1"
-                  sx={{ mb: 3, fontSize: "1.1rem" }}
-                >
+                <Typography variant="body1" sx={{ mb: 3, fontSize: "1.1rem" }}>
                   Espacio de aprendizaje para pescadores de todos
                   <br />
                   los niveles. Ofrecemos cursos, talleres y actividades
@@ -394,10 +385,7 @@ export default function HomePage({
                   </Typography>
                 </Box>
 
-                <Typography
-                  variant="body1"
-                  sx={{ mb: 3, fontSize: "1.1rem" }}
-                >
+                <Typography variant="body1" sx={{ mb: 3, fontSize: "1.1rem" }}>
                   Organizamos viajes y expediciones guiadas para vivir
                   <br />
                   la naturaleza en su máxima expresión.
