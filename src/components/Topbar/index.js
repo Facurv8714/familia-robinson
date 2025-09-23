@@ -14,10 +14,13 @@ import {
   DarkMode,
   Settings,
   SettingsBackupRestore,
+  Home,
+  Inventory,
+  Info,
 } from "@mui/icons-material";
+import { Link, useLocation } from "react-router-dom";
 import { PALETTE, VARIANTS, getVariantStyles } from "../../constants";
 import logoRobinson from "../../images/logo-robinson.svg";
-// import { HideOnScroll } from "../../utils"; // Assuming you have this utility function
 const Topbar = ({
   variant,
   setVariant,
@@ -27,6 +30,13 @@ const Topbar = ({
   setConfigMode,
 }) => {
   const currentVariant = getVariantStyles(variant);
+  const location = useLocation();
+
+  const navigationItems = [
+    { label: "Inicio", path: "/", icon: <Home /> },
+    { label: "Catálogo", path: "/catalogo", icon: <Inventory /> },
+    { label: "Acerca de", path: "/acerca-de", icon: <Info /> },
+  ];
 
   return (
     // <HideOnScroll>
@@ -46,41 +56,83 @@ const Topbar = ({
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Box
-            component="img"
-            src={logoRobinson}
-            alt="Logo Robinson"
+            component={Link}
+            to="/"
             sx={{
-              width: 48,
-              height: 48,
-              objectFit: "contain",
-              filter: `drop-shadow(0 2px 8px ${currentVariant.primary}40)`,
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+              textDecoration: "none",
+              color: "inherit",
             }}
-          />
-          <Box>
-            <Typography
-              variant="h6"
+          >
+            <Box
+              component="img"
+              src={logoRobinson}
+              alt="Logo Robinson"
               sx={{
-                fontWeight: 800,
-                lineHeight: 1,
-                color: currentVariant.textColor,
-                textShadow: `1px 1px 2px ${currentVariant.primary}20`,
+                width: 48,
+                height: 48,
+                objectFit: "contain",
+                filter: `drop-shadow(0 2px 8px ${currentVariant.primary}40)`,
               }}
-            >
-              Familia Robinson
-            </Typography>
-            <Typography
-              variant="caption"
-              sx={{
-                color: currentVariant.textSecondary,
-                fontWeight: 500,
-              }}
-            >
-              Casa de Pesca
-            </Typography>
+            />
+            <Box>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 800,
+                  lineHeight: 1,
+                  color: currentVariant.textColor,
+                  textShadow: `1px 1px 2px ${currentVariant.primary}20`,
+                }}
+              >
+                Familia Robinson
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: currentVariant.textSecondary,
+                  fontWeight: 500,
+                }}
+              >
+                Casa de Pesca
+              </Typography>
+            </Box>
           </Box>
-        </Box>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          {/* Navegación */}
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, ml: 4 }}>
+            {navigationItems.map((item) => (
+              <Button
+                key={item.path}
+                component={Link}
+                to={item.path}
+                startIcon={item.icon}
+                variant={location.pathname === item.path ? "contained" : "text"}
+                size="small"
+                sx={{
+                  color: location.pathname === item.path 
+                    ? "white" 
+                    : currentVariant.textColor,
+                  backgroundColor: location.pathname === item.path 
+                    ? currentVariant.primary 
+                    : "transparent",
+                  "&:hover": {
+                    backgroundColor: location.pathname === item.path 
+                      ? currentVariant.primary 
+                      : `${currentVariant.primary}10`,
+                  },
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  px: 2,
+                }}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </Box>
+        </Box>        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           {/* Modo configuración */}
           {configMode && (
             <Chip
