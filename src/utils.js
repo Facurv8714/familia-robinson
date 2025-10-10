@@ -1,53 +1,52 @@
 import { createTheme, Slide, useScrollTrigger } from "@mui/material";
-import { PALETTE } from "./constants";
+import "./styles/natural.css"; // Importing the natural.css file
 
 export const createCustomTheme = (darkMode) =>
   createTheme({
     palette: {
       mode: darkMode ? "dark" : "light",
       primary: {
-        main: PALETTE.primario, // Púrpura del logo
-        light: PALETTE.primarioClaro,
-        dark: PALETTE.primarioOscuro,
+        main: darkMode ? "#FF4B4B" : "#FF0000", // Static value for --color-primary
+        light: darkMode ? "#FF6B6B" : "#FF4D4D", // Static value for --color-primary-light
+        dark: darkMode ? "#CC0000" : "#CC0000", // Static value for --color-primary-dark
       },
       secondary: {
-        main: PALETTE.secundario, // Celeste del logo
-        light: PALETTE.secundarioClaro,
-        dark: "#87b4d9", // Versión más oscura del celeste
+        main: darkMode ? "#3366CC" : "#FFD700", // Static value for --color-secondary
+        light: darkMode ? "#A5D8FF" : "#FFE666", // Static value for --color-secondary-light
+        dark: darkMode ? "#1971C2" : "#CCAC00", // Static value for --color-secondary-dark
       },
       accent: {
-        main: PALETTE.acento, // Naranja cálido del logo
-        light: PALETTE.acentoClaro,
-        dark: "#d4722a", // Versión más oscura del naranja
+        main: darkMode ? "#FFE666" : "#0D2F6C", // Static value for --color-accent
+        light: darkMode ? "#FFE066" : "#1A478F", // Static value for --color-accent-light
+        dark: darkMode ? "#FFA94D" : "#092352", // Static value for --color-accent-dark
       },
       background: {
-        default: darkMode ? "#1a1a1a" : PALETTE.fondo,
+        default: darkMode ? "#1a1a1a" : "#FFF9F9", // Static value for --color-background
         paper: darkMode ? "#2d2d2d" : "#ffffff",
-        alternative: darkMode ? "#252525" : PALETTE.fondoAlternativo,
+        alternative: darkMode ? "#252525" : "#FFF8E1", // Static value for --color-background-alternative
       },
       text: {
-        primary: darkMode ? "#e9e9e9" : PALETTE.texto,
-        secondary: darkMode ? "#b0b0b0" : PALETTE.textoSecundario,
-        tertiary: darkMode ? "#888888" : PALETTE.neutro,
+        primary: darkMode ? "#e9e9e9" : "#0D2F6C", // Static value for --color-text
+        secondary: darkMode ? "#b0b0b0" : "#757575", // Static value for --color-text-secondary
+        tertiary: darkMode ? "#888888" : "#BDBDBD", // Static value for --color-neutral
       },
-      // Colores personalizados adicionales
       warning: {
-        main: PALETTE.destacado, // Amarillo brillante del logo
+        main: darkMode ? "#FFD43B" : "#FFC107", // Static value for --color-warning
         light: "#fff95c",
         dark: "#e6d411",
       },
       info: {
-        main: PALETTE.secundario, // Celeste del logo para info
-        light: PALETTE.secundarioClaro,
-        dark: "#87b4d9",
+        main: darkMode ? "#A5D8FF" : "#3366CC", // Static value for --color-info
+        light: darkMode ? "#74C0FC" : "#5C8FE6", // Static value for --color-info-light
+        dark: "#d4722a",
       },
       success: {
-        main: PALETTE.success,
+        main: darkMode ? "#69DB7C" : "#4CAF50", // Static value for --color-success
         light: "#66bb6a",
         dark: "#388e3c",
       },
       error: {
-        main: PALETTE.error,
+        main: darkMode ? "#FF6B6B" : "#F44336", // Static value for --color-error
         light: "#f66",
         dark: "#d32f2f",
       },

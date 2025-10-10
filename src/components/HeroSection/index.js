@@ -5,27 +5,25 @@ import {
   Fade,
   Grid,
   Typography,
-  IconButton,
-  Paper,
-  Button,
+  // IconButton,
+  // Paper,
+  // Button,
 } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import { getVariantStyles, HIDEABLE_COMPONENTS } from "../../constants";
-import PromotionalSection from "./sections/PromotionalSection";
-import PromotionalChips from "./sections/PromotionalChips";
-import NavButtons from "./sections/NavButtons";
+// import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { HIDEABLE_COMPONENTS } from "../../constants";
+import Presentacion from "./Components/Presentacion/index.js";
+// import NavButtons from "./sections/NavButtons";
 import ConfigurableSection from "../ConfigurableSection";
+import Carousel from "./Components/Carousel/index.js";
 
 import { carouselImages } from "../../constants";
-import logoRobinson from "../../images/logo-robinson.svg";
+// import logoRobinson from "../../images/logo-robinson.png";
 
 const HeroSection = ({
-  variant,
   configMode = false,
   isComponentVisible = () => true,
   onToggleVisibility = () => {},
 }) => {
-  const variantStyles = getVariantStyles(variant);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -58,26 +56,26 @@ const HeroSection = ({
   const getSlideButton = (slideIndex) => {
     const buttons = [
       {
-        text: "Ver tienda",
-        href: "#minorista",
+        text: "Ir a minorista",
+        href: "/minorista",
         icon: "🛒",
         color: "secondary",
       },
       {
-        text: "Ser distribuidor",
-        href: "#mayorista",
+        text: "Ir a mayorista",
+        href: "/mayorista",
         icon: "🏪",
         color: "primary",
       },
       {
-        text: "Ver cursos",
-        href: "#fishing-school",
+        text: "Ir a Fishing School",
+        href: "/fishing-school",
         icon: "🎣",
         color: "custom",
       },
       {
-        text: "Próximamente",
-        href: "#expediciones",
+        text: "Ir a Expediciones",
+        href: "/expediciones",
         icon: "🏕️",
         color: "custom",
       },
@@ -120,82 +118,38 @@ const HeroSection = ({
     <Container
       maxWidth="lg"
       sx={{
+        padding: "14px 0 !important",
         pt: { xs: 4, md: 8 },
         pb: { xs: 6, md: 10 },
-        background: variantStyles.gradient.hero,
         borderRadius: 4,
         margin: "auto",
         mt: 2,
-        boxShadow: variantStyles.shadow.secondary,
+        boxShadow: "var(--shadow-secondary)",
       }}
+      className="gradient-hero"
     >
       <Grid container spacing={6} alignItems="center">
         <Grid item xs={12} md={6}>
           <Fade in timeout={1100}>
-            <Box>
+            <Box
+              sx={{ display: "flex", gridGap: "16px", flexDirection: "column" }}
+            >
               {/* Logo Robinson */}
               <ConfigurableSection
-                sectionId={HIDEABLE_COMPONENTS.HERO_LOGO_SECTION}
+                sectionId={HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_CHIPS}
                 isConfigMode={configMode}
                 isVisible={isComponentVisible(
-                  HIDEABLE_COMPONENTS.HERO_LOGO_SECTION
+                  HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_CHIPS
                 )}
                 onToggleVisibility={onToggleVisibility}
-                sx={{ mb: 3 }}
+                sx={{
+                  p: 4,
+                  borderRadius: 4,
+                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+                  border: "2px solid #FF4500",
+                }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    p: 3,
-                    borderRadius: 3,
-                    background: variantStyles.gradient.card,
-                    boxShadow: variantStyles.shadow.primary,
-                    border: `2px solid ${variantStyles.primary}20`,
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src={logoRobinson}
-                    alt="Logo Robinson"
-                    sx={{
-                      width: { xs: 100, md: 140 },
-                      height: { xs: 100, md: 140 },
-                      objectFit: "contain",
-                      filter: `drop-shadow(0 8px 16px ${variantStyles.primary}30)`,
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        transform: "scale(1.05) rotate(2deg)",
-                        filter: `drop-shadow(0 12px 24px ${variantStyles.primary}40)`,
-                      },
-                    }}
-                  />
-                  <Box>
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: 800,
-                        color: variantStyles.textColor,
-                        lineHeight: 1,
-                        fontSize: { xs: "2rem", md: "2.5rem" },
-                        textShadow: `2px 2px 4px ${variantStyles.primary}20`,
-                      }}
-                    >
-                      Familia Robinson
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        color: variantStyles.textSecondary,
-                        fontWeight: 500,
-                        fontSize: { xs: "1.1rem", md: "1.3rem" },
-                      }}
-                    >
-                      Casa de Pesca
-                    </Typography>
-                  </Box>
-                </Box>
+                <Presentacion />
               </ConfigurableSection>
 
               <ConfigurableSection
@@ -205,23 +159,23 @@ const HeroSection = ({
                   HIDEABLE_COMPONENTS.HERO_MAIN_TITLE
                 )}
                 onToggleVisibility={onToggleVisibility}
-                sx={{ mb: 3 }}
               >
                 <Typography
                   variant="h1"
                   sx={{
-                    color: variantStyles.textColor,
+                    mt: "24px",
+                    color: "var(--text-color)",
                     fontSize: { xs: "2.5rem", md: "4rem" },
                     fontWeight: 900,
-                    textShadow: `3px 3px 6px ${variantStyles.primary}25`,
+                    textShadow: `3px 3px 6px var(--primary-color)25`,
                     "&:hover": {
                       transform: "scale(1.02)",
-                      textShadow: `4px 4px 8px ${variantStyles.primary}35`,
+                      textShadow: `4px 4px 8px var(--primary-color)35`,
                     },
                     transition: "all 0.3s ease",
                   }}
                 >
-                  Todo tu equipamiento outdoor
+                  Disfrutá tu nueva aventura
                 </Typography>
               </ConfigurableSection>
 
@@ -233,259 +187,19 @@ const HeroSection = ({
                   HIDEABLE_COMPONENTS.HERO_CAROUSEL
                 )}
                 onToggleVisibility={onToggleVisibility}
-                sx={{ mb: 4 }}
               >
-                <Box
-                  sx={{
-                    position: "relative",
-                    borderRadius: 2,
-                    overflow: "hidden",
-                  }}
-                >
-                  <Paper
-                    elevation={8}
-                    sx={{
-                      position: "relative",
-                      height: { xs: 250, md: 300 },
-                      background: variantStyles.gradient.card,
-                      borderRadius: 2,
-                      overflow: "hidden",
-                      border: `3px solid ${variantStyles.primary}30`,
-                      boxShadow: variantStyles.shadow.primary,
-                    }}
-                  >
-                    <Box
-                      component="img"
-                      src={carouselImages[currentSlide].src}
-                      alt={carouselImages[currentSlide].title}
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        transition:
-                          "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                        transform: isTransitioning ? "scale(1.03)" : "scale(1)",
-                        opacity: isTransitioning ? 0.8 : 1,
-                        filter: isTransitioning ? "blur(0.5px)" : "blur(0px)",
-                      }}
-                    />
-
-                    {/* Overlay with gradient */}
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        background: `linear-gradient(transparent, ${variantStyles.primary}90)`,
-                        p: 3,
-                        color: "white",
-                        transition:
-                          "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                        transform: isTransitioning
-                          ? "translateY(8px)"
-                          : "translateY(0)",
-                        opacity: isTransitioning ? 0.85 : 1,
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "flex-end",
-                        }}
-                      >
-                        <Box sx={{ flex: 1 }}>
-                          <Typography
-                            variant="h6"
-                            className="textos-carrousel"
-                            sx={{
-                              fontWeight: 600,
-                              mb: 0.5,
-                              transition: "all 0.5s ease-out",
-                              transform: isTransitioning
-                                ? "translateX(-8px)"
-                                : "translateX(0)",
-                            }}
-                          >
-                            {carouselImages[currentSlide].title}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            className="textos-carrousel"
-                            sx={{
-                              opacity: isTransitioning ? 0.7 : 0.9,
-                              transition: "all 0.5s ease-out",
-                              transform: isTransitioning
-                                ? "translateX(-8px)"
-                                : "translateX(0)",
-                              mb: 2,
-                            }}
-                          >
-                            {carouselImages[currentSlide].description}
-                          </Typography>
-                        </Box>
-
-                        <Button
-                          variant="contained"
-                          size="small"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleSmoothScroll(
-                              getSlideButton(currentSlide).href
-                            );
-                          }}
-                          startIcon={
-                            typeof getSlideButton(currentSlide).icon ===
-                            "string"
-                              ? null
-                              : getSlideButton(currentSlide).icon
-                          }
-                          sx={{
-                            ml: 2,
-                            minWidth: "120px",
-                            cursor: "pointer",
-                            background: variantStyles.gradient.accent,
-                            color: "white",
-                            fontWeight: 700,
-                            boxShadow: variantStyles.shadow.accent,
-                            "&:hover": {
-                              background: variantStyles.gradient.secondary,
-                              transform: "scale(1.05)",
-                              boxShadow: variantStyles.shadow.primary,
-                            },
-                            "&:active": {
-                              transform: "scale(0.98)",
-                            },
-                            transition:
-                              "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                          }}
-                        >
-                          {typeof getSlideButton(currentSlide).icon ===
-                            "string" && (
-                            <span style={{ marginRight: "4px" }}>
-                              {getSlideButton(currentSlide).icon}
-                            </span>
-                          )}
-                          {getSlideButton(currentSlide).text}
-                        </Button>
-                      </Box>
-                    </Box>
-
-                    {/* Navigation Arrows */}
-                    <IconButton
-                      onClick={prevSlide}
-                      disabled={isTransitioning}
-                      sx={{
-                        position: "absolute",
-                        left: 16,
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        backgroundColor: `${variantStyles.primary}80`,
-                        color: "white",
-                        transition:
-                          "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                        opacity: isTransitioning ? 0.5 : 1,
-                        boxShadow: variantStyles.shadow.accent,
-                        "&:hover": {
-                          backgroundColor: variantStyles.primary,
-                          transform: "translateY(-50%) scale(1.08)",
-                          boxShadow: variantStyles.shadow.primary,
-                        },
-                        "&:disabled": {
-                          backgroundColor: `${variantStyles.primary}40`,
-                          color: "rgba(255,255,255,0.6)",
-                        },
-                      }}
-                    >
-                      <ArrowBackIos />
-                    </IconButton>
-
-                    <IconButton
-                      onClick={nextSlide}
-                      disabled={isTransitioning}
-                      sx={{
-                        position: "absolute",
-                        right: 16,
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        backgroundColor: `${variantStyles.primary}80`,
-                        color: "white",
-                        transition:
-                          "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                        opacity: isTransitioning ? 0.5 : 1,
-                        boxShadow: variantStyles.shadow.accent,
-                        "&:hover": {
-                          backgroundColor: variantStyles.primary,
-                          transform: "translateY(-50%) scale(1.08)",
-                          boxShadow: variantStyles.shadow.primary,
-                        },
-                        "&:disabled": {
-                          backgroundColor: `${variantStyles.primary}40`,
-                          color: "rgba(255,255,255,0.6)",
-                        },
-                      }}
-                    >
-                      <ArrowForwardIos />
-                    </IconButton>
-
-                    {/* Dots Indicator */}
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        bottom: 16,
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        display: "flex",
-                        gap: 1,
-                      }}
-                    >
-                      {carouselImages.map((_, index) => (
-                        <Box
-                          key={index}
-                          onClick={() => {
-                            if (isTransitioning || currentSlide === index)
-                              return;
-
-                            setIsTransitioning(true);
-                            setTimeout(() => {
-                              setCurrentSlide(index);
-                              setIsManualControl(true);
-                              setTimeout(() => setIsTransitioning(false), 200);
-                            }, 300);
-                          }}
-                          sx={{
-                            width: currentSlide === index ? 12 : 10,
-                            height: currentSlide === index ? 12 : 10,
-                            borderRadius: "50%",
-                            backgroundColor:
-                              currentSlide === index
-                                ? "white"
-                                : "rgba(255,255,255,0.5)",
-                            cursor: isTransitioning ? "default" : "pointer",
-                            transition:
-                              "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                            boxShadow:
-                              currentSlide === index
-                                ? "0 4px 12px rgba(255,255,255,0.3)"
-                                : "none",
-                            "&:hover": {
-                              backgroundColor: isTransitioning
-                                ? undefined
-                                : "white",
-                              transform: isTransitioning
-                                ? "none"
-                                : "scale(1.15)",
-                              boxShadow: isTransitioning
-                                ? "none"
-                                : "0 4px 12px rgba(255,255,255,0.4)",
-                            },
-                          }}
-                        />
-                      ))}
-                    </Box>
-                  </Paper>
-                </Box>
+                <Carousel
+                  carouselImages={carouselImages}
+                  currentSlide={currentSlide}
+                  isTransitioning={isTransitioning}
+                  prevSlide={prevSlide}
+                  nextSlide={nextSlide}
+                  handleSmoothScroll={handleSmoothScroll}
+                  getSlideButton={getSlideButton}
+                  setIsTransitioning={setIsTransitioning}
+                  setCurrentSlide={setCurrentSlide}
+                  setIsManualControl={setIsManualControl}
+                />
               </ConfigurableSection>
 
               <ConfigurableSection
@@ -495,26 +209,25 @@ const HeroSection = ({
                   HIDEABLE_COMPONENTS.HERO_DESCRIPTION
                 )}
                 onToggleVisibility={onToggleVisibility}
-                sx={{ mb: 4 }}
               >
                 <Typography
                   variant="h5"
                   sx={{
                     lineHeight: 1.6,
                     fontWeight: 400,
-                    color: variantStyles.textColor,
+                    color: "var(--text-color)",
                     p: 3,
                     borderRadius: 2,
-                    backgroundColor: variantStyles.background,
-                    border: `2px solid ${variantStyles.primary}20`,
-                    boxShadow: variantStyles.shadow.secondary,
+                    backgroundColor: "var(--background-color)",
+                    border: `2px solid var(--primary-color)20`,
+                    boxShadow: "var(--shadow-secondary)",
                   }}
                 >
                   Marcas confiables, stock real y envíos rápidos. Comprá{" "}
                   <Box
                     component="span"
                     sx={{
-                      color: variantStyles.primary,
+                      color: "var(--primary-color)",
                       fontWeight: 700,
                     }}
                   >
@@ -524,7 +237,7 @@ const HeroSection = ({
                   <Box
                     component="span"
                     sx={{
-                      color: variantStyles.secondary,
+                      color: "var(--secondary-color)",
                       fontWeight: 700,
                     }}
                   >
@@ -534,7 +247,7 @@ const HeroSection = ({
                   <Box
                     component="span"
                     sx={{
-                      color: variantStyles.accent,
+                      color: "var(--accent-color)",
                       fontWeight: 700,
                     }}
                   >
@@ -544,17 +257,24 @@ const HeroSection = ({
                   <Box
                     component="span"
                     sx={{
-                      color: variantStyles.primary,
+                      color: "var(--primary-color)",
                       fontWeight: 700,
                     }}
                   >
                     expediciones
                   </Box>{" "}
-                  únicas con {variantStyles.name}.
+                  únicas con{" "}
+                  <Box
+                    component="span"
+                    sx={{ color: "var(--primary-color)", fontWeight: 700 }}
+                  >
+                    nuestro estilo único
+                  </Box>
+                  .
                 </Typography>
               </ConfigurableSection>
 
-              <ConfigurableSection
+              {/* <ConfigurableSection
                 sectionId={HIDEABLE_COMPONENTS.HERO_NAV_BUTTONS}
                 isConfigMode={configMode}
                 isVisible={isComponentVisible(
@@ -563,23 +283,12 @@ const HeroSection = ({
                 onToggleVisibility={onToggleVisibility}
               >
                 <NavButtons />
-              </ConfigurableSection>
-
-              <ConfigurableSection
-                sectionId={HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_CHIPS}
-                isConfigMode={configMode}
-                isVisible={isComponentVisible(
-                  HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_CHIPS
-                )}
-                onToggleVisibility={onToggleVisibility}
-              >
-                <PromotionalChips />
-              </ConfigurableSection>
+              </ConfigurableSection> */}
             </Box>
           </Fade>
         </Grid>
 
-        <ConfigurableSection
+        {/* <ConfigurableSection
           sectionId={HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_SECTION}
           isConfigMode={configMode}
           isVisible={isComponentVisible(
@@ -588,7 +297,7 @@ const HeroSection = ({
           onToggleVisibility={onToggleVisibility}
         >
           <PromotionalSection />
-        </ConfigurableSection>
+        </ConfigurableSection> */}
       </Grid>
     </Container>
   );

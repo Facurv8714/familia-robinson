@@ -106,7 +106,7 @@ body {
 
 /* Botones */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primario), var(--primario-light));
+  background: none;
   border-radius: var(--border-radius);
   padding: 12px 24px;
   font-size: 1rem;
@@ -120,8 +120,7 @@ body {
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  background: none;
 }
 
 .btn-secondary {
@@ -190,10 +189,10 @@ body {
   font-weight: 900;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
-  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: none;
+  background-clip: border-box;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: inherit;
   margin-bottom: var(--spacing-lg);
 }
 
@@ -382,7 +381,6 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primario), var(--color-acento));
   color: white;
   border: none;
   box-shadow: var(--shadow-md);
@@ -395,7 +393,7 @@ body {
 }
 
 .fab:hover {
-  background: linear-gradient(135deg, var(--primario-dark), var(--acento-dark));
+  opacity: 0.8;
   transform: scale(1.1);
 }
 

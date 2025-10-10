@@ -19,23 +19,18 @@ import {
   Info,
 } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
-import { PALETTE, VARIANTS, getVariantStyles } from "../../constants";
-import logoRobinson from "../../images/logo-robinson.svg";
-const Topbar = ({
-  variant,
-  setVariant,
-  darkMode,
-  setDarkMode,
-  configMode,
-  setConfigMode,
-}) => {
-  const currentVariant = getVariantStyles(variant);
+import logoRobinson from "../../images/logo-robinson.png";
+import "../../styles/natural.css"; // Importing the natural.css file
+
+const Topbar = ({ darkMode, setDarkMode, configMode, setConfigMode }) => {
   const location = useLocation();
 
   const navigationItems = [
     { label: "Inicio", path: "/", icon: <Home /> },
-    { label: "Catálogo", path: "/catalogo", icon: <Inventory /> },
-    { label: "Acerca de", path: "/acerca-de", icon: <Info /> },
+    { label: "Mayorista", path: "/mayorista", icon: <Inventory /> },
+    { label: "Minorista", path: "/minorista", icon: <Inventory /> },
+    { label: "Fishing School", path: "/fishing-school", icon: <Info /> },
+    { label: "Expediciones", path: "/expediciones", icon: <Info /> },
   ];
 
   return (
@@ -44,14 +39,16 @@ const Topbar = ({
       position="sticky"
       elevation={0}
       sx={{
-        backgroundColor: darkMode
-          ? "rgba(0,0,0,0.9)"
-          : "rgba(255,255,255,0.95)",
-        backdropFilter: "blur(20px)",
-        borderBottom: `1px solid ${currentVariant.primary}20`,
-        color: "text.primary",
-        boxShadow: currentVariant.shadow.secondary,
+        background: "none", // Explicitly unset any background property
+        backgroundColor: darkMode ? "#000000 !important" : "#FFFFFF !important", // Use !important to ensure it is not overridden
+        color: darkMode ? "#FFFFFF" : "#000000", // Adjust text color accordingly
+        borderBottom: "1px solid",
+        borderColor: darkMode ? "#333333" : "#DDDDDD", // Subtle border for separation
+        opacity: 1,
+        pt: 2,
+        pb: 2,
       }}
+      className={`${darkMode ? "text-white" : "text-black"}`}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -74,17 +71,17 @@ const Topbar = ({
                 width: 48,
                 height: 48,
                 objectFit: "contain",
-                filter: `drop-shadow(0 2px 8px ${currentVariant.primary}40)`,
+                filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.2))",
               }}
             />
-            <Box>
+            {/* <Box>
               <Typography
                 variant="h6"
                 sx={{
                   fontWeight: 800,
                   lineHeight: 1,
-                  color: currentVariant.textColor,
-                  textShadow: `1px 1px 2px ${currentVariant.primary}20`,
+                  color: "text.primary",
+                  textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
                 }}
               >
                 Familia Robinson
@@ -92,13 +89,13 @@ const Topbar = ({
               <Typography
                 variant="caption"
                 sx={{
-                  color: currentVariant.textSecondary,
+                  color: "text.secondary",
                   fontWeight: 500,
                 }}
               >
                 Casa de Pesca
               </Typography>
-            </Box>
+            </Box> */}
           </Box>
 
           {/* Navegación */}
@@ -110,25 +107,23 @@ const Topbar = ({
                 to={item.path}
                 startIcon={item.icon}
                 variant={location.pathname === item.path ? "contained" : "text"}
-                size="small"
+                size="x-small"
+                className={`${
+                  location.pathname === item.path
+                    ? "text-white bg-primary"
+                    : "text-black"
+                } rounded-md px-2 py-1 transition-all duration-300 ease-in-out`}
                 sx={{
-                  color:
-                    location.pathname === item.path
-                      ? "white"
-                      : currentVariant.textColor,
-                  backgroundColor:
-                    location.pathname === item.path
-                      ? currentVariant.primary
-                      : "transparent",
+                  border:
+                    location.pathname === item.path ? "2px solid red" : "none",
                   "&:hover": {
                     backgroundColor:
-                      location.pathname === item.path
-                        ? currentVariant.primary
-                        : `${currentVariant.primary}10`,
+                      location.pathname === item.path ? "#FFCDD2" : "#E3F2FD",
+                    color:
+                      location.pathname === item.path ? "#B71C1C" : "#0D47A1",
+                    transform: "scale(1.05)",
+                    transition: "all 0.3s ease",
                   },
-                  fontWeight: 600,
-                  borderRadius: 2,
-                  px: 2,
                 }}
               >
                 {item.label}
@@ -156,52 +151,6 @@ const Topbar = ({
             />
           )}
 
-          {/* Selector de variante mejorado */}
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5 }}>
-            {["A", "B", "C", "D", "E", "NATURAL"].map((v) => {
-              const variantData = VARIANTS[v];
-              const isActive = variant === v;
-
-              return (
-                <Tooltip
-                  key={v}
-                  title={`${variantData.name} - ${variantData.description}`}
-                  arrow
-                  placement="bottom"
-                >
-                  <Button
-                    size="small"
-                    variant={isActive ? "contained" : "outlined"}
-                    onClick={() => setVariant(v)}
-                    sx={{
-                      minWidth: v === "NATURAL" ? 70 : 44,
-                      height: 36,
-                      fontWeight: 700,
-                      fontSize: "0.8rem",
-                      background: isActive
-                        ? variantData.gradient.primary
-                        : "transparent",
-                      borderColor: variantData.primary,
-                      color: isActive ? "white" : variantData.textColor,
-                      boxShadow: isActive ? variantData.shadow.primary : "none",
-                      "&:hover": {
-                        background: isActive
-                          ? variantData.gradient.primary
-                          : `${variantData.primary}10`,
-                        transform: "scale(1.05)",
-                        boxShadow: variantData.shadow.accent,
-                        color: isActive ? "white" : variantData.primary,
-                      },
-                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                    }}
-                  >
-                    {v === "NATURAL" ? "NAT" : v}
-                  </Button>
-                </Tooltip>
-              );
-            })}
-          </Box>
-
           {/* Toggle modo configuración */}
           <Tooltip
             title={
@@ -214,22 +163,22 @@ const Topbar = ({
             <IconButton
               onClick={() => setConfigMode(!configMode)}
               sx={{
-                color: configMode ? PALETTE.warning : currentVariant.primary,
+                color: configMode ? "warning.main" : "primary.main",
                 background: configMode
-                  ? `${PALETTE.warning}20`
-                  : `${currentVariant.primary}10`,
+                  ? "rgba(255,193,7,0.2)"
+                  : "rgba(3,169,244,0.1)",
                 "&:hover": {
                   background: configMode
-                    ? `${PALETTE.warning}30`
-                    : `${currentVariant.primary}20`,
+                    ? "rgba(255,193,7,0.3)"
+                    : "rgba(3,169,244,0.2)",
                   transform: "scale(1.1)",
                 },
                 transition: "all 0.3s ease",
-                border: configMode ? `2px solid ${PALETTE.warning}` : "none",
+                border: configMode ? "2px solid warning.main" : "none",
                 animation: configMode ? "configPulse 2s infinite" : "none",
                 "@keyframes configPulse": {
                   "0%": {
-                    boxShadow: `0 0 0 0 ${PALETTE.warning}40`,
+                    boxShadow: `0 0 0 0 rgba(255,193,7,0.4)`,
                   },
                   "70%": {
                     boxShadow: `0 0 0 10px transparent`,
@@ -248,10 +197,10 @@ const Topbar = ({
           <IconButton
             onClick={() => setDarkMode(!darkMode)}
             sx={{
-              color: currentVariant.primary,
-              background: `${currentVariant.primary}10`,
+              color: "primary.main",
+              background: "rgba(3,169,244,0.1)",
               "&:hover": {
-                background: `${currentVariant.primary}20`,
+                background: "rgba(3,169,244,0.2)",
                 transform: "scale(1.1)",
               },
               transition: "all 0.3s ease",

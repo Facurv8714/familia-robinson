@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, Card, CardContent, Avatar, Typography } from "@mui/material";
-import { PALETTE } from "../../../../constants";
 
 const PromotionalSection = () => (
   <Grid item xs={12} md={6}>
@@ -9,12 +8,12 @@ const PromotionalSection = () => (
         <Card sx={{ textAlign: "center", height: "100%" }}>
           <CardContent>
             <Avatar
+              className="avatar-gradient-primary"
               sx={{
                 width: 60,
                 height: 60,
                 mx: "auto",
                 mb: 2,
-                background: `linear-gradient(135deg, ${PALETTE.primario}, ${PALETTE.destacado})`,
                 fontSize: "1.5rem",
               }}
             >
@@ -33,12 +32,12 @@ const PromotionalSection = () => (
         <Card sx={{ textAlign: "center", height: "100%" }}>
           <CardContent>
             <Avatar
+              className="avatar-gradient-secondary"
               sx={{
                 width: 60,
                 height: 60,
                 mx: "auto",
                 mb: 2,
-                background: `linear-gradient(135deg, ${PALETTE.secundario}, ${PALETTE.destacado})`,
                 fontSize: "1.5rem",
               }}
             >
@@ -57,12 +56,12 @@ const PromotionalSection = () => (
         <Card sx={{ textAlign: "center", height: "100%" }}>
           <CardContent>
             <Avatar
+              className="avatar-gradient-accent"
               sx={{
                 width: 60,
                 height: 60,
                 mx: "auto",
                 mb: 2,
-                background: `linear-gradient(135deg, ${PALETTE.acento}, ${PALETTE.primario})`,
                 fontSize: "1.5rem",
               }}
             >

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box, ThemeProvider, CssBaseline } from "@mui/material";
-import { PALETTE, getVariantStyles } from "./constants";
 import { createCustomTheme } from "./utils";
 import Topbar from "./components/Topbar";
 
@@ -33,9 +32,6 @@ export default function App() {
     return !hiddenComponents.has(componentId);
   };
 
-  // Obtener los estilos de la variante actual
-  const currentVariant = getVariantStyles(variant);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -52,7 +48,7 @@ export default function App() {
                   : "linear-gradient(135deg, #FEF7E6 0%, #FDF2E9 100%)"
                 : darkMode
                 ? "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)"
-                : `linear-gradient(135deg, ${currentVariant.background} 0%, #f8f6f0 100%)`,
+                : "linear-gradient(135deg, #FFF9F9 0%, #f8f6f0 100%)", // Updated logic
           }}
         >
           {/* Header con AppBar */}

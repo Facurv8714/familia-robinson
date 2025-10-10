@@ -105,30 +105,6 @@ const NavButtons = () => {
       >
         Expediciones
       </Button>
-      <Button
-        variant="outlined"
-        color="secondary"
-        size="large"
-        startIcon={<Info />}
-        onClick={(e) => {
-          e.preventDefault();
-          handleSmoothScroll("#quienes");
-        }}
-        sx={{
-          transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          "&:hover": {
-            transform: "translateY(-2px)",
-            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
-          },
-          "&:active": {
-            transform: "translateY(0px)",
-          },
-        }}
-        // Quienes somos
-        // o conocenos
-      >
-        Conocenos
-      </Button>
     </Box>
   );
 };

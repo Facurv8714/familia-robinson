@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, IconButton, Tooltip, Fade, Collapse } from "@mui/material";
 import { Visibility, VisibilityOff, Settings } from "@mui/icons-material";
-import { PALETTE } from "../../constants";
 
 const ConfigurableSection = ({
   children,
@@ -23,7 +22,7 @@ const ConfigurableSection = ({
       <Box
         sx={{
           position: "relative",
-          border: `2px dashed ${PALETTE.error}`,
+          border: "2px dashed red",
           borderRadius: 2,
           margin: 1,
           transition: "all 0.3s ease",
@@ -31,7 +30,7 @@ const ConfigurableSection = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: `${PALETTE.error}08`,
+          backgroundColor: "rgba(255, 0, 0, 0.08)",
           ...sx,
         }}
       >
@@ -50,15 +49,15 @@ const ConfigurableSection = ({
               <IconButton
                 onClick={() => onToggleVisibility(sectionId)}
                 sx={{
-                  backgroundColor: PALETTE.error,
+                  backgroundColor: "red",
                   color: "white",
                   width: 36,
                   height: 36,
                   "&:hover": {
-                    backgroundColor: PALETTE.error + "dd",
+                    backgroundColor: "rgba(255, 0, 0, 0.87)",
                     transform: "scale(1.1)",
                   },
-                  boxShadow: `0 4px 12px ${PALETTE.error}40`,
+                  boxShadow: `0 4px 12px rgba(255, 0, 0, 0.4)`,
                   transition: "all 0.3s ease",
                 }}
               >
@@ -69,15 +68,15 @@ const ConfigurableSection = ({
             <Tooltip title="Configurar sección" arrow placement="left">
               <IconButton
                 sx={{
-                  backgroundColor: PALETTE.primario,
+                  backgroundColor: "blue",
                   color: "white",
                   width: 36,
                   height: 36,
                   "&:hover": {
-                    backgroundColor: PALETTE.primario + "dd",
+                    backgroundColor: "rgba(0, 0, 255, 0.87)",
                     transform: "scale(1.1)",
                   },
-                  boxShadow: `0 4px 12px ${PALETTE.primario}40`,
+                  boxShadow: `0 4px 12px rgba(0, 0, 255, 0.4)`,
                   transition: "all 0.3s ease",
                 }}
               >
@@ -89,7 +88,7 @@ const ConfigurableSection = ({
 
         <Box
           sx={{
-            color: PALETTE.error,
+            color: "red",
             fontWeight: 600,
             fontSize: "0.9rem",
             textAlign: "center",
@@ -138,15 +137,15 @@ const ConfigurableSection = ({
                 <IconButton
                   onClick={() => onToggleVisibility(sectionId)}
                   sx={{
-                    backgroundColor: PALETTE.success,
+                    backgroundColor: "green",
                     color: "white",
                     width: 40,
                     height: 40,
                     "&:hover": {
-                      backgroundColor: PALETTE.success + "dd",
+                      backgroundColor: "rgba(0, 128, 0, 0.87)",
                       transform: "scale(1.1)",
                     },
-                    boxShadow: `0 4px 12px ${PALETTE.success}40`,
+                    boxShadow: `0 4px 12px rgba(0, 128, 0, 0.4)`,
                     transition: "all 0.3s ease",
                   }}
                 >
@@ -157,15 +156,15 @@ const ConfigurableSection = ({
               <Tooltip title="Configurar sección" arrow placement="left">
                 <IconButton
                   sx={{
-                    backgroundColor: PALETTE.primario,
+                    backgroundColor: "blue",
                     color: "white",
                     width: 40,
                     height: 40,
                     "&:hover": {
-                      backgroundColor: PALETTE.primario + "dd",
+                      backgroundColor: "rgba(0, 0, 255, 0.87)",
                       transform: "scale(1.1)",
                     },
-                    boxShadow: `0 4px 12px ${PALETTE.primario}40`,
+                    boxShadow: `0 4px 12px rgba(0, 0, 255, 0.4)`,
                     transition: "all 0.3s ease",
                   }}
                 >
