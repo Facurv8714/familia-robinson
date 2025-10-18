@@ -10,10 +10,10 @@ import { createCustomTheme } from "./utils";
 import Topbar from "./components/Topbar";
 
 // Importar las páginas
-import HomePage from "./pages/HomePage";
+import HomePage from "./screens/HomePage";
 import Mayorista from "./pages/Mayorista";
 import Minorista from "./pages/Minorista";
-import FishingSchool from "./pages/FishingSchool";
+import FishingSchool from "./screens/FishingSchool";
 import Expediciones from "./pages/Expediciones";
 
 export default function App() {
@@ -77,7 +77,7 @@ export default function App() {
               <Route path="/minorista" element={<Minorista />} />
               <Route path="/fishing-school" element={<FishingSchool />} />
               <Route path="/expediciones" element={<Expediciones />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
           </Box>
         </Box>
