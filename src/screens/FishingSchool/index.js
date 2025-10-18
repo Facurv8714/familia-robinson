@@ -37,6 +37,7 @@ const images = [
 
 export default function FishingSchool() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fade, setFade] = useState(true);
   const intervalRef = React.useRef();
   const [showScrollDown, setShowScrollDown] = useState(true);
   // Mostrar/ocultar botón flotante según scroll
@@ -66,27 +67,39 @@ export default function FishingSchool() {
     }
   };
 
-  // Helper to clear and restart interval
+  // Helper to clear and restart interval con fade
   const resetInterval = React.useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 6000);
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
+        setFade(true);
+      }, 250);
+    }, 4000);
   }, []);
 
   const nextImage = React.useCallback(() => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
+    setFade(false);
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+      setFade(true);
+    }, 250);
     resetInterval();
   }, [resetInterval]);
 
   const prevImage = React.useCallback(() => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
+    setFade(false);
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      );
+      setFade(true);
+    }, 250);
     resetInterval();
   }, [resetInterval]);
 
@@ -112,7 +125,7 @@ export default function FishingSchool() {
         className="hero-carousel-section"
         sx={{
           position: "relative",
-          height: "70vh",
+          height: "65vh",
           mb: 4,
         }}
       >
@@ -124,9 +137,47 @@ export default function FishingSchool() {
               className="carousel-image"
               style={{
                 width: "100%",
+                height: "65vh",
+                objectFit: "cover",
+                borderRadius: "0 0 24px 24px",
+                opacity: fade ? 1 : 0,
+                transition: "opacity 0.5s cubic-bezier(.4,0,.2,1)",
+              }}
+            />
+          </Box>
+          <Box
+            className="carousel-item"
+            sx={{ position: "relative", width: "100%", height: "70vh" }}
+          >
+            {/* Fondo oscuro para el fade */}
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: fade ? "transparent" : "rgba(20,20,30,0.5)",
+                transition: "background 0.6s cubic-bezier(.4,0,.2,1)",
+                zIndex: 1,
+                pointerEvents: "none",
+                borderRadius: "0 0 24px 24px",
+              }}
+            />
+            <img
+              src={images[currentImageIndex].img}
+              alt={images[currentImageIndex].alt}
+              className="carousel-image"
+              style={{
+                width: "100%",
                 height: "70vh",
                 objectFit: "cover",
                 borderRadius: "0 0 24px 24px",
+                opacity: fade ? 1 : 0,
+                transition: "opacity 0.6s cubic-bezier(.4,0,.2,1)",
+                position: "relative",
+                zIndex: 2,
+                background: "transparent",
               }}
             />
           </Box>
@@ -152,7 +203,7 @@ export default function FishingSchool() {
         </Box>
       </Box>
 
-      <Container maxWidth="lg" sx={{ py: 2, px: { xs: 2, sm: 4 } }}>
+      <Container maxWidth="lg" sx={{ py: 0, px: { xs: 2, sm: 4 } }}>
         <Typography
           variant="h1"
           sx={{
