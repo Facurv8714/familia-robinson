@@ -37,7 +37,7 @@ const images = [
 
 export default function FishingSchool() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [fade, setFade] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = React.useRef();
   const [showScrollDown, setShowScrollDown] = useState(true);
   // Mostrar/ocultar botón flotante según scroll
@@ -67,41 +67,43 @@ export default function FishingSchool() {
     }
   };
 
-  // Helper to clear and restart interval con fade
+  // Helper to clear and restart interval
   const resetInterval = React.useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      setFade(false);
+      setIsTransitioning(true);
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) =>
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
-        setFade(true);
-      }, 250);
-    }, 4000);
+        setTimeout(() => setIsTransitioning(false), 200);
+      }, 300);
+    }, 6000);
   }, []);
 
   const nextImage = React.useCallback(() => {
-    setFade(false);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setTimeout(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-      setFade(true);
-    }, 250);
+      setTimeout(() => setIsTransitioning(false), 200);
+    }, 300);
     resetInterval();
-  }, [resetInterval]);
+  }, [resetInterval, isTransitioning]);
 
   const prevImage = React.useCallback(() => {
-    setFade(false);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setTimeout(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? images.length - 1 : prevIndex - 1
       );
-      setFade(true);
-    }, 250);
+      setTimeout(() => setIsTransitioning(false), 200);
+    }, 300);
     resetInterval();
-  }, [resetInterval]);
+  }, [resetInterval, isTransitioning]);
 
   // Reset interval on mount and when currentImageIndex changes
   useEffect(() => {
@@ -115,6 +117,7 @@ export default function FishingSchool() {
 
   return (
     <Box
+      style={{ marginTop: "-12px" }}
       sx={{
         minHeight: "100vh",
         background: "var(--background-color)",
@@ -130,63 +133,116 @@ export default function FishingSchool() {
         }}
       >
         <Box className="carousel-container">
-          <Box className="carousel-item">
+          <Box
+            className="carousel-item"
+            sx={{
+              position: "relative",
+              height: "65vh",
+              overflow: "hidden",
+              borderRadius: "0 0 24px 24px",
+            }}
+          >
             <img
               src={images[currentImageIndex].img}
               alt={images[currentImageIndex].alt}
               className="carousel-image"
               style={{
                 width: "100%",
-                height: "65vh",
+                height: "100%",
                 objectFit: "cover",
-                borderRadius: "0 0 24px 24px",
-                opacity: fade ? 1 : 0,
-                transition: "opacity 0.5s cubic-bezier(.4,0,.2,1)",
+                transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                transform: isTransitioning ? "scale(1.03)" : "scale(1)",
+                opacity: isTransitioning ? 0.8 : 1,
+                filter: isTransitioning ? "blur(0.5px)" : "blur(0px)",
               }}
             />
-          </Box>
-          <Box
-            className="carousel-item"
-            sx={{ position: "relative", width: "100%", height: "70vh" }}
-          >
-            {/* Fondo oscuro para el fade */}
+            {/* Overlay with gradient */}
             <Box
               sx={{
                 position: "absolute",
-                top: 0,
+                bottom: 0,
                 left: 0,
-                width: "100%",
-                height: "100%",
-                background: fade ? "transparent" : "rgba(20,20,30,0.5)",
-                transition: "background 0.6s cubic-bezier(.4,0,.2,1)",
-                zIndex: 1,
-                pointerEvents: "none",
-                borderRadius: "0 0 24px 24px",
-              }}
-            />
-            <img
-              src={images[currentImageIndex].img}
-              alt={images[currentImageIndex].alt}
-              className="carousel-image"
-              style={{
-                width: "100%",
-                height: "70vh",
-                objectFit: "cover",
-                borderRadius: "0 0 24px 24px",
-                opacity: fade ? 1 : 0,
-                transition: "opacity 0.6s cubic-bezier(.4,0,.2,1)",
-                position: "relative",
-                zIndex: 2,
-                background: "transparent",
+                right: 0,
+                background: `linear-gradient(transparent, var(--primary-color)90)`,
+                height: "30%",
+                transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                transform: isTransitioning
+                  ? "translateY(8px)"
+                  : "translateY(0)",
+                opacity: isTransitioning ? 0.85 : 1,
               }}
             />
           </Box>
           <Box className="carousel-navigation">
-            <IconButton onClick={prevImage} className="nav-button prev">
-              <ArrowBack />
+            <IconButton
+              onClick={prevImage}
+              disabled={isTransitioning}
+              sx={{
+                position: "absolute",
+                left: 12,
+                top: "50%",
+                transform: "translateY(-50%)",
+                background:
+                  "linear-gradient(135deg, #FF5722 60%, #FFC107 100%)",
+                color: "#212121",
+                border: "3px solid #FFF",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+                width: 56,
+                height: 56,
+                zIndex: 2,
+                transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                opacity: isTransitioning ? 0.5 : 1,
+                "&:hover": {
+                  background:
+                    "linear-gradient(135deg, #FFC107 60%, #FF5722 100%)",
+                  color: "#212121",
+                  border: "3px solid #FFF",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+                  transform: "translateY(-50%) scale(1.12)",
+                },
+                "&:disabled": {
+                  background: "#FFCCBC",
+                  color: "rgba(33,33,33,0.5)",
+                  border: "3px solid #FFF",
+                },
+              }}
+            >
+              <ArrowBack sx={{ fontSize: 32 }} />
             </IconButton>
-            <IconButton onClick={nextImage} className="nav-button next">
-              <ArrowForward />
+            <IconButton
+              onClick={nextImage}
+              disabled={isTransitioning}
+              sx={{
+                position: "absolute",
+                right: 12,
+                top: "50%",
+                transform: "translateY(-50%)",
+                background:
+                  "linear-gradient(135deg, #FF5722 60%, #FFC107 100%)",
+                color: "#212121",
+                border: "3px solid #FFF",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+                width: 56,
+                height: 56,
+                zIndex: 2,
+                transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                opacity: isTransitioning ? 0.5 : 1,
+                "&:hover": {
+                  background:
+                    "linear-gradient(135deg, #FFC107 60%, #FF5722 100%)",
+                  color: "#212121",
+                  border: "3px solid #FFF",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+                  transform: "translateY(-50%) scale(1.12)",
+                },
+                "&:disabled": {
+                  background: "#FFCCBC",
+                  color: "rgba(33,33,33,0.5)",
+                  border: "3px solid #FFF",
+                },
+              }}
+            >
+              <ArrowForward sx={{ fontSize: 32 }} />
             </IconButton>
           </Box>
           <Box className="carousel-indicators">
