@@ -6,13 +6,10 @@ import {
   Box,
   Button,
   Card,
-  CardMedia,
   IconButton,
   CardContent,
-  Avatar,
   Fab,
 } from "@mui/material";
-import { BusinessCard } from "../HomePage/components/Sections/BusinessCardsSection";
 import { DownloadOutlined, ArrowBack, ArrowForward } from "@mui/icons-material";
 import { ArrowDownward } from "@mui/icons-material";
 import "./FishingSchool.css";
@@ -41,7 +38,6 @@ const images = [
 export default function FishingSchool() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const intervalRef = React.useRef();
-  const triggerRef = React.useRef(null);
   const [showScrollDown, setShowScrollDown] = useState(true);
   // Mostrar/ocultar botón flotante según scroll
   useEffect(() => {
