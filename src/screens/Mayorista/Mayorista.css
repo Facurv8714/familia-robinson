@@ -1,52 +1,438 @@
-/* Mayorista B2B Page - Professional & Corporate Styles */
+/* 🏢 Robinson Mayorista - B2B Corporate Styling */
+
+:root {
+  --mayorista-primary: #1565c0; /* Azul corporativo */
+  --mayorista-secondary: #546e7a; /* Gris azulado */
+  --mayorista-accent: #0d47a1; /* Azul oscuro */
+  --mayorista-light: #eceff1; /* Gris muy claro */
+  --mayorista-dark: #263238; /* Azul grisáceo oscuro */
+  --mayorista-success: #43a047; /* Verde éxito */
+}
 
 .mayorista-page {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  color: #263238;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  color: var(--mayorista-dark);
 }
 
-/* Hero Section */
-.hero-section {
-  background-attachment: fixed;
-}
-
-/* B2B Benefit Cards */
-.b2b-benefit-card {
-  background: white;
+/* 🏢 HERO CORPORATIVO */
+.mayorista-hero {
   position: relative;
+  height: 80vh;
+  min-height: 600px;
+  background-image: url("../../images/robinson-mayorista.avif");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-.b2b-benefit-card::before {
-  content: '';
+.hero-overlay-mayorista {
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 101, 192, 0.85) 0%,
+    rgba(13, 71, 161, 0.75) 100%
+  );
+}
+
+.hero-content-mayorista {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.hero-logo-mayorista img {
+  max-width: 220px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  animation: fadeIn 1s ease-in;
+}
+
+.hero-title-mayorista {
+  font-size: 4.5rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 20px !important;
+  text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+  line-height: 1.2 !important;
+  color: white !important;
+}
+
+.hero-subtitle-mayorista {
+  font-size: 1.6rem !important;
+  margin-bottom: 40px !important;
+  font-weight: 400 !important;
+  text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.hero-buttons-mayorista {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary-mayorista {
+  background: white !important;
+  color: var(--mayorista-primary) !important;
+  padding: 16px 40px !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 30px !important;
+  text-transform: none !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-primary-mayorista:hover {
+  background: var(--mayorista-light) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-secondary-mayorista {
+  background: transparent !important;
+  color: white !important;
+  border: 2px solid white !important;
+  padding: 14px 38px !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 30px !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.btn-secondary-mayorista:hover {
+  background: white !important;
+  color: var(--mayorista-primary) !important;
+  transform: translateY(-3px);
+}
+
+/* 📦 SECTION STYLING */
+.section-beneficios-b2b,
+.section-marcas-premium,
+.section-destacados-negocios,
+.section-testimonios-b2b,
+.section-como-trabajamos,
+.section-contacto-mayorista {
+  padding: 80px 0;
+}
+
+.section-marcas-premium,
+.section-como-trabajamos {
+  background: linear-gradient(135deg, #eceff1 0%, #f5f7f8 100%);
+}
+
+.section-title-mayorista {
+  font-size: 3.2rem !important;
+  font-weight: 700 !important;
+  color: var(--mayorista-dark) !important;
+  margin-bottom: 15px !important;
+  position: relative;
+}
+
+.section-title-mayorista::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--mayorista-primary),
+    var(--mayorista-accent)
+  );
+  border-radius: 2px;
+}
+
+.section-subtitle-mayorista {
+  font-size: 1.2rem !important;
+  color: #666 !important;
+  margin-bottom: 40px !important;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 📦 BENEFICIOS B2B CARDS */
+.beneficio-b2b-card {
+  height: 100%;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  border-top: 4px solid var(--mayorista-primary);
+  text-align: center;
+}
+
+.beneficio-b2b-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 28px rgba(21, 101, 192, 0.25) !important;
+  border-top-color: var(--mayorista-accent);
+}
+
+.beneficio-icon {
+  color: var(--mayorista-primary);
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.beneficio-b2b-card:hover .beneficio-icon {
+  color: var(--mayorista-accent);
+  transform: scale(1.15);
+}
+
+.beneficio-title {
+  font-weight: 700 !important;
+  color: var(--mayorista-dark) !important;
+  margin-bottom: 10px !important;
+}
+
+/* 🏷️ MARCAS SLIDER (Auto-scroll) */
+.marcas-slider-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.marcas-slider {
+  display: flex;
+  gap: 30px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.marca-item {
+  flex: 0 0 auto;
+  min-width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.marca-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(21, 101, 192, 0.2);
+}
+
+.marca-nombre {
+  font-weight: 700 !important;
+  color: var(--mayorista-primary) !important;
+  font-size: 1.3rem !important;
+}
+
+/* 📦 PRODUCTOS DESTACADOS SLIDER (Auto-scroll) */
+.productos-slider-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.productos-slider {
+  display: flex;
+  gap: 25px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.producto-destacado-card {
+  flex: 0 0 auto;
+  min-width: 320px;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.4s ease !important;
+  border: 2px solid transparent;
+}
+
+.producto-destacado-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(21, 101, 192, 0.25) !important;
+  border-color: var(--mayorista-primary);
+}
+
+.producto-emoji {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.chip-categoria {
+  background: var(--mayorista-primary) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  margin-bottom: 10px !important;
+}
+
+.producto-nombre {
+  font-weight: 700 !important;
+  color: var(--mayorista-dark) !important;
+  margin-bottom: 10px !important;
+}
+
+.producto-minimo {
+  background: var(--mayorista-light);
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-align: center;
+  color: var(--mayorista-accent);
+}
+
+/* 💬 TESTIMONIOS B2B */
+.testimonio-b2b-card {
+  height: 100%;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  border-left: 5px solid var(--mayorista-primary);
+  background: white;
+}
+
+.testimonio-b2b-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 24px rgba(21, 101, 192, 0.2) !important;
+  border-left-color: var(--mayorista-accent);
+}
+
+.testimonio-texto {
+  font-style: italic;
+  color: #555 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  margin-bottom: 20px !important;
+}
+
+.testimonio-nombre {
+  font-weight: 700 !important;
+  color: var(--mayorista-dark) !important;
+}
+
+.chip-ano {
+  background: var(--mayorista-light) !important;
+  color: var(--mayorista-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* 📋 PROCESO TIMELINE */
+.proceso-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.proceso-step {
+  flex: 1;
+  min-width: 180px;
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.paso-numero {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--mayorista-primary),
+    var(--mayorista-accent)
+  );
+  color: #fff !important;
+  font-size: 2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4);
+  transition: all 0.3s ease;
+}
+
+.proceso-step:hover .paso-numero {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(21, 101, 192, 0.6);
+}
+
+.paso-titulo {
+  font-weight: 700 !important;
+  color: var(--mayorista-dark) !important;
+  margin-bottom: 10px !important;
+  font-size: 1.1rem !important;
+}
+
+.paso-connector {
+  position: absolute;
+  top: 35px;
+  left: 50%;
   width: 100%;
   height: 3px;
-  background: linear-gradient(to right, transparent, #1565c0, transparent);
-  transition: left 0.6s ease;
+  background: linear-gradient(
+    90deg,
+    var(--mayorista-primary) 0%,
+    var(--mayorista-secondary) 100%
+  );
+  z-index: -1;
 }
 
-.b2b-benefit-card:hover::before {
-  left: 100%;
+/* 📝 FORMULARIO */
+.formulario-card {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  padding: 20px !important;
 }
 
-/* Professional color scheme - Blues and Grays */
-:root {
-  --b2b-primary: #1565c0;
-  --b2b-primary-dark: #0d47a1;
-  --b2b-primary-light: #42a5f5;
-  --b2b-secondary: #546e7a;
-  --b2b-text: #263238;
-  --b2b-text-light: #546e7a;
-  --b2b-background: #f5f5f5;
-  --b2b-white: #ffffff;
-  --b2b-border: #e0e0e0;
+.btn-submit-mayorista {
+  background: var(--mayorista-primary) !important;
+  color: white !important;
+  padding: 14px 40px !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Benefits Section Animations */
-@keyframes slideInUp {
+.btn-submit-mayorista:hover {
+  background: var(--mayorista-accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(21, 101, 192, 0.4) !important;
+}
+
+/* 🎬 ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -57,210 +443,131 @@
   }
 }
 
-.b2b-benefit-card {
-  animation: slideInUp 0.6s ease-out;
-  animation-fill-mode: both;
-}
-
-.b2b-benefit-card:nth-child(1) { animation-delay: 0.1s; }
-.b2b-benefit-card:nth-child(2) { animation-delay: 0.2s; }
-.b2b-benefit-card:nth-child(3) { animation-delay: 0.3s; }
-.b2b-benefit-card:nth-child(4) { animation-delay: 0.4s; }
-.b2b-benefit-card:nth-child(5) { animation-delay: 0.5s; }
-.b2b-benefit-card:nth-child(6) { animation-delay: 0.6s; }
-
-/* Brand Carousel Styling */
-.brand-carousel-item {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Product Cards Professional Look */
-.product-overlay {
-  backdrop-filter: blur(2px);
-}
-
-/* Form Styling */
-.mayorista-page .MuiTextField-root {
-  background: white;
-}
-
-.mayorista-page .MuiOutlinedInput-root {
-  transition: all 0.3s ease;
-}
-
-.mayorista-page .MuiOutlinedInput-root:hover {
-  box-shadow: 0 4px 12px rgba(21, 101, 192, 0.1);
-}
-
-.mayorista-page .MuiOutlinedInput-root.Mui-focused {
-  box-shadow: 0 6px 20px rgba(21, 101, 192, 0.2);
-}
-
-/* Timeline Process Styling */
-.process-step {
-  position: relative;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 8px 24px rgba(21, 101, 192, 0.3);
-  }
-  50% {
-    box-shadow: 0 12px 32px rgba(21, 101, 192, 0.5);
-  }
-}
-
-.process-step:hover .step-circle {
-  animation: pulse 2s infinite;
-}
-
-/* Testimonial Cards */
-.testimonial-card {
-  position: relative;
-}
-
-.testimonial-card::before {
-  content: '"';
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  font-size: 100px;
-  color: #1565c020;
-  font-family: Georgia, serif;
-  line-height: 1;
-}
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Responsive adjustments */
+/* 📱 RESPONSIVE */
 @media (max-width: 960px) {
-  .hero-section {
-    background-attachment: scroll;
+  .hero-title-mayorista {
+    font-size: 3.5rem !important;
   }
-  
-  .mayorista-page h1 {
+
+  .hero-subtitle-mayorista {
+    font-size: 1.3rem !important;
+  }
+
+  .section-title-mayorista {
     font-size: 2.5rem !important;
   }
-  
-  .mayorista-page h2 {
-    font-size: 2rem !important;
+
+  .proceso-timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .paso-connector {
+    display: none;
+  }
+
+  .marcas-slider {
+    gap: 20px;
+  }
+
+  .marca-item {
+    min-width: 160px;
+    height: 80px;
+  }
+
+  .productos-slider {
+    gap: 15px;
+  }
+
+  .producto-destacado-card {
+    min-width: 280px;
   }
 }
 
 @media (max-width: 600px) {
-  .b2b-benefit-card {
-    padding: 24px 16px;
+  .mayorista-hero {
+    height: 70vh;
+    min-height: 500px;
+    background-attachment: scroll;
   }
-  
-  .mayorista-page h1 {
+
+  .hero-logo-mayorista img {
+    max-width: 160px;
+  }
+
+  .hero-title-mayorista {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-subtitle-mayorista {
+    font-size: 1.1rem !important;
+  }
+
+  .hero-buttons-mayorista {
+    flex-direction: column;
+  }
+
+  .section-title-mayorista {
     font-size: 2rem !important;
   }
-  
-  .mayorista-page h2 {
-    font-size: 1.75rem !important;
+
+  .section-subtitle-mayorista {
+    font-size: 1rem !important;
+  }
+
+  .section-beneficios-b2b,
+  .section-marcas-premium,
+  .section-destacados-negocios,
+  .section-testimonios-b2b,
+  .section-como-trabajamos,
+  .section-contacto-mayorista {
+    padding: 50px 0;
+  }
+
+  .marca-item {
+    min-width: 140px;
+    height: 70px;
+  }
+
+  .marca-nombre {
+    font-size: 1.1rem !important;
+  }
+
+  .producto-destacado-card {
+    min-width: 260px;
   }
 }
 
-/* Professional hover effects */
-.mayorista-page .MuiButton-contained {
-  position: relative;
-  overflow: hidden;
-}
-
-.mayorista-page .MuiButton-contained::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.mayorista-page .MuiButton-contained:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-/* Corporate gradient backgrounds */
-.gradient-blue {
-  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
-}
-
-.gradient-light {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%);
-}
-
-/* Professional shadows */
-.shadow-professional {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
-              0 1px 3px rgba(0, 0, 0, 0.04);
-}
-
-.shadow-professional-hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12),
-              0 4px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Typography professional spacing */
-.mayorista-page .MuiTypography-h2 {
-  letter-spacing: -0.5px;
-}
-
-.mayorista-page .MuiTypography-h5 {
-  letter-spacing: -0.2px;
-}
-
-.mayorista-page .MuiTypography-body1 {
-  line-height: 1.7;
-}
-
-/* Loading animation for benefits */
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
+/* ♿ ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  .marcas-slider,
+  .productos-slider {
+    scroll-behavior: auto;
   }
 }
 
-/* Icon rotation on hover */
-.benefit-icon svg {
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+@media (prefers-contrast: high) {
+  .beneficio-b2b-card,
+  .testimonio-b2b-card,
+  .producto-destacado-card {
+    border: 2px solid #000;
+  }
 }
 
-/* Professional focus states */
-.mayorista-page .MuiButton-root:focus-visible {
-  outline: 3px solid rgba(21, 101, 192, 0.4);
+/* 🎨 FOCUS STATES */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--mayorista-primary);
   outline-offset: 2px;
 }
 
-/* Accessibility improvements */
-.mayorista-page a:focus,
-.mayorista-page button:focus {
-  outline: 2px solid #1565c0;
-  outline-offset: 2px;
-}
-
-/* Print styles for catalog */
-@media print {
-  .hero-section,
-  .mayorista-page footer {
-    display: none;
-  }
-  
-  .b2b-benefit-card,
-  .product-card {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
 }

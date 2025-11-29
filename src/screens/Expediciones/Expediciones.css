@@ -1,7 +1,8 @@
 /* Expediciones Page - Adventure & Nature Styles */
 
 .expediciones-page {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
   color: #2c3e50;
   overflow-x: hidden;
 }
@@ -33,7 +34,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -42,7 +44,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -52,12 +55,13 @@
 
 /* Hero Title Animation */
 .hero-title {
+  color: #fff !important;
   animation: fadeInUp 1s ease-out;
 }
 
 /* Expedition Cards */
 .expedition-card {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .expedition-card:hover .expedition-image {
@@ -96,8 +100,8 @@ html {
 .gradient-overlay {
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.9) 0%,
-    rgba(0,0,0,0.5) 50%,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
     transparent 100%
   );
 }
@@ -147,11 +151,11 @@ html {
 
 /* Text Shadow for Readability */
 .text-shadow-strong {
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .text-shadow-light {
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Badge Styles */
@@ -196,7 +200,11 @@ html {
 .section-divider {
   height: 4px;
   width: 80px;
-  background: linear-gradient(90deg, var(--adventure-primary), var(--adventure-secondary));
+  background: linear-gradient(
+    90deg,
+    var(--adventure-primary),
+    var(--adventure-secondary)
+  );
   margin: 0 auto 32px;
   border-radius: 2px;
 }
@@ -260,7 +268,7 @@ html {
 }
 
 .cta-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
@@ -268,7 +276,7 @@ html {
   height: 200%;
   background: radial-gradient(
     circle,
-    rgba(255,255,255,0.1) 0%,
+    rgba(255, 255, 255, 0.1) 0%,
     transparent 70%
   );
   animation: float 6s ease-in-out infinite;
@@ -280,19 +288,19 @@ html {
     background-attachment: scroll;
     height: 80vh !important;
   }
-  
+
   .parallax-bg {
     background-attachment: scroll;
   }
-  
+
   .expediciones-page h1 {
     font-size: 2.5rem !important;
   }
-  
+
   .expediciones-page h2 {
     font-size: 2rem !important;
   }
-  
+
   .stat-number {
     font-size: 2rem;
   }
@@ -303,7 +311,7 @@ html {
   .hero-section {
     height: 70vh !important;
   }
-  
+
   .expediciones-page h1 {
     font-size: 4rem !important;
   }
@@ -316,7 +324,7 @@ html {
   .cta-section {
     display: none;
   }
-  
+
   .expedition-card {
     break-inside: avoid;
     page-break-inside: avoid;
@@ -339,7 +347,7 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .hero-section::before {
     transform: none !important;
   }
@@ -351,7 +359,7 @@ html {
   .testimonial-card {
     border: 2px solid #000;
   }
-  
+
   .frosted-glass {
     background: rgba(255, 255, 255, 0.95);
     border: 2px solid #000;
@@ -364,7 +372,7 @@ html {
     background: #1a1a1a;
     color: #f5f5f5;
   }
-  
+
   .expedition-card,
   .testimonial-card {
     background: #2c2c2c;
@@ -382,7 +390,11 @@ html {
 }
 
 .expediciones-page::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--adventure-primary), var(--adventure-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--adventure-primary),
+    var(--adventure-secondary)
+  );
   border-radius: 5px;
 }
 
@@ -409,7 +421,7 @@ html {
 }
 
 .expediciones-page a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -447,12 +459,11 @@ html {
 
 /* Overlay Patterns */
 .pattern-overlay {
-  background-image: 
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255,255,255,.05) 10px,
-      rgba(255,255,255,.05) 20px
-    );
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.05) 10px,
+    rgba(255, 255, 255, 0.05) 20px
+  );
 }

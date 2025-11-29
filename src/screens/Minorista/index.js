@@ -227,8 +227,18 @@ const Minorista = () => {
             backgroundImage: `url(${robinsonMinorista})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            filter: "brightness(0.5)",
             zIndex: 0,
+          },
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background:
+              "linear-gradient(135deg, rgba(211, 47, 47, 0.25) 0%, rgba(198, 40, 40, 0.20) 100%)",
+            zIndex: 1,
           },
         }}
       >
@@ -236,7 +246,7 @@ const Minorista = () => {
           maxWidth="lg"
           sx={{
             position: "relative",
-            zIndex: 1,
+            zIndex: 2,
             textAlign: "center",
             color: "white",
           }}
@@ -275,24 +285,29 @@ const Minorista = () => {
             }}
           >
             <Button
-              variant="outlined"
+              variant="contained"
               size="large"
               endIcon={<ArrowForward />}
               onClick={scrollToContact}
               sx={{
-                color: "#FFF !important",
+                // color: "#FFF !important",
                 px: 4,
                 py: 2,
                 fontSize: "1.1rem",
                 fontWeight: 700,
                 borderColor: "white",
                 borderWidth: 2,
+                background: "#FFF !important",
                 "&:hover": {
+                  background: "rgba(255,255,255,0.1)",
                   borderWidth: 2,
                   borderColor: "white",
-                  background: "rgba(255,255,255,0.1)",
                   transform: "scale(1.05)",
                 },
+                padding: "16px 40px !important",
+                borderRadius: "30px !important",
+                textTransform: "none !important",
+                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.3) !important",
                 transition: "all 0.3s ease",
               }}
             >
@@ -327,7 +342,11 @@ const Minorista = () => {
         >
           Explorá nuestro universo de productos
         </Typography>
-        <Grid container spacing={3}>
+        <Grid
+          sx={{ display: "flex", justifyContent: "center" }}
+          container
+          spacing={3}
+        >
           {categories.map((category) => (
             <Grid item xs={12} sm={6} md={4} key={category.id}>
               <Card

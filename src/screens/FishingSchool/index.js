@@ -26,6 +26,7 @@ import {
   Close,
   NavigateBefore,
   NavigateNext,
+  WhatsApp,
 } from "@mui/icons-material";
 import fishingSchool1 from "../../images/fishing_school_1.jpg";
 import fishingSchool2 from "../../images/fishing_school_2.jpg";
@@ -358,7 +359,13 @@ const FishingSchoolScreen = () => {
             <img src={logoRobinson} alt="Robinson Fishing School" />
           </Box>
           <Typography
-            sx={{ color: "#FFF !important" }}
+            sx={{
+              color: "#FFF !important",
+              background: "none !important",
+              backgroundClip: "unset !important",
+              WebkitBackgroundClip: "unset !important",
+              WebkitTextFillColor: "#ffffff !important",
+            }}
             variant="h1"
             className="hero-title animate-fade-in"
           >
@@ -373,9 +380,27 @@ const FishingSchoolScreen = () => {
           </Typography>
           <Box className="hero-buttons animate-fade-in-delay-2">
             <Button
-              variant="outlined"
               size="large"
               className="btn-secondary-school"
+              sx={{
+                placeSelf: "center",
+                px: 5,
+                py: 2.5,
+                fontSize: "1.2rem",
+                fontWeight: 700,
+                background: "white",
+                color: "var(--primary-color)",
+                "&:hover": {
+                  "&:hover": {
+                    background: "#1da851 !important",
+                    color: "#FFF !important",
+                    transform: "scale(1.02)",
+                  },
+                },
+                transition: "all 0.3s ease",
+              }}
+              startIcon={<WhatsApp />}
+              variant="contained"
               onClick={() =>
                 handleWhatsApp(
                   "Quiero más información sobre la Fishing School Robinson"
@@ -384,6 +409,81 @@ const FishingSchoolScreen = () => {
             >
               Contactanos por WhatsApp
             </Button>
+          </Box>
+        </Container>
+      </section>
+
+      {/* 🎣 9) QUÉ INCLUYE LA FISHING SCHOOL */}
+      <section className="section-benefits">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Qué incluye la Fishing School
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Valor agregado en cada curso
+          </Typography>
+
+          <Grid container spacing={4} sx={{ mt: 2 }}>
+            {benefits.map((benefit, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box
+                  className="benefit-box"
+                  sx={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <Box className="benefit-icon">{benefit.icon}</Box>
+                  <Typography variant="h6" className="benefit-title">
+                    {benefit.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {benefit.description}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </section>
+
+      {/* 📸 7) GALERÍA DE PRÁCTICAS */}
+      <section className="section-gallery">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Galería de prácticas
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Momentos reales de aprendizaje y logros
+          </Typography>
+
+          <Box className="gallery-grid" sx={{ mt: 4 }}>
+            {galleryImages.map((image, index) => (
+              <Box
+                key={index}
+                className="gallery-item"
+                onClick={() => handleOpenLightbox(index)}
+                sx={{
+                  backgroundImage: `url(${image})`,
+                  animationDelay: `${index * 0.1}s`,
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Ver imagen ${index + 1} de ${
+                  galleryImages.length
+                }`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleOpenLightbox(index);
+                  }
+                }}
+              />
+            ))}
           </Box>
         </Container>
       </section>
@@ -788,46 +888,6 @@ const FishingSchoolScreen = () => {
         </Container>
       </section>
 
-      {/* 📸 7) GALERÍA DE PRÁCTICAS */}
-      <section className="section-gallery">
-        <Container maxWidth="lg">
-          <Typography variant="h2" className="section-title" align="center">
-            Galería de prácticas
-          </Typography>
-          <Typography
-            variant="body1"
-            className="section-subtitle"
-            align="center"
-          >
-            Momentos reales de aprendizaje y logros
-          </Typography>
-
-          <Box className="gallery-grid" sx={{ mt: 4 }}>
-            {galleryImages.map((image, index) => (
-              <Box
-                key={index}
-                className="gallery-item"
-                onClick={() => handleOpenLightbox(index)}
-                sx={{
-                  backgroundImage: `url(${image})`,
-                  animationDelay: `${index * 0.1}s`,
-                }}
-                role="button"
-                tabIndex={0}
-                aria-label={`Ver imagen ${index + 1} de ${
-                  galleryImages.length
-                }`}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    handleOpenLightbox(index);
-                  }
-                }}
-              />
-            ))}
-          </Box>
-        </Container>
-      </section>
-
       {/* 🖼️ LIGHTBOX MODAL */}
       <Modal
         open={lightboxOpen}
@@ -987,41 +1047,6 @@ const FishingSchoolScreen = () => {
                     </Box>
                   </CardContent>
                 </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </section>
-
-      {/* 🎣 9) QUÉ INCLUYE LA FISHING SCHOOL */}
-      <section className="section-benefits">
-        <Container maxWidth="lg">
-          <Typography variant="h2" className="section-title" align="center">
-            Qué incluye la Fishing School
-          </Typography>
-          <Typography
-            variant="body1"
-            className="section-subtitle"
-            align="center"
-          >
-            Valor agregado en cada curso
-          </Typography>
-
-          <Grid container spacing={4} sx={{ mt: 2 }}>
-            {benefits.map((benefit, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Box
-                  className="benefit-box"
-                  sx={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <Box className="benefit-icon">{benefit.icon}</Box>
-                  <Typography variant="h6" className="benefit-title">
-                    {benefit.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {benefit.description}
-                  </Typography>
-                </Box>
               </Grid>
             ))}
           </Grid>

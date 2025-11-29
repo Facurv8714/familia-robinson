@@ -308,12 +308,17 @@ const Expediciones = () => {
             variant="h1"
             className="hero-title"
             sx={{
+              color: "#ffffff !important",
               fontSize: { xs: "3rem", md: "6rem" },
               fontWeight: 900,
               mb: 3,
               textShadow: "3px 3px 12px rgba(0,0,0,0.8)",
               letterSpacing: 3,
               animation: "fadeInUp 1s ease-out",
+              background: "none !important",
+              backgroundClip: "unset !important",
+              WebkitBackgroundClip: "unset !important",
+              WebkitTextFillColor: "#ffffff !important",
             }}
           >
             Aventuras que transforman
@@ -321,6 +326,7 @@ const Expediciones = () => {
           <Typography
             variant="h4"
             sx={{
+              color: "#ffffff !important",
               mb: 6,
               fontSize: { xs: "1.5rem", md: "2.5rem" },
               fontWeight: 300,
@@ -422,6 +428,222 @@ const Expediciones = () => {
           </Grid>
         </Container>
       </Box>
+
+      {/* SECCIÓN 3: LA EXPERIENCIA ROBINSON */}
+      <Box sx={{ py: 10, background: "#f5f5f5" }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h2"
+            sx={{
+              textAlign: "center",
+              fontSize: { xs: "2.5rem", md: "4rem" },
+              fontWeight: 900,
+              mb: 2,
+              color: "#2c3e50",
+            }}
+          >
+            ¿Por qué elegir Robinson Expediciones?
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              textAlign: "center",
+              fontSize: "1.3rem",
+              mb: 8,
+              color: "#546e7a",
+            }}
+          >
+            Estos son los pilares de nuestra propuesta
+          </Typography>
+
+          <Grid container spacing={6}>
+            {robinsonDifferences.map((diff, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      transform: "translateY(-10px)",
+                      "& .diff-icon": {
+                        color: "#ff6b35",
+                        transform: "scale(1.2) rotate(5deg)",
+                      },
+                    },
+                  }}
+                >
+                  <Box
+                    className="diff-icon"
+                    sx={{
+                      color: "#2c3e50",
+                      mb: 3,
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    {diff.icon}
+                  </Box>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontWeight: 700,
+                      mb: 2,
+                      color: "#2c3e50",
+                    }}
+                  >
+                    {diff.title}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "#546e7a",
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {diff.description}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* SECCIÓN 7: LA FILOSOFÍA ROBINSON */}
+      <Box
+        sx={{
+          position: "relative",
+          py: 12,
+          overflow: "hidden",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${robinsonExpediciones})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+            filter: "brightness(0.3)",
+            zIndex: 0,
+          },
+        }}
+      >
+        <Container
+          maxWidth="md"
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            textAlign: "center",
+            color: "white",
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{
+              color: "#FFF !important",
+              fontSize: { xs: "2.5rem", md: "4rem" },
+              fontWeight: 900,
+              mb: 4,
+              textShadow: "2px 2px 8px rgba(0,0,0,0.8)",
+            }}
+          >
+            Nuestra filosofía
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              fontSize: { xs: "1.2rem", md: "1.8rem" },
+              lineHeight: 1.8,
+              textShadow: "1px 1px 4px rgba(0,0,0,0.8)",
+              fontWeight: 300,
+            }}
+          >
+            No solo organizamos viajes; creamos{" "}
+            <strong style={{ color: "#ff6b35" }}>
+              experiencias que conectan
+            </strong>{" "}
+            a las personas con la naturaleza, la técnica y la comunidad outdoor.
+            Cada expedición es una oportunidad para{" "}
+            <strong style={{ color: "#ff6b35" }}>aprender, crecer</strong> y
+            descubrir versiones nuevas de uno mismo.
+          </Typography>
+        </Container>
+      </Box>
+
+      {/* SECCIÓN 6: QUÉ INCLUYE */}
+      <Container maxWidth="lg" sx={{ py: 10 }}>
+        <Typography
+          variant="h2"
+          sx={{
+            textAlign: "center",
+            fontSize: { xs: "2.5rem", md: "4rem" },
+            fontWeight: 900,
+            mb: 2,
+            color: "#2c3e50",
+          }}
+        >
+          Qué incluye cada expedición
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            textAlign: "center",
+            fontSize: "1.3rem",
+            mb: 8,
+            color: "#546e7a",
+          }}
+        >
+          Todo lo que necesitás para una experiencia completa
+        </Typography>
+
+        <Grid container spacing={3}>
+          {included.map((item, index) => (
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: 2,
+                  p: 3,
+                  borderRadius: 3,
+                  background: "white",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-5px)",
+                    boxShadow: "0 8px 24px rgba(255, 107, 53, 0.2)",
+                    "& .included-icon": {
+                      color: "#ff6b35",
+                      transform: "scale(1.2)",
+                    },
+                  },
+                }}
+              >
+                <Box
+                  className="included-icon"
+                  sx={{
+                    color: "#2c3e50",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {item.icon}
+                </Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "#2c3e50",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {item.text}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       {/* SECCIÓN 2: DESTINOS / TIPOS DE EXPEDICIONES */}
       <Container maxWidth="lg" sx={{ py: 10 }}>
@@ -552,85 +774,6 @@ const Expediciones = () => {
           ))}
         </Grid>
       </Container>
-
-      {/* SECCIÓN 3: LA EXPERIENCIA ROBINSON */}
-      <Box sx={{ py: 10, background: "#f5f5f5" }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h2"
-            sx={{
-              textAlign: "center",
-              fontSize: { xs: "2.5rem", md: "4rem" },
-              fontWeight: 900,
-              mb: 2,
-              color: "#2c3e50",
-            }}
-          >
-            ¿Por qué Robinson Expediciones?
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              textAlign: "center",
-              fontSize: "1.3rem",
-              mb: 8,
-              color: "#546e7a",
-            }}
-          >
-            Estos son los pilares de nuestra propuesta
-          </Typography>
-
-          <Grid container spacing={6}>
-            {robinsonDifferences.map((diff, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Box
-                  sx={{
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      transform: "translateY(-10px)",
-                      "& .diff-icon": {
-                        color: "#ff6b35",
-                        transform: "scale(1.2) rotate(5deg)",
-                      },
-                    },
-                  }}
-                >
-                  <Box
-                    className="diff-icon"
-                    sx={{
-                      color: "#2c3e50",
-                      mb: 3,
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    {diff.icon}
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      fontWeight: 700,
-                      mb: 2,
-                      color: "#2c3e50",
-                    }}
-                  >
-                    {diff.title}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: "#546e7a",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {diff.description}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
 
       {/* SECCIÓN 4: PRÓXIMAS EXPEDICIONES */}
       <Container maxWidth="lg" sx={{ py: 10 }} id="proximas-expediciones">
@@ -913,142 +1056,6 @@ const Expediciones = () => {
           </Grid>
         </Container>
       </Box> */}
-
-      {/* SECCIÓN 6: QUÉ INCLUYE */}
-      <Container maxWidth="lg" sx={{ py: 10 }}>
-        <Typography
-          variant="h2"
-          sx={{
-            textAlign: "center",
-            fontSize: { xs: "2.5rem", md: "4rem" },
-            fontWeight: 900,
-            mb: 2,
-            color: "#2c3e50",
-          }}
-        >
-          Qué incluye cada expedición
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            textAlign: "center",
-            fontSize: "1.3rem",
-            mb: 8,
-            color: "#546e7a",
-          }}
-        >
-          Todo lo que necesitás para una experiencia completa
-        </Typography>
-
-        <Grid container spacing={3}>
-          {included.map((item, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 2,
-                  p: 3,
-                  borderRadius: 3,
-                  background: "white",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-5px)",
-                    boxShadow: "0 8px 24px rgba(255, 107, 53, 0.2)",
-                    "& .included-icon": {
-                      color: "#ff6b35",
-                      transform: "scale(1.2)",
-                    },
-                  },
-                }}
-              >
-                <Box
-                  className="included-icon"
-                  sx={{
-                    color: "#2c3e50",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  {item.icon}
-                </Box>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "#2c3e50",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {item.text}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-      {/* SECCIÓN 7: LA FILOSOFÍA ROBINSON */}
-      <Box
-        sx={{
-          position: "relative",
-          py: 12,
-          overflow: "hidden",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: `url(${robinsonExpediciones})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-            filter: "brightness(0.3)",
-            zIndex: 0,
-          },
-        }}
-      >
-        <Container
-          maxWidth="md"
-          sx={{
-            position: "relative",
-            zIndex: 1,
-            textAlign: "center",
-            color: "white",
-          }}
-        >
-          <Typography
-            variant="h2"
-            sx={{
-              fontSize: { xs: "2.5rem", md: "4rem" },
-              fontWeight: 900,
-              mb: 4,
-              textShadow: "2px 2px 8px rgba(0,0,0,0.8)",
-            }}
-          >
-            Nuestra filosofía
-          </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              fontSize: { xs: "1.2rem", md: "1.8rem" },
-              lineHeight: 1.8,
-              textShadow: "1px 1px 4px rgba(0,0,0,0.8)",
-              fontWeight: 300,
-            }}
-          >
-            No solo organizamos viajes; creamos{" "}
-            <strong style={{ color: "#ff6b35" }}>
-              experiencias que conectan
-            </strong>{" "}
-            a las personas con la naturaleza, la técnica y la comunidad outdoor.
-            Cada expedición es una oportunidad para{" "}
-            <strong style={{ color: "#ff6b35" }}>aprender, crecer</strong> y
-            descubrir versiones nuevas de uno mismo.
-          </Typography>
-        </Container>
-      </Box>
 
       {/* SECCIÓN 8: GALERÍA DE AVENTURAS */}
       <Container maxWidth="lg" sx={{ py: 10 }}>

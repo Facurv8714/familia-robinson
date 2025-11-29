@@ -8,6 +8,7 @@ import {
 import { Box, ThemeProvider, CssBaseline } from "@mui/material";
 import { createCustomTheme } from "./utils";
 import Topbar from "./components/Topbar";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Importar las páginas
 import HomePage from "./screens/HomePage";
@@ -42,6 +43,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <ScrollToTop />
         <Box
           data-theme="natural"
           data-dark={darkMode ? "true" : "false"}
