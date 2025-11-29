@@ -1,0 +1,266 @@
+/* Mayorista B2B Page - Professional & Corporate Styles */
+
+.mayorista-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  color: #263238;
+}
+
+/* Hero Section */
+.hero-section {
+  background-attachment: fixed;
+}
+
+/* B2B Benefit Cards */
+.b2b-benefit-card {
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.b2b-benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #1565c0, transparent);
+  transition: left 0.6s ease;
+}
+
+.b2b-benefit-card:hover::before {
+  left: 100%;
+}
+
+/* Professional color scheme - Blues and Grays */
+:root {
+  --b2b-primary: #1565c0;
+  --b2b-primary-dark: #0d47a1;
+  --b2b-primary-light: #42a5f5;
+  --b2b-secondary: #546e7a;
+  --b2b-text: #263238;
+  --b2b-text-light: #546e7a;
+  --b2b-background: #f5f5f5;
+  --b2b-white: #ffffff;
+  --b2b-border: #e0e0e0;
+}
+
+/* Benefits Section Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.b2b-benefit-card {
+  animation: slideInUp 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+.b2b-benefit-card:nth-child(1) { animation-delay: 0.1s; }
+.b2b-benefit-card:nth-child(2) { animation-delay: 0.2s; }
+.b2b-benefit-card:nth-child(3) { animation-delay: 0.3s; }
+.b2b-benefit-card:nth-child(4) { animation-delay: 0.4s; }
+.b2b-benefit-card:nth-child(5) { animation-delay: 0.5s; }
+.b2b-benefit-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Brand Carousel Styling */
+.brand-carousel-item {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Product Cards Professional Look */
+.product-overlay {
+  backdrop-filter: blur(2px);
+}
+
+/* Form Styling */
+.mayorista-page .MuiTextField-root {
+  background: white;
+}
+
+.mayorista-page .MuiOutlinedInput-root {
+  transition: all 0.3s ease;
+}
+
+.mayorista-page .MuiOutlinedInput-root:hover {
+  box-shadow: 0 4px 12px rgba(21, 101, 192, 0.1);
+}
+
+.mayorista-page .MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 6px 20px rgba(21, 101, 192, 0.2);
+}
+
+/* Timeline Process Styling */
+.process-step {
+  position: relative;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(21, 101, 192, 0.3);
+  }
+  50% {
+    box-shadow: 0 12px 32px rgba(21, 101, 192, 0.5);
+  }
+}
+
+.process-step:hover .step-circle {
+  animation: pulse 2s infinite;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  font-size: 100px;
+  color: #1565c020;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .hero-section {
+    background-attachment: scroll;
+  }
+  
+  .mayorista-page h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  .mayorista-page h2 {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .b2b-benefit-card {
+    padding: 24px 16px;
+  }
+  
+  .mayorista-page h1 {
+    font-size: 2rem !important;
+  }
+  
+  .mayorista-page h2 {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Professional hover effects */
+.mayorista-page .MuiButton-contained {
+  position: relative;
+  overflow: hidden;
+}
+
+.mayorista-page .MuiButton-contained::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.mayorista-page .MuiButton-contained:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Corporate gradient backgrounds */
+.gradient-blue {
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+}
+
+.gradient-light {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e3f2fd 100%);
+}
+
+/* Professional shadows */
+.shadow-professional {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+              0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-professional-hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12),
+              0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Typography professional spacing */
+.mayorista-page .MuiTypography-h2 {
+  letter-spacing: -0.5px;
+}
+
+.mayorista-page .MuiTypography-h5 {
+  letter-spacing: -0.2px;
+}
+
+.mayorista-page .MuiTypography-body1 {
+  line-height: 1.7;
+}
+
+/* Loading animation for benefits */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Icon rotation on hover */
+.benefit-icon svg {
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Professional focus states */
+.mayorista-page .MuiButton-root:focus-visible {
+  outline: 3px solid rgba(21, 101, 192, 0.4);
+  outline-offset: 2px;
+}
+
+/* Accessibility improvements */
+.mayorista-page a:focus,
+.mayorista-page button:focus {
+  outline: 2px solid #1565c0;
+  outline-offset: 2px;
+}
+
+/* Print styles for catalog */
+@media print {
+  .hero-section,
+  .mayorista-page footer {
+    display: none;
+  }
+  
+  .b2b-benefit-card,
+  .product-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

@@ -11,8 +11,8 @@ import Topbar from "./components/Topbar";
 
 // Importar las páginas
 import HomePage from "./screens/HomePage";
-import Mayorista from "./pages/Mayorista";
-import Minorista from "./pages/Minorista";
+import Minorista from "./screens/Minorista";
+import Mayorista from "./screens/Mayorista";
 import FishingSchool from "./screens/FishingSchool";
 import Expediciones from "./pages/Expediciones";
 

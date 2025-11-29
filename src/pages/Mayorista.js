@@ -1,17 +1,12 @@
+/**
+ * Mayorista Page Wrapper
+ * B2B Distribution page for wholesale clients
+ */
 import React from "react";
-import { Container, Typography } from "@mui/material";
+import MayoristaScreen from "../screens/Mayorista";
 
 const Mayorista = () => {
-  return (
-    <Container sx={{ textAlign: "center", marginTop: "20%" }}>
-      <Typography variant="h2" sx={{ mb: 4 }}>
-        ¡Estamos trabajando para usted!
-      </Typography>
-      <Typography variant="body1">
-        Esta página estará lista pronto :)
-      </Typography>
-    </Container>
-  );
+  return <MayoristaScreen />;
 };
 
 export default Mayorista;

@@ -6,7 +6,7 @@ import HeroSection from "./components/HeroSection";
 import ConfigurableSection from "./components/ConfigurableSection";
 import ConfigurableGridItem from "./components/ConfigurableGridItem";
 import Contacto from "./components/Contacto";
-import Footer from "./components/Footer";
+import Footer from "../../components/Footer";
 import QuienesSomos from "./components/QuienesSomos";
 import Atencion from "./components/Atencion";
 import BusinessCardsSection from "./components/Sections/BusinessCardsSection";

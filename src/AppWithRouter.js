@@ -8,6 +8,10 @@ import Topbar from "./components/Topbar";
 import HomePage from "./pages/HomePage";
 import Catalogo from "./pages/Catalogo";
 import AcercaDe from "./pages/AcercaDe";
+import Minorista from "./pages/Minorista";
+import Mayorista from "./pages/Mayorista";
+import Expediciones from "./pages/Expediciones";
+import FishingSchool from "./pages/FishingSchool";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -76,6 +80,10 @@ export default function App() {
             />
             <Route path="/catalogo" element={<Catalogo />} />
             <Route path="/acerca-de" element={<AcercaDe />} />
+            <Route path="/minorista" element={<Minorista />} />
+            <Route path="/mayorista" element={<Mayorista />} />
+            <Route path="/expediciones" element={<Expediciones />} />
+            <Route path="/fishing-school" element={<FishingSchool />} />
           </Routes>
         </Box>
       </Router>

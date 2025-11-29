@@ -7,7 +7,6 @@ const Footer = () => {
       component="footer"
       elevation={0}
       sx={{
-        mt: 4,
         borderTop: "1px solid",
         borderColor: "divider",
         background: "transparent",
@@ -16,7 +15,7 @@ const Footer = () => {
       <Container maxWidth="lg" sx={{ py: 4 }}>
         <Typography variant="body1" sx={{ mb: 1 }}>
           <Box component="span" sx={{ fontWeight: 600 }}>
-            Familia Robinson
+            © Familia Robinson
           </Box>{" "}
           · Casa de pesca · Juan Maria Guitierrez Calle 413 N°441
         </Typography>

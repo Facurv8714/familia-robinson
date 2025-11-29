@@ -1,20 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Container,
-  Grid,
   Typography,
-  Box,
   Button,
+  Grid,
   Card,
-  IconButton,
   CardContent,
-  Fab,
+  CardMedia,
+  Box,
+  Chip,
+  Tab,
+  Tabs,
+  Avatar,
+  Modal,
+  IconButton,
 } from "@mui/material";
-import { DownloadOutlined, ArrowBack, ArrowForward } from "@mui/icons-material";
-import { ArrowDownward } from "@mui/icons-material";
-import "./FishingSchool.css";
-
-// Import all fishing school images
+import {
+  School,
+  EmojiPeople,
+  Terrain,
+  Groups,
+  AutoStories,
+  Verified,
+  CameraAlt,
+  Favorite,
+  Close,
+  NavigateBefore,
+  NavigateNext,
+} from "@mui/icons-material";
 import fishingSchool1 from "../../images/fishing_school_1.jpg";
 import fishingSchool2 from "../../images/fishing_school_2.jpg";
 import fishingSchool3 from "../../images/fishing_school_3.jpg";
@@ -22,543 +35,1036 @@ import fishingSchool4 from "../../images/fishing_school_4.jpg";
 import fishingSchool5 from "../../images/fishing_school_5.jpg";
 import fishingSchool6 from "../../images/fishing_school_6.jpg";
 import fishingSchool7 from "../../images/fishing_school_7.jpg";
-import flyer from "./flyer.pdf";
-import schoolLogo from "../../images/logo-robinson-fishing-school.png";
+import logoRobinson from "../../images/logo-robinson-fishing-school.png";
+import "./FishingSchool.css";
 
-const images = [
-  { img: fishingSchool1, alt: "Fishing School 1" },
-  { img: fishingSchool2, alt: "Fishing School 2" },
-  { img: fishingSchool3, alt: "Fishing School 3" },
-  { img: fishingSchool4, alt: "Fishing School 4" },
-  { img: fishingSchool5, alt: "Fishing School 5" },
-  { img: fishingSchool6, alt: "Fishing School 6" },
-  { img: fishingSchool7, alt: "Fishing School 7" },
-];
+const FishingSchoolScreen = () => {
+  const [selectedLevel, setSelectedLevel] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-export default function FishingSchool() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const intervalRef = React.useRef();
-  const [showScrollDown, setShowScrollDown] = useState(true);
-  // Mostrar/ocultar botón flotante según scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
-      // Si estamos cerca del fondo, ocultar el botón
-      if (windowHeight + scrollY >= docHeight - 150) {
-        setShowScrollDown(false);
-      } else {
-        setShowScrollDown(true);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  // Handler para scroll al fondo
-  const handleScrollToBottom = () => {
-    const mainContent = document.querySelector(".main-content-end");
-    if (mainContent) {
-      mainContent.scrollIntoView({ behavior: "smooth", block: "end" });
-    } else {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  // 📸 Array de imágenes de galería
+  const galleryImages = [
+    fishingSchool1,
+    fishingSchool2,
+    fishingSchool3,
+    fishingSchool4,
+    fishingSchool5,
+    fishingSchool6,
+    fishingSchool7,
+  ];
+
+  // 📚 Datos de cursos
+  const courses = [
+    {
+      id: 1,
+      name: "Curso de técnica de lanzamiento",
+      level: "Principiante",
+      modality: "Presencial",
+      duration: "4 clases de 2 horas",
+      image: fishingSchool1,
+      description:
+        "Aprendé la técnica correcta desde el inicio. Lanzamiento preciso y sin vicios.",
+      price: "$45.000",
+    },
+    {
+      id: 2,
+      name: "Introducción a la pesca con mosca",
+      level: "Principiante",
+      modality: "Mixto",
+      duration: "6 clases (2 teóricas + 4 prácticas)",
+      image: fishingSchool2,
+      description: "Conocé el fascinante mundo del fly fishing desde cero.",
+      price: "$65.000",
+    },
+    {
+      id: 3,
+      name: "Técnicas avanzadas de bait y spinning",
+      level: "Avanzado",
+      modality: "Presencial",
+      duration: "5 clases de 3 horas",
+      image: fishingSchool3,
+      description:
+        "Perfeccioná tu técnica en spinning y carnada viva con expertos.",
+      price: "$58.000",
+    },
+    {
+      id: 4,
+      name: "Curso intensivo con práctica en campo",
+      level: "Intermedio",
+      modality: "Presencial",
+      duration: "2 días completos (fin de semana)",
+      image: fishingSchool4,
+      description:
+        "Fin de semana intensivo en el río. Teoría por la mañana, práctica todo el día.",
+      price: "$120.000",
+    },
+    {
+      id: 5,
+      name: "Taller de armado y mantenimiento de equipos",
+      level: "Intermedio",
+      modality: "Presencial",
+      duration: "3 clases de 2 horas",
+      image: fishingSchool5,
+      description:
+        "Armá tus señuelos, mantené tu reel, conocé tu equipo a fondo.",
+      price: "$38.000",
+    },
+    {
+      id: 6,
+      name: "Curso Junior (para chicos)",
+      level: "Principiante",
+      modality: "Presencial",
+      duration: "4 clases de 1.5 horas",
+      image: fishingSchool6,
+      description:
+        "Primer acercamiento a la pesca para chicos de 8 a 14 años. Divertido y seguro.",
+      price: "$32.000",
+    },
+  ];
+
+  // 👨‍🏫 Instructores
+  const instructors = [
+    {
+      id: 1,
+      name: "Pablo Martínez",
+      specialty: "Pesca con mosca",
+      experience: "25 años pescando en Patagonia",
+      image: fishingSchool7,
+    },
+    {
+      id: 2,
+      name: "Laura Gómez",
+      specialty: "Spinning y bait",
+      experience: "Instructora certificada con 15 años de experiencia",
+      image: fishingSchool2,
+    },
+    {
+      id: 3,
+      name: "Diego Fernández",
+      specialty: "Nudos y armado",
+      experience: "Especialista en equipamiento y técnicas de casting",
+      image: fishingSchool4,
+    },
+    {
+      id: 4,
+      name: "Marina Rodríguez",
+      specialty: "Pesca deportiva",
+      experience: "Campeona nacional de pesca, docente apasionada",
+      image: fishingSchool5,
+    },
+  ];
+
+  // 🫂 Actividades comunitarias
+  const communityEvents = [
+    {
+      id: 1,
+      title: "Jornada de pesca grupal",
+      date: "15 Diciembre 2024",
+      type: "Salida",
+      image: fishingSchool1,
+      description:
+        "Salida al Delta con todo el grupo. Práctica libre y almuerzo compartido.",
+    },
+    {
+      id: 2,
+      title: "Charla abierta con Pablo Martínez",
+      date: "20 Diciembre 2024",
+      type: "Charla",
+      image: fishingSchool3,
+      description:
+        "Experiencias en ríos de montaña. Entrada libre para alumnos.",
+    },
+    {
+      id: 3,
+      title: "Taller gratuito de nudos",
+      date: "28 Diciembre 2024",
+      type: "Taller",
+      image: fishingSchool5,
+      description: "Workshop abierto. Traé tu equipo y practicá con nosotros.",
+    },
+    {
+      id: 4,
+      title: "Limpieza de costa comunitaria",
+      date: "5 Enero 2025",
+      type: "Acción ambiental",
+      image: fishingSchool6,
+      description: "Jornada de cuidado del río. Cañas + conciencia ambiental.",
+    },
+  ];
+
+  // 💬 Testimonios
+  const testimonials = [
+    {
+      id: 1,
+      text: "Pensé que sabía lanzar… hasta que tomé el curso. Me cambió todo. Ahora pesco con confianza.",
+      author: "Martín López",
+      location: "Buenos Aires",
+      image: fishingSchool2,
+    },
+    {
+      id: 2,
+      text: "Me encantó la comunidad: aprendés y encima hacés amigos. Los instructores son geniales.",
+      author: "Carolina Suárez",
+      location: "Rosario",
+      image: fishingSchool4,
+    },
+    {
+      id: 3,
+      text: "Mi hijo de 10 años hizo el curso Junior. Ahora no para de hablar de nudos y señuelos. ¡Gracias!",
+      author: "Roberto González",
+      location: "La Plata",
+      image: fishingSchool6,
+    },
+  ];
+
+  // 🎣 Qué incluye
+  const benefits = [
+    {
+      icon: <AutoStories sx={{ fontSize: 40 }} />,
+      title: "Material teórico descargable",
+      description: "PDFs, videos y guías para repasar en casa",
+    },
+    {
+      icon: <Groups sx={{ fontSize: 40 }} />,
+      title: "Acceso a grupos privados",
+      description: "Comunidad de alumnos en WhatsApp y encuentros",
+    },
+    {
+      icon: <Terrain sx={{ fontSize: 40 }} />,
+      title: "Prácticas en vivo",
+      description: "Salidas al río con guía y corrección en tiempo real",
+    },
+    {
+      icon: <EmojiPeople sx={{ fontSize: 40 }} />,
+      title: "Feedback personalizado",
+      description: "Corrección individual de técnica y postura",
+    },
+    {
+      icon: <Verified sx={{ fontSize: 40 }} />,
+      title: "Certificado digital",
+      description: "Diploma al completar el curso",
+    },
+    {
+      icon: <Favorite sx={{ fontSize: 40 }} />,
+      title: "Becas y promos para socios",
+      description: "Descuentos especiales en equipamiento Robinson",
+    },
+  ];
+
+  // 🧵 Técnica + Práctica
+  const differentiators = [
+    {
+      icon: <Terrain sx={{ fontSize: 50 }} />,
+      title: "Prácticas en campo",
+      description: "Cada curso incluye salidas reales al río o laguna",
+    },
+    {
+      icon: <EmojiPeople sx={{ fontSize: 50 }} />,
+      title: "Corrección personalizada",
+      description: "Feedback uno a uno durante las clases",
+    },
+    {
+      icon: <AutoStories sx={{ fontSize: 50 }} />,
+      title: "Material didáctico",
+      description: "Manuales, videos y recursos digitales",
+    },
+    {
+      icon: <School sx={{ fontSize: 50 }} />,
+      title: "Técnica real",
+      description: "Basada en experiencia de décadas en el agua",
+    },
+  ];
+
+  // 🎒 Programas por nivel
+  const levelPrograms = [
+    {
+      level: "Principiante",
+      description: "Tu primer caña, tus primeros nudos, primeros lances.",
+      color: "#4caf50",
+      courses: courses.filter((c) => c.level === "Principiante"),
+    },
+    {
+      level: "Intermedio",
+      description: "Perfeccioná tu técnica, aprendé lectura de agua.",
+      color: "#ff9800",
+      courses: courses.filter((c) => c.level === "Intermedio"),
+    },
+    {
+      level: "Avanzado",
+      description:
+        "Correcciones finas, lanzamiento, precisión y escenarios complejos.",
+      color: "#f44336",
+      courses: courses.filter((c) => c.level === "Avanzado"),
+    },
+  ];
+
+  const generateWhatsAppLink = (phone, message) => {
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${phone.replace(
+      /[^\d]/g,
+      ""
+    )}?text=${encodedMessage}`;
+  };
+
+  const handleWhatsApp = (message) => {
+    const link = generateWhatsAppLink("+54 9 11 6830-9347", message);
+    window.open(link, "_blank");
+  };
+
+  const scrollToCourses = () => {
+    document
+      .querySelector("#cursos-disponibles")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // 📸 Funciones para el lightbox de galería
+  const handleOpenLightbox = (index) => {
+    setSelectedImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const handleCloseLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const handlePrevImage = () => {
+    setSelectedImageIndex((prev) =>
+      prev === 0 ? galleryImages.length - 1 : prev - 1
+    );
+  };
+
+  // Manejar teclas de navegación en el lightbox
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowRight") {
+      handleNextImage();
+    } else if (event.key === "ArrowLeft") {
+      handlePrevImage();
+    } else if (event.key === "Escape") {
+      handleCloseLightbox();
     }
   };
 
-  // Helper to clear and restart interval
-  const resetInterval = React.useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) =>
-          prevIndex === images.length - 1 ? 0 : prevIndex + 1
-        );
-        setTimeout(() => setIsTransitioning(false), 200);
-      }, 300);
-    }, 6000);
-  }, []);
-
-  const nextImage = React.useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-      setTimeout(() => setIsTransitioning(false), 200);
-    }, 300);
-    resetInterval();
-  }, [resetInterval, isTransitioning]);
-
-  const prevImage = React.useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? images.length - 1 : prevIndex - 1
-      );
-      setTimeout(() => setIsTransitioning(false), 200);
-    }, 300);
-    resetInterval();
-  }, [resetInterval, isTransitioning]);
-
-  // Reset interval on mount and when currentImageIndex changes
-  useEffect(() => {
-    resetInterval();
-    return () => intervalRef.current && clearInterval(intervalRef.current);
-  }, [resetInterval]);
-
-  const handleDownloadFlyer = () => {
-    window.open(flyer, "_blank");
-  };
-
   return (
-    <Box
-      style={{ marginTop: "-12px" }}
-      sx={{
-        minHeight: "100vh",
-        background: "var(--background-color)",
-        pb: 4,
-      }}
-    >
-      <Box
-        className="hero-carousel-section"
-        sx={{
-          position: "relative",
-          height: "65vh",
-          mb: 4,
-        }}
-      >
-        <Box className="carousel-container">
-          <Box
-            className="carousel-item"
-            sx={{
-              position: "relative",
-              height: "65vh",
-              overflow: "hidden",
-              borderRadius: "0 0 24px 24px",
-            }}
-          >
-            <img
-              src={images[currentImageIndex].img}
-              alt={images[currentImageIndex].alt}
-              className="carousel-image"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                transform: isTransitioning ? "scale(1.03)" : "scale(1)",
-                opacity: isTransitioning ? 0.8 : 1,
-                filter: isTransitioning ? "blur(0.5px)" : "blur(0px)",
-              }}
-            />
-            {/* Overlay with gradient */}
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                background: `linear-gradient(transparent, var(--primary-color)90)`,
-                height: "30%",
-                transition: "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                transform: isTransitioning
-                  ? "translateY(8px)"
-                  : "translateY(0)",
-                opacity: isTransitioning ? 0.85 : 1,
-              }}
-            />
+    <div className="fishing-school-page">
+      {/* 🎣 1) HERO INICIAL */}
+      <section className="fishing-school-hero">
+        <div className="hero-overlay" />
+        <Container maxWidth="lg" className="hero-content">
+          <Box className="hero-logo">
+            <img src={logoRobinson} alt="Robinson Fishing School" />
           </Box>
-          <Box className="carousel-navigation">
-            <IconButton
-              onClick={prevImage}
-              disabled={isTransitioning}
-              sx={{
-                position: "absolute",
-                left: 12,
-                top: "50%",
-                transform: "translateY(-50%)",
-                background:
-                  "linear-gradient(135deg, #FF5722 60%, #FFC107 100%)",
-                color: "#212121",
-                border: "3px solid #FFF",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-                width: 56,
-                height: 56,
-                zIndex: 2,
-                transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                opacity: isTransitioning ? 0.5 : 1,
-                "&:hover": {
-                  background:
-                    "linear-gradient(135deg, #FFC107 60%, #FF5722 100%)",
-                  color: "#212121",
-                  border: "3px solid #FFF",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
-                  transform: "translateY(-50%) scale(1.12)",
-                },
-                "&:disabled": {
-                  background: "#FFCCBC",
-                  color: "rgba(33,33,33,0.5)",
-                  border: "3px solid #FFF",
-                },
-              }}
-            >
-              <ArrowBack sx={{ fontSize: 32 }} />
-            </IconButton>
-            <IconButton
-              onClick={nextImage}
-              disabled={isTransitioning}
-              sx={{
-                position: "absolute",
-                right: 12,
-                top: "50%",
-                transform: "translateY(-50%)",
-                background:
-                  "linear-gradient(135deg, #FF5722 60%, #FFC107 100%)",
-                color: "#212121",
-                border: "3px solid #FFF",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-                width: 56,
-                height: 56,
-                zIndex: 2,
-                transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                opacity: isTransitioning ? 0.5 : 1,
-                "&:hover": {
-                  background:
-                    "linear-gradient(135deg, #FFC107 60%, #FF5722 100%)",
-                  color: "#212121",
-                  border: "3px solid #FFF",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
-                  transform: "translateY(-50%) scale(1.12)",
-                },
-                "&:disabled": {
-                  background: "#FFCCBC",
-                  color: "rgba(33,33,33,0.5)",
-                  border: "3px solid #FFF",
-                },
-              }}
-            >
-              <ArrowForward sx={{ fontSize: 32 }} />
-            </IconButton>
-          </Box>
-          <Box className="carousel-indicators">
-            {images.map((_, index) => (
-              <Box
-                key={index}
-                className={`indicator ${
-                  index === currentImageIndex ? "active" : ""
-                }`}
-                onClick={() => setCurrentImageIndex(index)}
-              />
-            ))}
-          </Box>
-        </Box>
-      </Box>
-
-      <Container maxWidth="lg" sx={{ py: 0, px: { xs: 2, sm: 4 } }}>
-        <Typography
-          variant="h1"
-          sx={{
-            color: "#1976d2",
-            fontSize: { xs: "2.5rem", md: "4rem" },
-            fontWeight: 900,
-            textAlign: "center",
-            textShadow: "2px 2px 8px rgba(0,0,0,0.10)",
-            mb: 2,
-          }}
-        >
-          Escuela de Pesca
-        </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
           <Typography
-            variant="h4"
-            component="div"
-            sx={{
-              textAlign: "center",
-              color: "#fff",
-              fontWeight: 700,
-              fontSize: { xs: "1.5rem", md: "2.2rem" },
-              background: "#FFF",
-              borderRadius: 3,
-              px: 4,
-              py: 2,
-              boxShadow: 3,
-              letterSpacing: 1,
-              textShadow: "0 2px 8px rgba(0,0,0,0.10)",
-              border: "2px solid var(--primary-color)",
-              mb: 0,
-              transition: "transform 0.3s ease",
-              "&:hover": {
-                transform: "scale(1.02)",
-              },
-            }}
+            sx={{ color: "#FFF !important" }}
+            variant="h1"
+            className="hero-title animate-fade-in"
           >
-            Aprendé, viví y pescá con nosotros.
+            Tu lugar para crecer en la pesca.
           </Typography>
-        </Box>
-        {/* Main Content Section */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            gap: 4,
-            minHeight: "100%",
-            background:
-              "linear-gradient(to bottom, var(--background-color), var(--background-color)80)",
-            borderRadius: 4,
-            p: { xs: 2, md: 4 },
-            boxShadow: "0 8px 32px rgba(0,0,0,0.05)",
-            backdropFilter: "blur(8px)",
-            border: "1px solid var(--primary-color)10",
-          }}
-        >
-          {/* Left Column - BusinessCard */}
-          <Grid item xs={12} md={6}>
-            <Card
-              id="school-info"
-              sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                borderRadius: 4,
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                cursor: "pointer",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0 8px 30px rgba(0, 0, 0, 0.2)",
-                },
-              }}
+          <Typography
+            variant="h5"
+            className="hero-subtitle animate-fade-in-delay"
+          >
+            Formación técnica y comunitaria para pescadores de todos los
+            niveles.
+          </Typography>
+          <Box className="hero-buttons animate-fade-in-delay-2">
+            <Button
+              variant="outlined"
+              size="large"
+              className="btn-secondary-school"
+              onClick={() =>
+                handleWhatsApp(
+                  "Quiero más información sobre la Fishing School Robinson"
+                )
+              }
             >
-              <CardContent
-                sx={{
-                  p: 4,
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{
-                    mb: 4,
-                    fontSize: "1.4rem",
-                    color: "var(--text-color)",
-                    fontWeight: 500,
-                    lineHeight: 1.8,
-                    textAlign: "center",
-                    background:
-                      "linear-gradient(135deg, var(--primary-color)10, var(--secondary-color)10)",
-                    padding: 3,
-                    borderRadius: 2,
-                    boxShadow: "inset 0 0 10px rgba(0,0,0,0.1)",
-                    border: "1px solid var(--primary-color)20",
-                  }}
-                >
-                  Espacio de aprendizaje para pescadores de todos los niveles.
-                  Ofrecemos cursos, talleres y actividades comunitarias para
-                  perfeccionar técnicas, compartir experiencias, conectar con la
-                  naturaleza y la pasión por la pesca.
-                </Typography>
+              Contactanos por WhatsApp
+            </Button>
+          </Box>
+        </Container>
+      </section>
+
+      {/* 🧵 5) TÉCNICA + PRÁCTICA */}
+      <section className="section-differentiators">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Técnica + Práctica
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            No es teoría pura: aprendés haciendo
+          </Typography>
+
+          <Grid container spacing={4} sx={{ mt: 2 }}>
+            {differentiators.map((item, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
                 <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    mt: 4,
-                  }}
+                  className="differentiator-box"
+                  sx={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <Box
-                    component="img"
-                    src={schoolLogo}
-                    alt="Robinson Fishing School Logo"
-                    sx={{
-                      maxWidth: "200px",
-                      width: "100%",
-                      height: "auto",
-                      filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.1))",
-                      transition: "all 0.3s ease-in-out",
-                      "&:hover": {
-                        transform: "scale(1.05)",
-                        filter: "drop-shadow(0 6px 12px rgba(0,0,0,0.15))",
-                      },
-                    }}
-                  />
+                  <Box className="differentiator-icon">{item.icon}</Box>
+                  <Typography variant="h6" className="differentiator-title">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {item.description}
+                  </Typography>
                 </Box>
-              </CardContent>
-            </Card>
+              </Grid>
+            ))}
           </Grid>
+        </Container>
+      </section>
 
-          {/* Right Column - Info Cards and Download Section */}
-          <Grid item xs={12} md={6}>
-            <Grid container spacing={2}>
-              {/* Clases Personalizadas */}
-              <Grid item xs={12}>
-                <Card
-                  sx={{
-                    p: 3,
-                    background: "var(--background-color)",
-                    border: "2px solid var(--primary-color)20",
-                    borderRadius: 4,
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      transform: "translateY(-8px)",
-                      boxShadow: "var(--shadow-primary)",
-                    },
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    sx={{ color: "var(--primary-color)", fontWeight: 700 }}
-                  >
-                    Clases Personalizadas
-                  </Typography>
-                  <Typography variant="body1">
-                    Aprende las técnicas fundamentales de pesca con instructores
-                    expertos en grupos reducidos.
-                  </Typography>
-                </Card>
-              </Grid>
+      {/* 📚 2) NUESTROS CURSOS */}
+      <section id="cursos-disponibles" className="section-courses">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Nuestros Cursos
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Encontrá el curso perfecto para tu nivel y estilo de pesca
+          </Typography>
 
-              {/* Equipamiento Incluido */}
-              <Grid item xs={12}>
+          <Grid container spacing={4} sx={{ mt: 2 }}>
+            {courses.map((course, index) => (
+              <Grid item xs={12} sm={6} md={4} key={course.id}>
                 <Card
-                  sx={{
-                    p: 3,
-                    background: "var(--background-color)",
-                    border: "2px solid var(--primary-color)20",
-                    borderRadius: 4,
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      transform: "translateY(-8px)",
-                      boxShadow: "var(--shadow-primary)",
-                    },
-                  }}
+                  className="course-card"
+                  sx={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    sx={{ color: "var(--primary-color)", fontWeight: 700 }}
-                  >
-                    Equipamiento Incluido
-                  </Typography>
-                  <Typography variant="body1">
-                    Proporcionamos todo el equipo necesario para que tu
-                    experiencia sea completa y segura.
-                  </Typography>
-                </Card>
-              </Grid>
-
-              {/* Certificación */}
-              <Grid item xs={12}>
-                <Card
-                  sx={{
-                    p: 3,
-                    background: "var(--background-color)",
-                    border: "2px solid var(--primary-color)20",
-                    borderRadius: 4,
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      transform: "translateY(-8px)",
-                      boxShadow: "var(--shadow-primary)",
-                    },
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    sx={{ color: "var(--primary-color)", fontWeight: 700 }}
-                  >
-                    Certificación
-                  </Typography>
-                  <Typography variant="body1">
-                    Obtén tu certificado al completar el curso y únete a nuestra
-                    comunidad de pescadores.
-                  </Typography>
-                </Card>
-              </Grid>
-
-              {/* Download Section */}
-              <Grid item xs={12}>
-                <Card
-                  sx={{
-                    background: "var(--gradient-primary)",
-                    color: "#fff",
-                    p: 4,
-                    borderRadius: 4,
-                    boxShadow: "var(--shadow-primary)",
-                    transition: "transform 0.3s ease",
-                    "&:hover": {
-                      transform: "scale(1.02)",
-                    },
-                  }}
-                >
-                  <Box sx={{ textAlign: "center" }}>
-                    <Typography variant="h5" gutterBottom>
-                      ¿Querés saber más sobre nuestra escuela?
+                  <CardMedia
+                    component="img"
+                    height="220"
+                    image={course.image}
+                    alt={course.name}
+                    className="course-image"
+                  />
+                  <CardContent>
+                    <Box
+                      sx={{ display: "flex", gap: 1, mb: 2, flexWrap: "wrap" }}
+                    >
+                      <Chip
+                        label={course.level}
+                        size="small"
+                        sx={{
+                          backgroundColor:
+                            course.level === "Principiante"
+                              ? "#4caf50"
+                              : course.level === "Intermedio"
+                              ? "#ff9800"
+                              : "#f44336",
+                          color: "#fff",
+                          fontWeight: 600,
+                        }}
+                      />
+                      <Chip
+                        label={course.modality}
+                        size="small"
+                        variant="outlined"
+                        sx={{ borderColor: "#2F5233", color: "#2F5233" }}
+                      />
+                    </Box>
+                    <Typography variant="h6" className="course-name">
+                      {course.name}
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
-                      Descargá nuestro flyer informativo con todos los detalles,
-                      información de contacto y más.
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mb: 2 }}
+                    >
+                      {course.description}
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        mb: 1,
+                      }}
+                    >
+                      <School fontSize="small" sx={{ color: "#6B8E23" }} />
+                      <Typography variant="body2" color="text.secondary">
+                        {course.duration}
+                      </Typography>
+                    </Box>
+                    <Typography
+                      variant="h6"
+                      sx={{ color: "#6B8E23", fontWeight: 700, mb: 2 }}
+                    >
+                      {course.price}
                     </Typography>
                     <Button
                       variant="contained"
-                      startIcon={<DownloadOutlined />}
-                      onClick={handleDownloadFlyer}
-                      sx={{
-                        mt: 2,
-                        backgroundColor: "#fff",
-                        color: "var(--primary-color)",
-                        fontWeight: 600,
-                        px: 4,
-                        py: 1.5,
-                        "&:hover": {
-                          backgroundColor: "#f5f5f5",
-                          transform: "scale(1.05)",
-                        },
-                        transition: "all 0.3s ease",
-                      }}
+                      fullWidth
+                      className="btn-course-info"
+                      onClick={() =>
+                        handleWhatsApp(
+                          `Quiero información sobre el curso: ${course.name}`
+                        )
+                      }
                     >
-                      Descargar Flyer
+                      Ver más
                     </Button>
-                  </Box>
+                  </CardContent>
                 </Card>
               </Grid>
-            </Grid>
+            ))}
           </Grid>
-        </Box>
+        </Container>
+      </section>
+
+      {/* 👨‍🏫 3) INSTRUCTORES EXPERTOS
+      <section className="section-instructors">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Aprendé con instructores expertos
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Nuestro equipo docente te acompaña en cada paso
+          </Typography>
+
+          <Grid container spacing={4} sx={{ mt: 2 }}>
+            {instructors.map((instructor, index) => (
+              <Grid item xs={12} sm={6} md={3} key={instructor.id}>
+                <Card
+                  className="instructor-card"
+                  sx={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <Avatar
+                    src={instructor.image}
+                    alt={instructor.name}
+                    sx={{ width: 140, height: 140, margin: "20px auto" }}
+                    className="instructor-avatar"
+                  />
+                  <CardContent>
+                    <Typography
+                      variant="h6"
+                      align="center"
+                      className="instructor-name"
+                    >
+                      {instructor.name}
+                    </Typography>
+                    <Chip
+                      label={instructor.specialty}
+                      size="small"
+                      sx={{
+                        backgroundColor: "#6B8E23",
+                        color: "#fff",
+                        margin: "10px auto",
+                        display: "block",
+                        width: "fit-content",
+                      }}
+                    />
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      align="center"
+                      sx={{ fontStyle: "italic", mt: 1 }}
+                    >
+                      "{instructor.experience}"
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </section> */}
+
+      {/* 🫂 4) ACTIVIDADES COMUNITARIAS
+      <section className="section-community">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Actividades comunitarias
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Más que cursos, somos una comunidad de apasionados por la pesca
+          </Typography>
+
+          <Grid container spacing={3} sx={{ mt: 2 }}>
+            {communityEvents.map((event, index) => (
+              <Grid item xs={12} sm={6} md={3} key={event.id}>
+                <Card
+                  className="community-card"
+                  sx={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="180"
+                    image={event.image}
+                    alt={event.title}
+                  />
+                  <CardContent>
+                    <Chip
+                      label={event.type}
+                      size="small"
+                      sx={{
+                        backgroundColor: "#D2691E",
+                        color: "#fff",
+                        mb: 1,
+                        fontWeight: 600,
+                      }}
+                    />
+                    <Typography variant="h6" className="community-title">
+                      {event.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mb: 1 }}
+                    >
+                      📅 {event.date}
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontSize: "0.9rem" }}>
+                      {event.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+
+          <Box sx={{ textAlign: "center", mt: 4 }}>
+            <Button
+              variant="contained"
+              size="large"
+              className="btn-primary-school"
+              onClick={() =>
+                handleWhatsApp("Quiero unirme a las actividades comunitarias")
+              }
+            >
+              Unite a la comunidad
+            </Button>
+          </Box>
+        </Container>
+      </section> */}
+
+      {/* 🎒 6) PROGRAMAS POR NIVEL */}
+      <section className="section-programs">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Programas por nivel
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Elegí el camino que mejor se adapte a tu experiencia
+          </Typography>
+
+          <Box sx={{ borderBottom: 1, borderColor: "divider", mt: 4 }}>
+            <Tabs
+              value={selectedLevel}
+              onChange={(e, newValue) => setSelectedLevel(newValue)}
+              centered
+              className="level-tabs"
+            >
+              {levelPrograms.map((program, index) => (
+                <Tab
+                  key={index}
+                  label={program.level}
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: "1.1rem",
+                    "&.Mui-selected": {
+                      color: program.color,
+                    },
+                  }}
+                />
+              ))}
+            </Tabs>
+          </Box>
+
+          <Box sx={{ mt: 4 }}>
+            {levelPrograms.map((program, index) => (
+              <Box
+                key={index}
+                role="tabpanel"
+                hidden={selectedLevel !== index}
+                sx={{ animation: "fadeIn 0.5s ease-in" }}
+              >
+                {selectedLevel === index && (
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      align="center"
+                      sx={{
+                        color: program.color,
+                        fontWeight: 700,
+                        mb: 2,
+                      }}
+                    >
+                      {program.level}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      align="center"
+                      color="text.secondary"
+                      sx={{ mb: 4, fontStyle: "italic", fontSize: "1.1rem" }}
+                    >
+                      {program.description}
+                    </Typography>
+
+                    <Grid container spacing={3}>
+                      {program.courses.map((course) => (
+                        <Grid item xs={12} sm={6} md={4} key={course.id}>
+                          <Card className="program-course-card">
+                            <CardMedia
+                              component="img"
+                              height="160"
+                              image={course.image}
+                              alt={course.name}
+                            />
+                            <CardContent>
+                              <Typography
+                                variant="h6"
+                                className="program-course-name"
+                              >
+                                {course.name}
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                sx={{ mb: 2 }}
+                              >
+                                {course.description}
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                sx={{ color: program.color, mb: 2 }}
+                              >
+                                {course.price}
+                              </Typography>
+                              <Button
+                                variant="outlined"
+                                fullWidth
+                                sx={{
+                                  borderColor: program.color,
+                                  color: program.color,
+                                  "&:hover": {
+                                    backgroundColor: program.color,
+                                    color: "#fff",
+                                  },
+                                }}
+                                onClick={() =>
+                                  handleWhatsApp(
+                                    `Quiero inscribirme en el curso: ${course.name}`
+                                  )
+                                }
+                              >
+                                Inscribirme
+                              </Button>
+                            </CardContent>
+                          </Card>
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </Box>
+                )}
+              </Box>
+            ))}
+          </Box>
+        </Container>
+      </section>
+
+      {/* 📸 7) GALERÍA DE PRÁCTICAS */}
+      <section className="section-gallery">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Galería de prácticas
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Momentos reales de aprendizaje y logros
+          </Typography>
+
+          <Box className="gallery-grid" sx={{ mt: 4 }}>
+            {galleryImages.map((image, index) => (
+              <Box
+                key={index}
+                className="gallery-item"
+                onClick={() => handleOpenLightbox(index)}
+                sx={{
+                  backgroundImage: `url(${image})`,
+                  animationDelay: `${index * 0.1}s`,
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={`Ver imagen ${index + 1} de ${
+                  galleryImages.length
+                }`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    handleOpenLightbox(index);
+                  }
+                }}
+              />
+            ))}
+          </Box>
+        </Container>
+      </section>
+
+      {/* 🖼️ LIGHTBOX MODAL */}
+      <Modal
+        open={lightboxOpen}
+        onClose={handleCloseLightbox}
+        className="lightbox-modal"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onKeyDown={handleKeyDown}
+      >
         <Box
-          className="main-content-end"
-          sx={{ width: "100%", height: "1px" }}
-        />{" "}
-        {/* End marker */}
-      </Container>
-      {/* Botón flotante scroll down */}
-      {showScrollDown && (
-        <Fab
-          color="primary"
-          aria-label="scroll down"
-          onClick={handleScrollToBottom}
           sx={{
-            position: "fixed",
-            bottom: { xs: 24, md: 32 },
-            right: { xs: 24, md: 32 },
-            zIndex: 1200,
-            boxShadow: 6,
-            transition: "opacity 0.3s",
-            opacity: 0.85,
-            "&:hover": { opacity: 1 },
+            position: "relative",
+            maxWidth: "90vw",
+            maxHeight: "90vh",
+            outline: "none",
           }}
         >
-          <ArrowDownward fontSize="large" />
-        </Fab>
-      )}
-    </Box>
+          {/* Botón cerrar */}
+          <IconButton
+            onClick={handleCloseLightbox}
+            sx={{
+              position: "absolute",
+              top: 10,
+              right: 10,
+              color: "white",
+              backgroundColor: "rgba(0,0,0,0.7)",
+              "&:hover": {
+                backgroundColor: "rgba(0,0,0,0.9)",
+              },
+              zIndex: 1,
+            }}
+            aria-label="Cerrar galería"
+          >
+            <Close />
+          </IconButton>
+
+          {/* Botón anterior */}
+          <IconButton
+            onClick={handlePrevImage}
+            sx={{
+              position: "absolute",
+              left: { xs: 10, md: -60 },
+              top: "50%",
+              transform: "translateY(-50%)",
+              color: "white",
+              backgroundColor: "rgba(0,0,0,0.7)",
+              "&:hover": {
+                backgroundColor: "rgba(0,0,0,0.9)",
+              },
+            }}
+            aria-label="Imagen anterior"
+          >
+            <NavigateBefore fontSize="large" />
+          </IconButton>
+
+          {/* Imagen */}
+          <Box
+            component="img"
+            src={galleryImages[selectedImageIndex]}
+            alt={`Práctica de pesca ${selectedImageIndex + 1}`}
+            sx={{
+              maxWidth: "100%",
+              maxHeight: "90vh",
+              objectFit: "contain",
+              borderRadius: "8px",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+            }}
+          />
+
+          {/* Botón siguiente */}
+          <IconButton
+            onClick={handleNextImage}
+            sx={{
+              position: "absolute",
+              right: { xs: 10, md: -60 },
+              top: "50%",
+              transform: "translateY(-50%)",
+              color: "white",
+              backgroundColor: "rgba(0,0,0,0.7)",
+              "&:hover": {
+                backgroundColor: "rgba(0,0,0,0.9)",
+              },
+            }}
+            aria-label="Siguiente imagen"
+          >
+            <NavigateNext fontSize="large" />
+          </IconButton>
+
+          {/* Contador de imágenes */}
+          <Typography
+            variant="body2"
+            sx={{
+              position: "absolute",
+              bottom: { xs: 10, md: -40 },
+              left: "50%",
+              transform: "translateX(-50%)",
+              color: "white",
+              backgroundColor: "rgba(0,0,0,0.8)",
+              padding: "8px 16px",
+              borderRadius: "20px",
+              fontSize: "0.9rem",
+            }}
+          >
+            {selectedImageIndex + 1} / {galleryImages.length}
+          </Typography>
+        </Box>
+      </Modal>
+
+      {/* 💬 8) TESTIMONIOS DE ALUMNOS */}
+      <section className="section-testimonials">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Lo que dicen nuestros alumnos
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Experiencias reales de quienes ya pasaron por la escuela
+          </Typography>
+
+          <Grid container spacing={4} sx={{ mt: 2 }}>
+            {testimonials.map((testimonial, index) => (
+              <Grid item xs={12} md={4} key={testimonial.id}>
+                <Card
+                  className="testimonial-card"
+                  sx={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <CardContent>
+                    <Typography variant="body1" className="testimonial-text">
+                      "{testimonial.text}"
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 2,
+                        mt: 3,
+                      }}
+                    >
+                      <Avatar
+                        src={testimonial.image}
+                        alt={testimonial.author}
+                      />
+                      <Box>
+                        <Typography variant="subtitle1" fontWeight={600}>
+                          {testimonial.author}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {testimonial.location}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </section>
+
+      {/* 🎣 9) QUÉ INCLUYE LA FISHING SCHOOL */}
+      <section className="section-benefits">
+        <Container maxWidth="lg">
+          <Typography variant="h2" className="section-title" align="center">
+            Qué incluye la Fishing School
+          </Typography>
+          <Typography
+            variant="body1"
+            className="section-subtitle"
+            align="center"
+          >
+            Valor agregado en cada curso
+          </Typography>
+
+          <Grid container spacing={4} sx={{ mt: 2 }}>
+            {benefits.map((benefit, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box
+                  className="benefit-box"
+                  sx={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <Box className="benefit-icon">{benefit.icon}</Box>
+                  <Typography variant="h6" className="benefit-title">
+                    {benefit.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {benefit.description}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </section>
+
+      {/* 💬 10) CTA FINAL */}
+      <section className="section-cta-final">
+        <div className="cta-overlay" />
+        <Container maxWidth="md">
+          <Box className="cta-content">
+            <Typography variant="h2" className="cta-title">
+              Aprendé, viví y pescá con nosotros.
+            </Typography>
+            <Typography variant="h6" className="cta-subtitle">
+              Sumate a la Fishing School Robinson y transformá tu técnica
+            </Typography>
+            <Box className="cta-buttons">
+              <Button
+                variant="contained"
+                size="large"
+                className="btn-cta-primary"
+                onClick={scrollToCourses}
+              >
+                Ver cursos
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                className="btn-cta-secondary"
+                onClick={() =>
+                  handleWhatsApp("Quiero más información sobre los cursos")
+                }
+              >
+                Quiero información
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </section>
+    </div>
   );
-}
+};
+
+export default FishingSchoolScreen;
