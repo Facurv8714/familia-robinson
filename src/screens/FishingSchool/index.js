@@ -22,7 +22,6 @@ import {
   Groups,
   AutoStories,
   Verified,
-  CameraAlt,
   Favorite,
   Close,
   NavigateBefore,
@@ -124,74 +123,74 @@ const FishingSchoolScreen = () => {
   ];
 
   // 👨‍🏫 Instructores
-  const instructors = [
-    {
-      id: 1,
-      name: "Pablo Martínez",
-      specialty: "Pesca con mosca",
-      experience: "25 años pescando en Patagonia",
-      image: fishingSchool7,
-    },
-    {
-      id: 2,
-      name: "Laura Gómez",
-      specialty: "Spinning y bait",
-      experience: "Instructora certificada con 15 años de experiencia",
-      image: fishingSchool2,
-    },
-    {
-      id: 3,
-      name: "Diego Fernández",
-      specialty: "Nudos y armado",
-      experience: "Especialista en equipamiento y técnicas de casting",
-      image: fishingSchool4,
-    },
-    {
-      id: 4,
-      name: "Marina Rodríguez",
-      specialty: "Pesca deportiva",
-      experience: "Campeona nacional de pesca, docente apasionada",
-      image: fishingSchool5,
-    },
-  ];
+  // const instructors = [
+  //   {
+  //     id: 1,
+  //     name: "Pablo Martínez",
+  //     specialty: "Pesca con mosca",
+  //     experience: "25 años pescando en Patagonia",
+  //     image: fishingSchool7,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Laura Gómez",
+  //     specialty: "Spinning y bait",
+  //     experience: "Instructora certificada con 15 años de experiencia",
+  //     image: fishingSchool2,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Diego Fernández",
+  //     specialty: "Nudos y armado",
+  //     experience: "Especialista en equipamiento y técnicas de casting",
+  //     image: fishingSchool4,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Marina Rodríguez",
+  //     specialty: "Pesca deportiva",
+  //     experience: "Campeona nacional de pesca, docente apasionada",
+  //     image: fishingSchool5,
+  //   },
+  // ];
 
   // 🫂 Actividades comunitarias
-  const communityEvents = [
-    {
-      id: 1,
-      title: "Jornada de pesca grupal",
-      date: "15 Diciembre 2024",
-      type: "Salida",
-      image: fishingSchool1,
-      description:
-        "Salida al Delta con todo el grupo. Práctica libre y almuerzo compartido.",
-    },
-    {
-      id: 2,
-      title: "Charla abierta con Pablo Martínez",
-      date: "20 Diciembre 2024",
-      type: "Charla",
-      image: fishingSchool3,
-      description:
-        "Experiencias en ríos de montaña. Entrada libre para alumnos.",
-    },
-    {
-      id: 3,
-      title: "Taller gratuito de nudos",
-      date: "28 Diciembre 2024",
-      type: "Taller",
-      image: fishingSchool5,
-      description: "Workshop abierto. Traé tu equipo y practicá con nosotros.",
-    },
-    {
-      id: 4,
-      title: "Limpieza de costa comunitaria",
-      date: "5 Enero 2025",
-      type: "Acción ambiental",
-      image: fishingSchool6,
-      description: "Jornada de cuidado del río. Cañas + conciencia ambiental.",
-    },
-  ];
+  // const communityEvents = [
+  //   {
+  //     id: 1,
+  //     title: "Jornada de pesca grupal",
+  //     date: "15 Diciembre 2024",
+  //     type: "Salida",
+  //     image: fishingSchool1,
+  //     description:
+  //       "Salida al Delta con todo el grupo. Práctica libre y almuerzo compartido.",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Charla abierta con Pablo Martínez",
+  //     date: "20 Diciembre 2024",
+  //     type: "Charla",
+  //     image: fishingSchool3,
+  //     description:
+  //       "Experiencias en ríos de montaña. Entrada libre para alumnos.",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Taller gratuito de nudos",
+  //     date: "28 Diciembre 2024",
+  //     type: "Taller",
+  //     image: fishingSchool5,
+  //     description: "Workshop abierto. Traé tu equipo y practicá con nosotros.",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Limpieza de costa comunitaria",
+  //     date: "5 Enero 2025",
+  //     type: "Acción ambiental",
+  //     image: fishingSchool6,
+  //     description: "Jornada de cuidado del río. Cañas + conciencia ambiental.",
+  //   },
+  // ];
 
   // 💬 Testimonios
   const testimonials = [

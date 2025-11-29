@@ -25,7 +25,6 @@ import {
   ArrowDownward,
 } from "@mui/icons-material";
 import robinsonMinorista from "../../images/robinson-minorista.avif";
-import logoRobinson from "../../images/logo-robinson.png";
 import Footer from "../../components/Footer";
 
 // Datos de categorías
@@ -134,6 +133,8 @@ const Minorista = () => {
   const [currentProduct, setCurrentProduct] = useState(0);
   const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
   const [showScrollDown, setShowScrollDown] = useState(true);
+
+  console.log(currentBrandIndex);
 
   const generateWhatsAppLink = (message) => {
     const phone = "+5491158427688";

@@ -10,22 +10,16 @@ import {
   CardMedia,
   Chip,
   TextField,
-  Badge,
 } from "@mui/material";
 import {
   Explore,
-  DirectionsBoat,
-  Terrain,
-  PhotoCamera,
   Group,
   EmojiNature,
   CheckCircle,
-  Star,
   ArrowForward,
   WhatsApp,
   LocationOn,
   CalendarToday,
-  TrendingUp,
   Security,
   School,
   Restaurant,
@@ -195,35 +189,35 @@ const included = [
 ];
 
 // Testimonios
-const testimonials = [
-  {
-    id: 1,
-    text: "La mejor experiencia de pesca de mi vida. Aprendí más en 3 días que en 3 años pescando solo.",
-    author: "Martín González",
-    location: "Buenos Aires",
-    year: "2023",
-    image: robinsonExpediciones,
-    rating: 5,
-  },
-  {
-    id: 2,
-    text: "Los guías son increíbles. No solo conocen los mejores spots, sino que te enseñan la técnica con paciencia y pasión.",
-    author: "Laura Fernández",
-    location: "Córdoba",
-    year: "2024",
-    image: robinsonMinorista,
-    rating: 5,
-  },
-  {
-    id: 3,
-    text: "Una experiencia transformadora. Conectar con la naturaleza de esta forma cambió mi perspectiva completamente.",
-    author: "Diego Ramírez",
-    location: "Rosario",
-    year: "2024",
-    image: robinsonExpediciones,
-    rating: 5,
-  },
-];
+// const testimonials = [
+//   {
+//     id: 1,
+//     text: "La mejor experiencia de pesca de mi vida. Aprendí más en 3 días que en 3 años pescando solo.",
+//     author: "Martín González",
+//     location: "Buenos Aires",
+//     year: "2023",
+//     image: robinsonExpediciones,
+//     rating: 5,
+//   },
+//   {
+//     id: 2,
+//     text: "Los guías son increíbles. No solo conocen los mejores spots, sino que te enseñan la técnica con paciencia y pasión.",
+//     author: "Laura Fernández",
+//     location: "Córdoba",
+//     year: "2024",
+//     image: robinsonMinorista,
+//     rating: 5,
+//   },
+//   {
+//     id: 3,
+//     text: "Una experiencia transformadora. Conectar con la naturaleza de esta forma cambió mi perspectiva completamente.",
+//     author: "Diego Ramírez",
+//     location: "Rosario",
+//     year: "2024",
+//     image: robinsonExpediciones,
+//     rating: 5,
+//   },
+// ];
 
 // Estadísticas
 const stats = [
