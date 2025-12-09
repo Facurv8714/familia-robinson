@@ -15,9 +15,9 @@ import Expediciones from "./pages/Expediciones";
 import FishingSchool from "./pages/FishingSchool";
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode] = useState(false);
   const [variant, setVariant] = useState("NATURAL");
-  const [configMode, setConfigMode] = useState(false);
+
   const [hiddenComponents, setHiddenComponents] = useState(new Set());
   const theme = createCustomTheme(darkMode);
 
@@ -62,9 +62,6 @@ export default function App() {
             variant={variant}
             setVariant={setVariant}
             darkMode={darkMode}
-            setDarkMode={setDarkMode}
-            configMode={configMode}
-            setConfigMode={setConfigMode}
           />
 
           {/* Rutas */}
@@ -74,7 +71,6 @@ export default function App() {
               element={
                 <HomePage
                   variant={variant}
-                  configMode={configMode}
                   isComponentVisible={isComponentVisible}
                   onToggleVisibility={toggleComponentVisibility}
                 />

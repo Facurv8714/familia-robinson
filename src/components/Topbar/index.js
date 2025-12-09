@@ -1,27 +1,11 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Box,
-  Button,
-  IconButton,
-  Tooltip,
-  Chip,
-} from "@mui/material";
-import {
-  LightMode,
-  DarkMode,
-  Settings,
-  SettingsBackupRestore,
-  Home,
-  Inventory,
-  Info,
-} from "@mui/icons-material";
+import { AppBar, Toolbar, Box, Button } from "@mui/material";
+import { Home, Inventory, Info } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import logoRobinson from "../../images/logo-robinson.png";
 import "../../styles/natural.css"; // Importing the natural.css file
 
-const Topbar = ({ darkMode, setDarkMode, configMode, setConfigMode }) => {
+const Topbar = () => {
   const location = useLocation();
 
   const navigationItems = [
@@ -39,15 +23,15 @@ const Topbar = ({ darkMode, setDarkMode, configMode, setConfigMode }) => {
       elevation={0}
       sx={{
         background: "none", // Explicitly unset any background property
-        backgroundColor: darkMode ? "#000000 !important" : "#FFFFFF !important", // Use !important to ensure it is not overridden
-        color: darkMode ? "#FFFFFF" : "#000000", // Adjust text color accordingly
+        backgroundColor: "#FFFFFF !important", // Use !important to ensure it is not overridden
+        color: "#000000", // Adjust text color accordingly
         borderBottom: "1px solid",
-        borderColor: darkMode ? "#333333" : "#DDDDDD", // Subtle border for separation
+        borderColor: "#DDDDDD", // Subtle border for separation
         opacity: 1,
         pt: 2,
         pb: 2,
       }}
-      className={`${darkMode ? "text-white" : "text-black"}`}
+      className={`${"text-black"}`}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -131,82 +115,7 @@ const Topbar = ({ darkMode, setDarkMode, configMode, setConfigMode }) => {
           </Box>
         </Box>{" "}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          {/* Modo configuración */}
-          {configMode && (
-            <Chip
-              label="Modo Configuración Activo"
-              color="warning"
-              size="small"
-              sx={{
-                fontWeight: 600,
-                animation: "pulse 2s infinite",
-                "@keyframes pulse": {
-                  "0%": { opacity: 1 },
-                  "50%": { opacity: 0.7 },
-                  "100%": { opacity: 1 },
-                },
-                mr: 1,
-              }}
-            />
-          )}
-
-          {/* Toggle modo configuración */}
-          <Tooltip
-            title={
-              configMode
-                ? "Salir del modo configuración"
-                : "Activar modo configuración"
-            }
-            arrow
-          >
-            <IconButton
-              onClick={() => setConfigMode(!configMode)}
-              sx={{
-                color: configMode ? "warning.main" : "primary.main",
-                background: configMode
-                  ? "rgba(255,193,7,0.2)"
-                  : "rgba(3,169,244,0.1)",
-                "&:hover": {
-                  background: configMode
-                    ? "rgba(255,193,7,0.3)"
-                    : "rgba(3,169,244,0.2)",
-                  transform: "scale(1.1)",
-                },
-                transition: "all 0.3s ease",
-                border: configMode ? "2px solid warning.main" : "none",
-                animation: configMode ? "configPulse 2s infinite" : "none",
-                "@keyframes configPulse": {
-                  "0%": {
-                    boxShadow: `0 0 0 0 rgba(255,193,7,0.4)`,
-                  },
-                  "70%": {
-                    boxShadow: `0 0 0 10px transparent`,
-                  },
-                  "100%": {
-                    boxShadow: `0 0 0 0 transparent`,
-                  },
-                },
-              }}
-            >
-              {configMode ? <SettingsBackupRestore /> : <Settings />}
-            </IconButton>
-          </Tooltip>
-
-          {/* Toggle modo oscuro */}
-          <IconButton
-            onClick={() => setDarkMode(!darkMode)}
-            sx={{
-              color: "primary.main",
-              background: "rgba(3,169,244,0.1)",
-              "&:hover": {
-                background: "rgba(3,169,244,0.2)",
-                transform: "scale(1.1)",
-              },
-              transition: "all 0.3s ease",
-            }}
-          >
-            {darkMode ? <LightMode /> : <DarkMode />}
-          </IconButton>
+          {/* Toggle modo oscuro - controlado fuera del Topbar */}
         </Box>
       </Toolbar>
     </AppBar>

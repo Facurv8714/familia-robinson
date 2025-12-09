@@ -18,10 +18,8 @@ import FishingSchool from "./screens/FishingSchool";
 import Expediciones from "./pages/Expediciones";
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [configMode, setConfigMode] = useState(false);
   const [hiddenComponents, setHiddenComponents] = useState(new Set());
-  const theme = createCustomTheme(darkMode);
+  const theme = createCustomTheme();
 
   const toggleComponentVisibility = (componentId) => {
     setHiddenComponents((prev) => {
@@ -46,21 +44,13 @@ export default function App() {
         <ScrollToTop />
         <Box
           data-theme="natural"
-          data-dark={darkMode ? "true" : "false"}
           sx={{
             minHeight: "100vh",
-            background: darkMode
-              ? "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)"
-              : "linear-gradient(135deg, #FEF7E6 0%, #FDF2E9 100%)",
+            background: "linear-gradient(135deg, #FEF7E6 0%, #FDF2E9 100%)",
           }}
         >
           {/* Header con AppBar */}
-          <Topbar
-            darkMode={darkMode}
-            setDarkMode={setDarkMode}
-            configMode={configMode}
-            setConfigMode={setConfigMode}
-          />
+          <Topbar />
 
           {/* Rutas */}
           <Box sx={{ paddingTop: "12px" }}>
@@ -69,7 +59,6 @@ export default function App() {
                 path="/"
                 element={
                   <HomePage
-                    configMode={configMode}
                     isComponentVisible={isComponentVisible}
                     onToggleVisibility={toggleComponentVisibility}
                   />

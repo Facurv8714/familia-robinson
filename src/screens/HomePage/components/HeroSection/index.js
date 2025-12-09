@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Container,
-  Fade,
-  Grid,
-  Typography,
-  // IconButton,
-  // Paper,
-  // Button,
-} from "@mui/material";
-// import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { Box, Container, Fade, Grid, Typography } from "@mui/material";
+
 import Presentacion from "./Components/Presentacion/index.js";
-// import NavButtons from "./sections/NavButtons";
-import ConfigurableSection from "../ConfigurableSection";
 import Carousel from "./Components/Carousel/index.js";
 
-import { carouselImages, HIDEABLE_COMPONENTS } from "../../../../constants";
+import { carouselImages } from "../../../../constants";
 // import logoRobinson from "../../images/logo-robinson.png";
 
-const HeroSection = ({
-  configMode = false,
-  isComponentVisible = () => true,
-  onToggleVisibility = () => {},
-}) => {
+const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -134,148 +119,108 @@ const HeroSection = ({
               sx={{ display: "flex", gridGap: "16px", flexDirection: "column" }}
             >
               {/* Logo Robinson */}
-              <ConfigurableSection
-                sectionId={HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_CHIPS}
-                isConfigMode={configMode}
-                isVisible={isComponentVisible(
-                  HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_CHIPS
-                )}
-                onToggleVisibility={onToggleVisibility}
+
+              <Presentacion />
+
+              <Typography
+                variant="h1"
                 sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-                  border: "2px solid #FF4500",
+                  mt: "24px",
+                  color: "var(--text-color)",
+                  fontSize: { xs: "2.5rem", md: "4rem" },
+                  fontWeight: 900,
+                  textShadow: `3px 3px 6px var(--primary-color)25`,
+                  "&:hover": {
+                    transform: "scale(1.02)",
+                    textShadow: `4px 4px 8px var(--primary-color)35`,
+                  },
+                  transition: "all 0.3s ease",
                 }}
               >
-                <Presentacion />
-              </ConfigurableSection>
-
-              <ConfigurableSection
-                sectionId={HIDEABLE_COMPONENTS.HERO_MAIN_TITLE}
-                isConfigMode={configMode}
-                isVisible={isComponentVisible(
-                  HIDEABLE_COMPONENTS.HERO_MAIN_TITLE
-                )}
-                onToggleVisibility={onToggleVisibility}
-              >
-                <Typography
-                  variant="h1"
-                  sx={{
-                    mt: "24px",
-                    color: "var(--text-color)",
-                    fontSize: { xs: "2.5rem", md: "4rem" },
-                    fontWeight: 900,
-                    textShadow: `3px 3px 6px var(--primary-color)25`,
-                    "&:hover": {
-                      transform: "scale(1.02)",
-                      textShadow: `4px 4px 8px var(--primary-color)35`,
-                    },
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  Disfrutá tu nueva aventura
-                </Typography>
-              </ConfigurableSection>
+                Disfrutá tu nueva aventura
+              </Typography>
 
               {/* Carousel Component */}
-              <ConfigurableSection
-                sectionId={HIDEABLE_COMPONENTS.HERO_CAROUSEL}
-                isConfigMode={configMode}
-                isVisible={isComponentVisible(
-                  HIDEABLE_COMPONENTS.HERO_CAROUSEL
-                )}
-                onToggleVisibility={onToggleVisibility}
-              >
-                <Carousel
-                  carouselImages={carouselImages}
-                  currentSlide={currentSlide}
-                  isTransitioning={isTransitioning}
-                  prevSlide={prevSlide}
-                  nextSlide={nextSlide}
-                  handleSmoothScroll={handleSmoothScroll}
-                  getSlideButton={getSlideButton}
-                  setIsTransitioning={setIsTransitioning}
-                  setCurrentSlide={setCurrentSlide}
-                  setIsManualControl={setIsManualControl}
-                />
-              </ConfigurableSection>
 
-              <ConfigurableSection
-                sectionId={HIDEABLE_COMPONENTS.HERO_DESCRIPTION}
-                isConfigMode={configMode}
-                isVisible={isComponentVisible(
-                  HIDEABLE_COMPONENTS.HERO_DESCRIPTION
-                )}
-                onToggleVisibility={onToggleVisibility}
+              <Carousel
+                carouselImages={carouselImages}
+                currentSlide={currentSlide}
+                isTransitioning={isTransitioning}
+                prevSlide={prevSlide}
+                nextSlide={nextSlide}
+                handleSmoothScroll={handleSmoothScroll}
+                getSlideButton={getSlideButton}
+                setIsTransitioning={setIsTransitioning}
+                setCurrentSlide={setCurrentSlide}
+                setIsManualControl={setIsManualControl}
+              />
+
+              <Typography
+                variant="h5"
+                sx={{
+                  lineHeight: 1.6,
+                  fontWeight: 400,
+                  color: "var(--text-color)",
+                  p: 3,
+                  borderRadius: 2,
+                  backgroundColor: "var(--background-color)",
+                  border: `2px solid var(--primary-color)20`,
+                  boxShadow: "var(--shadow-secondary)",
+                }}
               >
-                <Typography
-                  variant="h5"
+                Marcas confiables, stock real y envíos rápidos. Comprá{" "}
+                <Box
+                  component="span"
                   sx={{
-                    lineHeight: 1.6,
-                    fontWeight: 400,
-                    color: "var(--text-color)",
-                    p: 3,
-                    borderRadius: 2,
-                    backgroundColor: "var(--background-color)",
-                    border: `2px solid var(--primary-color)20`,
-                    boxShadow: "var(--shadow-secondary)",
+                    color: "var(--primary-color)",
+                    fontWeight: 700,
                   }}
                 >
-                  Marcas confiables, stock real y envíos rápidos. Comprá{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "var(--primary-color)",
-                      fontWeight: 700,
-                    }}
-                  >
-                    mayorista
-                  </Box>{" "}
-                  o{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "var(--secondary-color)",
-                      fontWeight: 700,
-                    }}
-                  >
-                    minorista
-                  </Box>
-                  , aprendé en nuestra{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "var(--accent-color)",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Fishing School
-                  </Box>{" "}
-                  y viví{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      color: "var(--primary-color)",
-                      fontWeight: 700,
-                    }}
-                  >
-                    expediciones
-                  </Box>{" "}
-                  únicas con{" "}
-                  <Box
-                    component="span"
-                    sx={{ color: "var(--primary-color)", fontWeight: 700 }}
-                  >
-                    nuestro estilo único
-                  </Box>
-                  .
-                </Typography>
-              </ConfigurableSection>
+                  mayorista
+                </Box>{" "}
+                o{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    color: "var(--secondary-color)",
+                    fontWeight: 700,
+                  }}
+                >
+                  minorista
+                </Box>
+                , aprendé en nuestra{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    color: "var(--accent-color)",
+                    fontWeight: 700,
+                  }}
+                >
+                  Fishing School
+                </Box>{" "}
+                y viví{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    color: "var(--primary-color)",
+                    fontWeight: 700,
+                  }}
+                >
+                  expediciones
+                </Box>{" "}
+                únicas con{" "}
+                <Box
+                  component="span"
+                  sx={{ color: "var(--primary-color)", fontWeight: 700 }}
+                >
+                  nuestro estilo único
+                </Box>
+                .
+              </Typography>
 
               {/* <ConfigurableSection
                 sectionId={HIDEABLE_COMPONENTS.HERO_NAV_BUTTONS}
-                isConfigMode={configMode}
+                
                 isVisible={isComponentVisible(
                   HIDEABLE_COMPONENTS.HERO_NAV_BUTTONS
                 )}
@@ -289,7 +234,7 @@ const HeroSection = ({
 
         {/* <ConfigurableSection
           sectionId={HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_SECTION}
-          isConfigMode={configMode}
+          
           isVisible={isComponentVisible(
             HIDEABLE_COMPONENTS.HERO_PROMOTIONAL_SECTION
           )}

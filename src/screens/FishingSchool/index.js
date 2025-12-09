@@ -37,6 +37,7 @@ import fishingSchool6 from "../../images/fishing_school_6.jpg";
 import fishingSchool7 from "../../images/fishing_school_7.jpg";
 import logoRobinson from "../../images/logo-robinson-fishing-school.png";
 import "./FishingSchool.css";
+import Footer from "../../components/Footer";
 
 const FishingSchoolScreen = () => {
   const [selectedLevel, setSelectedLevel] = useState(0);
@@ -423,6 +424,12 @@ const FishingSchoolScreen = () => {
             variant="body1"
             className="section-subtitle"
             align="center"
+            sx={{
+              textAlign: "center",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             Valor agregado en cada curso
           </Typography>
@@ -458,6 +465,12 @@ const FishingSchoolScreen = () => {
             variant="body1"
             className="section-subtitle"
             align="center"
+            sx={{
+              textAlign: "center",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             Momentos reales de aprendizaje y logros
           </Typography>
@@ -498,6 +511,12 @@ const FishingSchoolScreen = () => {
             variant="body1"
             className="section-subtitle"
             align="center"
+            sx={{
+              textAlign: "center",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             No es teoría pura: aprendés haciendo
           </Typography>
@@ -533,6 +552,12 @@ const FishingSchoolScreen = () => {
             variant="body1"
             className="section-subtitle"
             align="center"
+            sx={{
+              textAlign: "center",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             Encontrá el curso perfecto para tu nivel y estilo de pesca
           </Typography>
@@ -561,11 +586,11 @@ const FishingSchoolScreen = () => {
                         sx={{
                           backgroundColor:
                             course.level === "Principiante"
-                              ? "#4caf50"
+                              ? "#4caf50 !important"
                               : course.level === "Intermedio"
-                              ? "#ff9800"
-                              : "#f44336",
-                          color: "#fff",
+                              ? "#ff9800 !important"
+                              : "#f44336 !important",
+                          color: "#fff !important",
                           fontWeight: 600,
                         }}
                       />
@@ -573,7 +598,11 @@ const FishingSchoolScreen = () => {
                         label={course.modality}
                         size="small"
                         variant="outlined"
-                        sx={{ borderColor: "#2F5233", color: "#2F5233" }}
+                        sx={{
+                          backgroundColor: "#2F5233  !important",
+                          borderColor: "#2F5233  !important",
+                          color: "#FFF !important",
+                        }}
                       />
                     </Box>
                     <Typography variant="h6" className="course-name">
@@ -625,140 +654,6 @@ const FishingSchoolScreen = () => {
         </Container>
       </section>
 
-      {/* 👨‍🏫 3) INSTRUCTORES EXPERTOS
-      <section className="section-instructors">
-        <Container maxWidth="lg">
-          <Typography variant="h2" className="section-title" align="center">
-            Aprendé con instructores expertos
-          </Typography>
-          <Typography
-            variant="body1"
-            className="section-subtitle"
-            align="center"
-          >
-            Nuestro equipo docente te acompaña en cada paso
-          </Typography>
-
-          <Grid container spacing={4} sx={{ mt: 2 }}>
-            {instructors.map((instructor, index) => (
-              <Grid item xs={12} sm={6} md={3} key={instructor.id}>
-                <Card
-                  className="instructor-card"
-                  sx={{ animationDelay: `${index * 0.15}s` }}
-                >
-                  <Avatar
-                    src={instructor.image}
-                    alt={instructor.name}
-                    sx={{ width: 140, height: 140, margin: "20px auto" }}
-                    className="instructor-avatar"
-                  />
-                  <CardContent>
-                    <Typography
-                      variant="h6"
-                      align="center"
-                      className="instructor-name"
-                    >
-                      {instructor.name}
-                    </Typography>
-                    <Chip
-                      label={instructor.specialty}
-                      size="small"
-                      sx={{
-                        backgroundColor: "#6B8E23",
-                        color: "#fff",
-                        margin: "10px auto",
-                        display: "block",
-                        width: "fit-content",
-                      }}
-                    />
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      align="center"
-                      sx={{ fontStyle: "italic", mt: 1 }}
-                    >
-                      "{instructor.experience}"
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </section> */}
-
-      {/* 🫂 4) ACTIVIDADES COMUNITARIAS
-      <section className="section-community">
-        <Container maxWidth="lg">
-          <Typography variant="h2" className="section-title" align="center">
-            Actividades comunitarias
-          </Typography>
-          <Typography
-            variant="body1"
-            className="section-subtitle"
-            align="center"
-          >
-            Más que cursos, somos una comunidad de apasionados por la pesca
-          </Typography>
-
-          <Grid container spacing={3} sx={{ mt: 2 }}>
-            {communityEvents.map((event, index) => (
-              <Grid item xs={12} sm={6} md={3} key={event.id}>
-                <Card
-                  className="community-card"
-                  sx={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CardMedia
-                    component="img"
-                    height="180"
-                    image={event.image}
-                    alt={event.title}
-                  />
-                  <CardContent>
-                    <Chip
-                      label={event.type}
-                      size="small"
-                      sx={{
-                        backgroundColor: "#D2691E",
-                        color: "#fff",
-                        mb: 1,
-                        fontWeight: 600,
-                      }}
-                    />
-                    <Typography variant="h6" className="community-title">
-                      {event.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ mb: 1 }}
-                    >
-                      📅 {event.date}
-                    </Typography>
-                    <Typography variant="body2" sx={{ fontSize: "0.9rem" }}>
-                      {event.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-
-          <Box sx={{ textAlign: "center", mt: 4 }}>
-            <Button
-              variant="contained"
-              size="large"
-              className="btn-primary-school"
-              onClick={() =>
-                handleWhatsApp("Quiero unirme a las actividades comunitarias")
-              }
-            >
-              Unite a la comunidad
-            </Button>
-          </Box>
-        </Container>
-      </section> */}
-
       {/* 🎒 6) PROGRAMAS POR NIVEL */}
       <section className="section-programs">
         <Container maxWidth="lg">
@@ -769,6 +664,12 @@ const FishingSchoolScreen = () => {
             variant="body1"
             className="section-subtitle"
             align="center"
+            sx={{
+              textAlign: "center",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             Elegí el camino que mejor se adapte a tu experiencia
           </Typography>
@@ -1009,6 +910,12 @@ const FishingSchoolScreen = () => {
             variant="body1"
             className="section-subtitle"
             align="center"
+            sx={{
+              textAlign: "center",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             Experiencias reales de quienes ya pasaron por la escuela
           </Typography>
@@ -1087,6 +994,8 @@ const FishingSchoolScreen = () => {
           </Box>
         </Container>
       </section>
+      {/* FOOTER SIMPLE */}
+      <Footer />
     </div>
   );
 };

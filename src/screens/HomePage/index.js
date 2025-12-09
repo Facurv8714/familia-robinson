@@ -1,10 +1,8 @@
 import React from "react";
 import { Container, Grid, Box, Fab } from "@mui/material";
 import { Phone } from "@mui/icons-material";
-import { HIDEABLE_COMPONENTS } from "../../constants";
 import HeroSection from "./components/HeroSection";
-import ConfigurableSection from "./components/ConfigurableSection";
-import ConfigurableGridItem from "./components/ConfigurableGridItem";
+
 import Contacto from "./components/Contacto";
 import Footer from "../../components/Footer";
 import QuienesSomos from "./components/QuienesSomos";
@@ -21,7 +19,6 @@ const scrollToContact = (event) => {
 
 export default function HomePage({
   variant,
-  configMode,
   isComponentVisible,
   onToggleVisibility,
 }) {
@@ -30,14 +27,6 @@ export default function HomePage({
       {/* Hero Section */}
       <HeroSection
         variant={variant}
-        configMode={configMode}
-        isComponentVisible={isComponentVisible}
-        onToggleVisibility={onToggleVisibility}
-      />
-
-      {/* Sección Mayorista/Minorista/Fishing School/Expediciones */}
-      <BusinessCardsSection
-        configMode={configMode}
         isComponentVisible={isComponentVisible}
         onToggleVisibility={onToggleVisibility}
       />
@@ -45,27 +34,15 @@ export default function HomePage({
       {/* Sección Quiénes somos */}
       <Container maxWidth="lg" sx={{ py: 6 }}>
         <Grid container spacing={4}>
-          <ConfigurableGridItem
-            sectionId={HIDEABLE_COMPONENTS.QUIENES_SOMOS}
-            isConfigMode={configMode}
-            isVisible={isComponentVisible(HIDEABLE_COMPONENTS.QUIENES_SOMOS)}
-            onToggleVisibility={onToggleVisibility}
-            gridProps={{ xs: 12, md: 8 }}
-          >
-            <QuienesSomos />
-          </ConfigurableGridItem>
+          <QuienesSomos />
         </Grid>
       </Container>
 
-      {/* CTA Final */}
-      {/* <ConfigurableSection
-        sectionId={HIDEABLE_COMPONENTS.CTA_FINAL}
-        isConfigMode={configMode}
-        isVisible={isComponentVisible(HIDEABLE_COMPONENTS.CTA_FINAL)}
+      {/* Sección Mayorista/Minorista/Fishing School/Expediciones */}
+      <BusinessCardsSection
+        isComponentVisible={isComponentVisible}
         onToggleVisibility={onToggleVisibility}
-      >
-        <Cotizar />
-      </ConfigurableSection> */}
+      />
 
       <Box
         sx={{
@@ -87,38 +64,26 @@ export default function HomePage({
       </Box>
 
       {/* Footer */}
-      <ConfigurableSection
-        sectionId={HIDEABLE_COMPONENTS.FOOTER}
-        isConfigMode={configMode}
-        isVisible={isComponentVisible(HIDEABLE_COMPONENTS.FOOTER)}
-        onToggleVisibility={onToggleVisibility}
-      >
-        <Footer />
-      </ConfigurableSection>
+
+      <Footer />
 
       {/* Floating Action Button */}
-      <ConfigurableSection
-        sectionId={HIDEABLE_COMPONENTS.FAB_BUTTON}
-        isConfigMode={configMode}
-        isVisible={isComponentVisible(HIDEABLE_COMPONENTS.FAB_BUTTON)}
-        onToggleVisibility={onToggleVisibility}
+
+      <Fab
+        color="primary"
+        sx={{
+          position: "fixed",
+          bottom: 24,
+          right: 24,
+          background: `#FFF`,
+          "&:hover": {
+            background: `linear-gradient(135deg, #FF0000dd, #FFD700dd)`,
+          },
+        }}
+        onClick={scrollToContact}
       >
-        <Fab
-          color="primary"
-          sx={{
-            position: "fixed",
-            bottom: 24,
-            right: 24,
-            background: `#FFF`,
-            "&:hover": {
-              background: `linear-gradient(135deg, #FF0000dd, #FFD700dd)`,
-            },
-          }}
-          onClick={scrollToContact}
-        >
-          <Phone />
-        </Fab>
-      </ConfigurableSection>
+        <Phone />
+      </Fab>
     </>
   );
 }

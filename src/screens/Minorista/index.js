@@ -10,7 +10,6 @@ import {
   CardMedia,
   IconButton,
   Chip,
-  Fab,
 } from "@mui/material";
 import {
   PhishingOutlined,
@@ -22,10 +21,10 @@ import {
   WhatsApp,
   KeyboardArrowLeft,
   KeyboardArrowRight,
-  ArrowDownward,
 } from "@mui/icons-material";
 import robinsonMinorista from "../../images/robinson-minorista.avif";
 import Footer from "../../components/Footer";
+import "./Minorista.css";
 
 // Datos de categorías
 const categories = [
@@ -132,7 +131,6 @@ const premiumBrands = [
 const Minorista = () => {
   const [currentProduct, setCurrentProduct] = useState(0);
   const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
-  const [showScrollDown, setShowScrollDown] = useState(true);
 
   console.log(currentBrandIndex);
 
@@ -165,27 +163,6 @@ const Minorista = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Mostrar/ocultar botón de scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
-      if (windowHeight + scrollY >= docHeight - 150) {
-        setShowScrollDown(false);
-      } else {
-        setShowScrollDown(true);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleScrollToBottom = () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-  };
-
   const nextProduct = useCallback(() => {
     setCurrentProduct((prev) =>
       prev === featuredProducts.length - 1 ? 0 : prev + 1
@@ -211,8 +188,7 @@ const Minorista = () => {
       <Box
         sx={{
           position: "relative",
-          height: { xs: "60vh", md: "70vh" },
-          minHeight: "500px",
+          height: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -227,18 +203,9 @@ const Minorista = () => {
             backgroundImage: `url(${robinsonMinorista})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+            filter: "brightness(0.4)",
             zIndex: 0,
-          },
-          "&::after": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background:
-              "linear-gradient(135deg, rgba(211, 47, 47, 0.25) 0%, rgba(198, 40, 40, 0.20) 100%)",
-            zIndex: 1,
           },
         }}
       >
@@ -246,7 +213,7 @@ const Minorista = () => {
           maxWidth="lg"
           sx={{
             position: "relative",
-            zIndex: 2,
+            zIndex: 1,
             textAlign: "center",
             color: "white",
           }}
@@ -255,23 +222,25 @@ const Minorista = () => {
             variant="h1"
             sx={{
               color: "#FFF !important",
-              fontSize: { xs: "2.5rem", md: "4.5rem" },
+              fontSize: { xs: "3rem", md: "6rem" },
               fontWeight: 900,
               mb: 3,
-              textShadow: "2px 2px 8px rgba(0,0,0,0.7)",
-              letterSpacing: 2,
+              textShadow: "3px 3px 12px rgba(0,0,0,0.8)",
+              letterSpacing: 3,
+              animation: "fadeInUp 1s ease-out",
             }}
           >
             Tu aliado para cada aventura
           </Typography>
           <Typography
-            variant="h5"
+            variant="h4"
             sx={{
               color: "#FFF !important",
-              mb: 5,
-              fontSize: { xs: "1.2rem", md: "1.8rem" },
-              fontWeight: 400,
-              textShadow: "1px 1px 4px rgba(0,0,0,0.7)",
+              mb: 6,
+              fontSize: { xs: "1.5rem", md: "2.5rem" },
+              fontWeight: 300,
+              textShadow: "2px 2px 8px rgba(0,0,0,0.8)",
+              animation: "fadeInUp 1.2s ease-out",
             }}
           >
             Equipamiento outdoor de calidad para vivir la naturaleza
@@ -282,6 +251,7 @@ const Minorista = () => {
               gap: 2,
               justifyContent: "center",
               flexWrap: "wrap",
+              animation: "fadeInUp 1.4s ease-out",
             }}
           >
             <Button
@@ -782,28 +752,6 @@ const Minorista = () => {
         </Card>
       </Container>
 
-      {/* Botón flotante de scroll */}
-      {showScrollDown && (
-        <Fab
-          onClick={handleScrollToBottom}
-          sx={{
-            position: "fixed",
-            bottom: 24,
-            right: 24,
-            background: "var(--primary-color)",
-            color: "white",
-            zIndex: 1000,
-            boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
-            "&:hover": {
-              background: "var(--primary-color-dark)",
-              transform: "scale(1.1)",
-            },
-            transition: "all 0.3s ease",
-          }}
-        >
-          <ArrowDownward />
-        </Fab>
-      )}
       <Footer />
     </Box>
   );
